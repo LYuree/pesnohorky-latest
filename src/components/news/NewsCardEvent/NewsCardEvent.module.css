@@ -1,0 +1,123 @@
+.root {
+  width: 1252px;
+  box-sizing: border-box;
+}
+
+.inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+.contents {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.texts {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  min-width: 0;
+  padding-right: 20px;
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  color: #a51312;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.heading {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.paragraph {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.dateRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  color: #a51312;
+  white-space: nowrap;
+}
+
+.dateCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  line-height: 0;
+}
+
+.dateDay {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.dateMonth {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.dateYear {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.media {
+  width: 560px;
+  max-width: 560px;
+  aspect-ratio: 489 / 400;
+  max-height: 458.0777px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.mediaImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bottomLine {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.bottomLineImg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1.5px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+

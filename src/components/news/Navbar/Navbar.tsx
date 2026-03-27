@@ -1,0 +1,56 @@
+import styles from "./Navbar.module.css";
+import { figmaAssets } from "../../../lib/figmaAssets";
+
+type NavbarProps = {
+  className?: string;
+};
+
+export function Navbar({ className }: NavbarProps) {
+  return (
+    <div className={[styles.root, className].filter(Boolean).join(" ")} data-component="Navbar">
+      <div className={styles.logoWrap} data-name="pesno3_logo">
+        <img alt="" className={styles.logoImg} src={figmaAssets.imgPesno311} />
+      </div>
+
+      <div className={styles.links} data-name="nav_links">
+        <div className={styles.linkItem}>
+          <p className={styles.linkText}>Новости</p>
+        </div>
+        <div className={styles.linkItem}>
+          <p className={styles.linkText}>Родителям</p>
+        </div>
+        <div className={styles.linkItem}>
+          <p className={styles.linkText}>Cведения об образовательной организации</p>
+        </div>
+        <div className={styles.linkItem}>
+          <p className={styles.linkText}>О центре</p>
+        </div>
+        <div className={styles.linkItem}>
+          <p className={styles.linkText}>Контакты</p>
+        </div>
+      </div>
+
+      <div className={styles.right} data-name="nav_right">
+        <div className={styles.socialIcons}>
+          <div className={styles.iconWrap}>
+            <img alt="" className={styles.iconImg} src={figmaAssets.imgTablerIconBrandVk} />
+          </div>
+          <div className={styles.iconWrap}>
+            <img alt="" className={styles.iconImg} src={figmaAssets.imgTablerIconDeviceMobile} />
+          </div>
+          <div className={styles.iconWrap}>
+            <img alt="" className={styles.iconImg} src={figmaAssets.imgTablerIconBrandTelegram} />
+          </div>
+          <div className={styles.iconWrap}>
+            <img alt="" className={styles.iconImg} src={figmaAssets.imgTablerIconBrandWhatsapp} />
+          </div>
+        </div>
+
+        <div className={styles.userWrap}>
+          <img alt="" className={styles.userImg} src={figmaAssets.imgTablerIconUser} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
