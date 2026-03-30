@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { figmaAssets } from "../../../lib/figmaAssets";
 
@@ -13,15 +14,15 @@ export function Navbar({ className }: NavbarProps) {
       </div>
 
       <div className={styles.links} data-name="nav_links">
-        <div className={styles.linkItem}>
+        <Link to="/" className={styles.linkItem}>
           <p className={styles.linkText}>Новости</p>
-        </div>
+        </Link>
         <div className={styles.linkItem}>
           <p className={styles.linkText}>Родителям</p>
         </div>
-        <div className={styles.linkItem}>
+        <Link to="/about-info" className={styles.linkItem}>
           <p className={styles.linkText}>Cведения об образовательной организации</p>
-        </div>
+        </Link>
         <div className={styles.linkItem}>
           <p className={styles.linkText}>О центре</p>
         </div>
