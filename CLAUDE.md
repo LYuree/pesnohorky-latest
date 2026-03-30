@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Pesnohorky — a news/events landing page for a music/arts center. React 19 + TypeScript + Vite 8, presentation-only (no backend, no routing, no state management).
+Pesnohorky — a news/events site for a music/arts center. React 19 + TypeScript + Vite 8 + React Router DOM, presentation-only (no backend, no state management).
 
 ## Commands
 
@@ -15,13 +15,19 @@ Pesnohorky — a news/events landing page for a music/arts center. React 19 + Ty
 
 ## Architecture
 
-**Entry flow:** `index.html` → `src/main.tsx` → `App.tsx` → `NewsLandingPage`
+**Entry flow:** `index.html` → `src/main.tsx` → `App.tsx` (BrowserRouter + Routes)
+
+**Routing (`App.tsx`):**
+- `/` → `NewsLandingPage` — news/events landing
+- `/about-info` → `AboutInfoPage` — "Сведения об образовательной организации"
 
 **Source layout:**
-- `src/pages/NewsLandingPage/` — the single page component (layout, sections, footer)
+- `src/pages/NewsLandingPage/` — news landing page (layout, sections, footer)
+- `src/pages/AboutInfoPage/` — org info page (founder details, addresses, education info)
 - `src/components/ui/` — reusable primitives: Button, Card, Heading (polymorphic via `as` prop)
-- `src/components/news/` — domain components: Navbar, FilterChip, Pagination, and card variants (Featured, Event, Medium, Light)
-- `src/lib/figmaAssets.ts` — exported Figma image URLs used across components
+- `src/components/news/` — domain components: Navbar (with `react-router-dom` `Link`s), FilterChip, Pagination, and card variants (Featured, Event, Medium, Light)
+- `src/lib/figmaAssets.ts` — Figma image URLs for NewsLandingPage
+- `src/lib/aboutInfoAssets.ts` — Figma image URLs for AboutInfoPage
 
 ## Conventions
 
