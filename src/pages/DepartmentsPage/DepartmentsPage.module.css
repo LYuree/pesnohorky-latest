@@ -1,0 +1,337 @@
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background: #a51312;
+}
+
+/* ── Hero ── */
+.hero {
+  width: 100%;
+  background: #a51312;
+}
+
+.heroInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 80px 40px;
+  box-sizing: border-box;
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 0;
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  flex-wrap: wrap;
+}
+
+.heroTitleRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.heroLine {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.heroLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.heroTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  color: #fffff9;
+  margin: 8px 0 16px;
+  line-height: normal;
+}
+
+/* ── Content ── */
+.contentSection {
+  flex: 1;
+  background: #fffff9;
+}
+
+.contentInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 40px 230px 80px;
+  box-sizing: border-box;
+}
+
+/* ── Filters ── */
+.filters {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filterTab {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  background: #a51312;
+  border: none;
+  padding: 4px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.filterTab:hover {
+  opacity: 0.85;
+}
+
+/* ── Group ── */
+.group {
+  margin-bottom: 40px;
+}
+
+.groupTitle {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  color: #a51312;
+  margin: 0 0 24px;
+}
+
+.groupRow {
+  display: flex;
+  gap: 34px;
+  align-items: flex-start;
+}
+
+/* ── Featured card ── */
+.featuredCard {
+  width: 603px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  position: relative;
+}
+
+.featuredImgWrap {
+  width: 100%;
+  height: 468px;
+  position: relative;
+  overflow: hidden;
+}
+
+.featuredImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featuredOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 25%, transparent);
+}
+
+.featuredText {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.featuredType {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+}
+
+.featuredCardLine {
+  height: 3px;
+  width: 443px;
+  max-width: 100%;
+  position: relative;
+}
+
+.featuredLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.featuredName {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+}
+
+/* ── Small cards ── */
+.smallCards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.smallCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.smallCardImg {
+  width: 100%;
+  height: 225px;
+  background: #c4c4c4;
+}
+
+.smallCardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.smallCardName {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #a51312;
+  margin: 0;
+}
+
+.smallCardLine {
+  height: 3px;
+  width: 100%;
+  position: relative;
+}
+
+.smallCardLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.smallCardMeta {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #a51312;
+  margin: 0;
+}
+
+.metaLabel {
+  font-weight: 500;
+}
+
+.enrollBtn {
+  background: #a51312;
+  border-radius: 0 16px 0 0;
+  padding: 8px 9px;
+  position: relative;
+  overflow: hidden;
+  height: 51px;
+  display: flex;
+  align-items: center;
+}
+
+.enrollBtnText {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  position: relative;
+  z-index: 1;
+}
+
+.enrollBtnLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 9px;
+  object-fit: fill;
+}
+
+/* ── Divider ── */
+.sectionDivider {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-top: 40px;
+}
+
+.sectionDividerImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .heroInner {
+    padding: 0 20px 24px;
+  }
+
+  .breadcrumbs {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+  }
+
+  .contentInner {
+    padding: 24px 20px 60px;
+  }
+
+  .filters {
+    gap: 12px;
+  }
+
+  .filterTab {
+    font-size: 18px;
+  }
+
+  .groupRow {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .featuredCard {
+    width: 100%;
+  }
+
+  .featuredImgWrap {
+    height: 280px;
+  }
+
+  .groupTitle,
+  .featuredType,
+  .featuredName,
+  .smallCardName,
+  .smallCardMeta,
+  .enrollBtnText {
+    font-size: 20px;
+  }
+}

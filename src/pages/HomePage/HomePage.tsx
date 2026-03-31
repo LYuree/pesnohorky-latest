@@ -1,10 +1,14 @@
 import { Navbar } from "../../components/news/Navbar/Navbar";
+import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { Footer } from "../../components/shared/Footer/Footer";
 import { homeAssets } from "../../lib/homeAssets";
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
   return (
     <div className={styles.page}>
+      <MobileHeader />
+
       {/* ── Hero (includes header) ── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
@@ -423,56 +427,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Footer ── */}
-      <footer className={styles.footer}>
-        <div className={styles.footerRed}>
-          <div className={styles.footerRedContent}>
-            <h2 className={styles.footerTitle}>Контакты</h2>
-            <div className={styles.footerColumns}>
-              <div className={[styles.footerCol, styles.footerColFirst].join(" ")}>
-                <p>11 11 11, г. Барнаул, ул. Ленина, 100</p>
-                <div className={styles.footerHoursRow}>
-                  <span className={styles.footerHoursTime}>08:00 - 18:00</span>
-                  <span>Пн-Сб</span>
-                </div>
-              </div>
-              <div className={styles.footerCol}>
-                <p>+7 (913) 123-45-67</p>
-                <p>mail@pesnohorki.ru</p>
-                <p>https://vk.com/pesnohorki</p>
-              </div>
-              <div className={styles.footerCol}>
-                <p>Пользовательское соглашение</p>
-                <p>Политика конфиденциальности</p>
-                <p>Обработка персональных данных</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.footerBranch}>
-            <div className={styles.footerBranchInner}>
-              <img alt="" className={styles.branchImg} src={homeAssets.imgBranchFooter1} />
-            </div>
-          </div>
-          <p className={styles.footerYod}>ЙОD@2026</p>
-        </div>
-        <div className={styles.footerLinks}>
-          <div className={styles.footerLinkCol} style={{ paddingRight: 16 }}>
-            <p>Сведения об образовательной организации</p>
-            <p>Основные сведения</p>
-            <p>Педсостав</p>
-          </div>
-          <div className={styles.footerLinkCol}>
-            <p>Образование</p>
-            <p>Противодействие коррупции</p>
-            <p>Противодействие терроризму</p>
-          </div>
-          <div className={styles.footerLinkCol}>
-            <p>Фин-хоз деятельность</p>
-            <p>Образовательные стандарты</p>
-            <p>Формы обратной связи</p>
-          </div>
-        </div>
-        <p className={styles.footerCopyright}>ЙОD@2026</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

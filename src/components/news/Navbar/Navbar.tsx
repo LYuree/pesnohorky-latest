@@ -17,18 +17,18 @@ export function Navbar({ className }: NavbarProps) {
         <Link to="/news" className={styles.linkItem}>
           <p className={styles.linkText}>Новости</p>
         </Link>
-        <div className={styles.linkItem}>
+        <Link to="/parents" className={styles.linkItem}>
           <p className={styles.linkText}>Родителям</p>
-        </div>
+        </Link>
         <Link to="/about-info" className={styles.linkItem}>
           <p className={styles.linkText}>Cведения об образовательной организации</p>
         </Link>
-        <div className={styles.linkItem}>
+        <Link to="/about" className={styles.linkItem}>
           <p className={styles.linkText}>О центре</p>
-        </div>
-        <div className={styles.linkItem}>
+        </Link>
+        <Link to="/contacts" className={styles.linkItem}>
           <p className={styles.linkText}>Контакты</p>
-        </div>
+        </Link>
       </div>
 
       <div className={styles.right} data-name="nav_right">

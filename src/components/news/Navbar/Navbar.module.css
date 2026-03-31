@@ -12,6 +12,12 @@
   background: rgba(255, 255, 255, 0.01);
 }
 
+@media (max-width: 768px) {
+  .root {
+    display: none;
+  }
+}
+
 .logoWrap {
   position: relative;
   width: 212px;

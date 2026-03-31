@@ -1,0 +1,100 @@
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background: #fffff9;
+}
+
+.hero {
+  width: 100%;
+}
+
+.heroInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 0;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #a51312;
+  flex-wrap: wrap;
+}
+
+.content {
+  flex: 1;
+}
+
+.contentInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 40px 230px 80px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  color: #a51312;
+  margin: 0 0 40px;
+  line-height: normal;
+}
+
+.tableCaption {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #000;
+  margin: 0 0 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 48px;
+}
+
+.table th {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+  border: 1px solid #a51312;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.table td {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 20px;
+  color: #000;
+  border: 1px solid #a51312;
+  padding: 8px 12px;
+}
+
+@media (max-width: 768px) {
+  .heroInner {
+    padding: 0 20px;
+  }
+
+  .contentInner {
+    padding: 24px 20px 60px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .table th,
+  .table td {
+    font-size: 14px;
+    padding: 4px 6px;
+  }
+}
