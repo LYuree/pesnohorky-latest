@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 229 468" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 60">
+<g clip-path="url(#clip0_0_518)">
+<path d="M0 32C0 14.3269 14.3269 0 32 0H229V468H32C14.3269 468 0 453.673 0 436V32Z" fill="var(--fill-0, #A51312)"/>
+<g id="&#208;&#151;&#208;&#176;&#208;&#191;&#208;&#184;&#209;&#129;&#208;&#176;&#209;&#130;&#209;&#140;&#209;&#129;&#209;&#143;">
+</g>
+<path id="Line 1" d="M0 385H229C220.519 381.462 214.864 377.923 214.864 362" stroke="var(--stroke-0, white)" stroke-width="16"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_518">
+<path d="M0 32C0 14.3269 14.3269 0 32 0H229V468H32C14.3269 468 0 453.673 0 436V32Z" fill="white"/>
+</clipPath>
+</defs>
+</svg>

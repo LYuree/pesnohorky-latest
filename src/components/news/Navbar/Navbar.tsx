@@ -7,7 +7,7 @@ type NavbarProps = {
 
 export function Navbar({ className }: NavbarProps) {
   const navLinks = [
-    { label: "Новости", href: "#news" },
+    { label: "Новости", href: "C:/Users/korsi/OneDrive/Рабочий стол/pesnochorky/pesnohorky-latest/src/pages/NewsLandingPage/NewsLandingPage.tsx" },
     { label: "Родителям", href: "#parents" },
     { label: "Cведения об образовательной организации", href: "#organization" },
     { label: "О центре", href: "#about" },

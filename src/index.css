@@ -1,3 +1,23 @@
+@import "./fonts/montserrat-alternates.css";
+
+@font-face {
+  font-family: "Harlequinade";
+  src:
+    local("Harlequinade"),
+    url("/fonts/Harlequinade.woff2") format("woff2"),
+    url("/fonts/Harlequinade.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Dark Deco";
+  src:
+    local("Dark Deco"),
+    url("/fonts/DarkDeco.woff2") format("woff2"),
+    url("/fonts/DarkDeco.woff") format("woff");
+  font-display: swap;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -11,8 +31,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -64,6 +84,8 @@
 
 body {
   margin: 0;
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  background: #fffff9;
 }
 
 h1,

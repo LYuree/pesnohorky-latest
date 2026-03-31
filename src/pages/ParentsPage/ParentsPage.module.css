@@ -1,0 +1,355 @@
+.page {
+  width: 1920px;
+  margin: 0 auto;
+  background: #fffff9;
+}
+
+.navbarPos {
+  padding-top: 32px;
+}
+
+.main {
+  width: 1460px;
+  margin: 0 auto;
+  color: #a51312;
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 16px;
+  margin: 28px 0 34px;
+  font-size: 24px;
+}
+
+.breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero {
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  left: 208px;
+  top: 0;
+  width: 448px;
+  height: 260px;
+  object-fit: cover;
+  opacity: 0.24;
+  mix-blend-mode: multiply;
+}
+
+.heroCenter {
+  position: absolute;
+  left: 360px;
+  top: 0;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  opacity: 0.18;
+}
+
+.heroDecorLeft {
+  position: absolute;
+  left: 6px;
+  top: 150px;
+  width: 120px;
+  height: auto;
+}
+
+.heroDecorRight {
+  position: absolute;
+  right: 8px;
+  top: 150px;
+  width: 120px;
+  height: auto;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  margin: 0 0 22px;
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.tabs a {
+  color: #a51312;
+}
+
+.tabActive {
+  border: 0;
+  border-bottom: 4px solid #a51312;
+  background: #a51312;
+  color: #fffff9;
+  border-radius: 6px 6px 0 0;
+  padding: 6px 12px;
+  font-size: 24px;
+}
+
+.enrollBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 208px;
+  width: 120px;
+  border: 0;
+  border-radius: 16px;
+  background: #a51312;
+  color: #fffff9;
+  font-size: 36px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.section {
+  margin-top: 96px;
+}
+
+.section h2 {
+  margin: 0 0 30px;
+  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding-left: 104px;
+}
+
+.quickCard {
+  border-radius: 16px;
+  background: #a51312;
+  color: #fffff9;
+  padding: 12px 14px;
+}
+
+.quickCard h3 {
+  margin: 0 0 8px;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.quickCard p {
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+
+.quickCard button {
+  border: 0;
+  background: #fffff9;
+  color: #a51312;
+  border-radius: 12px;
+  padding: 4px 14px;
+  font-size: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quickCard button img {
+  width: 16px;
+  height: 14px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 104px;
+}
+
+.stepCard {
+  border: 4px solid #a51312;
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.stepNum {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #a51312;
+  color: #fffff9;
+  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 36px;
+  display: grid;
+  place-items: center;
+}
+
+.stepCard h3 {
+  margin: 0 0 8px;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.stepCard p {
+  margin: 0;
+  font-size: 24px;
+}
+
+.docsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  padding-left: 104px;
+}
+
+.docCard {
+  background: #a51312;
+  color: #fffff9;
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+
+.docCard h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.docCard p {
+  margin: 0 0 16px;
+  font-size: 16px;
+}
+
+.docCard div {
+  display: flex;
+  gap: 8px;
+}
+
+.docCard button {
+  flex: 1;
+  border: 1px solid #fffff9;
+  border-radius: 999px;
+  background: transparent;
+  color: #fffff9;
+  font-size: 16px;
+  padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.docCard button img {
+  width: 12px;
+  height: 12px;
+  filter: invert(1);
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 104px;
+}
+
+.faqItem {
+  border: 4px solid #d52524;
+  border-radius: 16px;
+  padding: 12px 34px;
+}
+
+.faqItem h3 {
+  margin: 0 0 8px;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.faqItem p {
+  margin: 0;
+  font-size: 24px;
+}
+
+.costBlock {
+  margin-top: 96px;
+  background: #a51312;
+  color: #fffff9;
+  padding: 80px 230px;
+}
+
+.costBlock h2 {
+  margin: 0 0 30px;
+  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.costBlock h3 {
+  margin: 0 0 24px;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.costBlock p {
+  margin: 0 0 22px;
+  max-width: 760px;
+  font-size: 24px;
+}
+
+.costBlock button {
+  border: 0;
+  border-radius: 16px;
+  background: #fffff9;
+  color: #a51312;
+  font-size: 36px;
+  padding: 6px 24px;
+  margin-bottom: 36px;
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+.costBlock small {
+  display: block;
+  font-size: 24px;
+}
+
+.infoColumns {
+  display: grid;
+  grid-template-columns: 847px 593px;
+  gap: 20px;
+}
+
+.infoColumns div {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.infoColumns a {
+  display: block;
+  background: #a51312;
+  color: #fffff9;
+  text-decoration: none;
+  border-radius: 14px 36px 0 0;
+  padding: 16px 27px;
+  font-size: 36px;
+}

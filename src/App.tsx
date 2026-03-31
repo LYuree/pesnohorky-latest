@@ -1,7 +1,7 @@
-import MainPage from "./pages/MainPage/MainPage";
+import ParentsPage from "./pages/ParentsPage/ParentsPage";
 
 function App() {
-  return <MainPage />;
+  return <ParentsPage />;
 }
 
 export default App;
