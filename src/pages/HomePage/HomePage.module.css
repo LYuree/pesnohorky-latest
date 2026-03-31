@@ -1,0 +1,1242 @@
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fffff9;
+  overflow: hidden;
+}
+
+/* ── Centered content container ── */
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* ── Full-width section base ── */
+.sectionFull {
+  width: 100%;
+  position: relative;
+  overflow: clip;
+}
+
+/* ── Header ── */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 80px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #a51312;
+  white-space: nowrap;
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Hero ── */
+.hero {
+  width: 100%;
+  position: relative;
+  height: 828px;
+  overflow: visible;
+}
+
+.heroInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
+
+.heroTitle {
+  position: absolute;
+  left: 50%;
+  top: 607px;
+  transform: translateX(-50%);
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: normal;
+  color: #a51312;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.heroSubtitle {
+  position: absolute;
+  left: 235px;
+  top: 186px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #a51312;
+}
+
+.heroImgLeft {
+  position: absolute;
+  left: calc(50% - 408px);
+  top: 161px;
+  width: 370px;
+  height: 431px;
+  object-fit: cover;
+  opacity: 0.54;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.heroImgRight {
+  position: absolute;
+  left: calc(50% + 39px);
+  top: 161px;
+  width: 370px;
+  height: 431px;
+  object-fit: cover;
+  opacity: 0.54;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+
+.heroMatryoshka {
+  position: absolute;
+  left: 50%;
+  top: 193px;
+  transform: translateX(-50%);
+  width: 478px;
+  height: 478px;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.heroBranches {
+  position: absolute;
+  right: -89px;
+  top: 295px;
+  width: 720px;
+  height: 715px;
+  pointer-events: none;
+}
+
+.heroBranch1 {
+  position: absolute;
+  left: 307px;
+  top: 160px;
+  width: 420px;
+  height: 445px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroBranch1Inner {
+  width: 282px;
+  height: 351px;
+  position: relative;
+  transform: rotate(149.86deg) scaleY(-1);
+}
+
+.heroBranch2 {
+  position: absolute;
+  left: 417px;
+  top: 118px;
+  width: 303px;
+  height: 345px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroBranch2Inner {
+  width: 179px;
+  height: 295px;
+  position: relative;
+  transform: rotate(-30.14deg);
+}
+
+.heroBranch3 {
+  position: absolute;
+  left: 64px;
+  top: 0;
+  width: 454px;
+  height: 476px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroBranch3Inner {
+  width: 310px;
+  height: 371px;
+  position: relative;
+  transform: rotate(-30.14deg);
+}
+
+.branchImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.heroBtn {
+  position: absolute;
+  left: 235px;
+  top: 672px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 2px 0 11px;
+  border-bottom: 3px solid #fffff9;
+  border-top-right-radius: 16px;
+  background: #a51312;
+  overflow: clip;
+}
+
+.btnContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  margin-bottom: -9px;
+}
+
+.btnText {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btnTextLarge {
+  font-size: 36px;
+}
+
+.btnCorner {
+  width: 16.5px;
+  height: 15px;
+  position: relative;
+  margin-bottom: -9px;
+}
+
+.btnCornerImg {
+  position: absolute;
+  inset: 0 -1.34% -9.89% -9.1%;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Info section (red, "Песнохорки") ── */
+.infoSection {
+  background: #a51312;
+  height: 760px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 62px;
+  padding-bottom: 62px;
+  box-sizing: border-box;
+}
+
+.infoInner {
+  max-width: 1920px;
+  width: 100%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.infoDollLeft {
+  position: absolute;
+  left: -671px;
+  top: -102px;
+  width: 1034px;
+  height: 1335px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.infoDollLeftInner {
+  width: 729px;
+  height: 1176px;
+  transform: rotate(-16.59deg);
+  opacity: 0.9;
+  object-fit: cover;
+}
+
+.infoPesno5 {
+  position: absolute;
+  right: -153px;
+  top: 99px;
+  width: 526px;
+  height: 1023px;
+  opacity: 0.5;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.infoPesno5Img {
+  position: absolute;
+  top: 0;
+  left: -129.78%;
+  width: 359.55%;
+  height: 100%;
+}
+
+.infoContent {
+  position: relative;
+  width: 1507px;
+  max-width: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.infoHeader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.infoHeaderTop {
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  border-bottom: 3px solid #fffff9;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.infoHeaderTopText {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  color: #fffff9;
+  white-space: nowrap;
+}
+
+.infoHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.infoTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: normal;
+  color: #fffff9;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.infoSubtitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  color: #fffff9;
+  text-align: right;
+  white-space: nowrap;
+  padding: 12px 0;
+}
+
+.infoBody {
+  width: 1250px;
+  max-width: 100%;
+  padding: 10px 0;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+  text-align: justify;
+}
+
+/* ── Department section (shared for Техносказка / Созвучие) ── */
+.deptSection {
+  height: 750px;
+  position: relative;
+}
+
+.deptSectionWhite {
+  background: #fffff9;
+}
+
+.deptSectionRed {
+  background: #a51312;
+}
+
+.deptInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
+
+.deptSectionLabel {
+  position: absolute;
+  left: 236px;
+  top: 84px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.deptLine {
+  position: absolute;
+  left: 230px;
+  top: 104px;
+  width: 1507px;
+  height: 0;
+}
+
+.deptLineInner {
+  position: absolute;
+  inset: -3px 0 0 0;
+  width: 100%;
+  height: 100%;
+}
+
+.deptTitle {
+  position: absolute;
+  left: 230px;
+  top: 93px;
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: normal;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.deptSubtitleRight {
+  position: absolute;
+  right: 184px;
+  top: 146px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.deptBody {
+  position: absolute;
+  left: 337px;
+  top: 250px;
+  width: 1250px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  text-align: justify;
+}
+
+.textWhite { color: #fffff9; }
+.textRed { color: #a51312; }
+
+/* Техносказка images */
+.techPesno9 {
+  position: absolute;
+  right: -525px;
+  top: 172px;
+  width: 820px;
+  height: 613px;
+  opacity: 0.8;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.techPesno9Img {
+  position: absolute;
+  top: -19.24%;
+  left: -21.57%;
+  width: 143.13%;
+  height: 138.47%;
+  object-fit: cover;
+}
+
+.techChatGpt {
+  position: absolute;
+  left: -385px;
+  top: 279px;
+  width: 722px;
+  height: 559px;
+  pointer-events: none;
+}
+
+.techChatGptInner {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  overflow: hidden;
+  transform: rotate(180deg) scaleY(-1);
+  position: relative;
+}
+
+.techChatGptImg {
+  position: absolute;
+  top: -15.16%;
+  left: -3.67%;
+  width: 107.34%;
+  height: 138.57%;
+  object-fit: cover;
+}
+
+/* Созвучие images */
+.sozvPesno10 {
+  position: absolute;
+  left: -664px;
+  top: 11px;
+  width: 952px;
+  height: 952px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.sozvPesno10Inner {
+  width: 832px;
+  height: 832px;
+  transform: rotate(-9.01deg);
+  object-fit: cover;
+}
+
+.sozvPesno7 {
+  position: absolute;
+  right: -202px;
+  top: 16px;
+  width: 679px;
+  height: 894px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.sozvPesno7Inner {
+  width: 476px;
+  height: 793px;
+  opacity: 0.5;
+  transform: rotate(-16.28deg);
+  object-fit: cover;
+}
+
+.sozvBtn {
+  position: absolute;
+  left: 236px;
+  bottom: 81px;
+}
+
+/* ── "А также..." ── */
+.alsoSection {
+  background: #a51312;
+  height: 750px;
+}
+
+.alsoInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
+
+.alsoLabel {
+  position: absolute;
+  left: 235px;
+  top: 59px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  color: #fffff9;
+  white-space: nowrap;
+}
+
+.alsoLine {
+  position: absolute;
+  left: 230px;
+  top: 101px;
+  width: 1690px;
+  height: 0;
+}
+
+.alsoCards {
+  position: absolute;
+  left: 50%;
+  top: 217px;
+  transform: translateX(-50%);
+  width: 1252px;
+  display: grid;
+  grid-template-columns: repeat(4, 277px);
+  gap: 80px;
+}
+
+.alsoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 420px;
+}
+
+.alsoCardImg {
+  width: 100%;
+  height: 225px;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.alsoCardTitleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  position: relative;
+}
+
+.alsoCardTitleRow {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.alsoCardTitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: normal;
+  color: #fffff9;
+}
+
+.alsoCardSubtitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+}
+
+.alsoCardLine {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.alsoCardLineImg {
+  position: absolute;
+  inset: -3px 0 0 0;
+  width: 100%;
+  height: 100%;
+}
+
+.alsoCardLineSmall {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 24px;
+  height: 1px;
+}
+
+.alsoCardDesc {
+  flex: 1;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: normal;
+  color: #fffff9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alsoBtn {
+  position: absolute;
+  right: 313px;
+  top: 583px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 2px 0 11px;
+  border-bottom: 3px solid #fffff9;
+  border-top-right-radius: 16px;
+  overflow: clip;
+}
+
+.alsoBtnContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  margin-bottom: -9px;
+}
+
+.alsoBtnText {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+  white-space: nowrap;
+}
+
+.alsoBtnCorner {
+  width: 13px;
+  height: 12px;
+  position: relative;
+  margin-bottom: -9px;
+}
+
+.alsoBtnCornerImg {
+  position: absolute;
+  inset: 0 -1.73% -12.36% -11.54%;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Red banner ── */
+.redBanner {
+  width: 100%;
+  height: 125px;
+  background: #a51312;
+}
+
+/* ── Педагоги ── */
+.teachersSection {
+  width: 100%;
+  background: #fffff9;
+  padding: 32px 0 64px;
+}
+
+.teachersInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.teachersTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: normal;
+  color: #a51312;
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.teachersGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  padding: 0 48px;
+}
+
+.teacherCard {
+  display: flex;
+  gap: 36px;
+  align-items: flex-end;
+}
+
+.teacherCardCenter {
+  align-items: center;
+}
+
+.teacherPhoto {
+  width: 394px;
+  height: 526px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.teacherPhotoImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.teacherInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 58px;
+  color: #a51312;
+}
+
+.teacherInfoRight {
+  align-items: flex-end;
+  text-align: right;
+  width: 437px;
+}
+
+.teacherInfoLeft {
+  align-items: flex-start;
+  text-align: left;
+  width: 377px;
+}
+
+.teacherName {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.teacherSurname {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: normal;
+  margin: 0;
+}
+
+.teacherFirstName {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  margin: 0;
+}
+
+.teacherDesc {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  width: 254px;
+}
+
+/* ── Последние новости ── */
+.newsSection {
+  width: 100%;
+  background: #a51312;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: center;
+  padding: 32px 0 64px;
+}
+
+.newsTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: normal;
+  color: #fffff9;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.newsContent {
+  display: flex;
+  gap: 70px;
+  align-items: center;
+  max-width: 1252px;
+}
+
+.newsFeatured {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 603px;
+}
+
+.newsFeaturedImg {
+  width: 100%;
+  height: 468px;
+  overflow: hidden;
+  position: relative;
+}
+
+.newsFeaturedImgInner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.newsDate {
+  display: flex;
+  gap: 11px;
+  align-items: flex-end;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  color: #fffff9;
+}
+
+.newsDateDay {
+  font-size: 48px;
+  line-height: normal;
+}
+
+.newsDateRest {
+  font-size: 24px;
+  line-height: normal;
+}
+
+.newsDateLine {
+  width: 190px;
+  height: 0;
+  position: relative;
+}
+
+.newsDateLineImg {
+  position: absolute;
+  inset: -3px 0 0 0;
+  width: 100%;
+  height: 100%;
+}
+
+.newsFeaturedHeadline {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+  width: 567px;
+}
+
+.newsFeaturedSummary {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: normal;
+  color: #fffff9;
+  width: 567px;
+}
+
+.newsTags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.newsRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 978px;
+  width: 579px;
+}
+
+.newsLightCard {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.newsLightTop {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.newsLightDate {
+  display: flex;
+  gap: 11px;
+  align-items: flex-end;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  color: #fffff9;
+  border-bottom: 4px solid #fffff9;
+}
+
+.newsLightImg {
+  width: 276px;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsLightImgInner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.newsLightHeadline {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+}
+
+.newsAllBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 2px 0 11px;
+  border-bottom: 3px solid #fffff9;
+  border-top-right-radius: 16px;
+  overflow: clip;
+}
+
+/* ── Как записаться ── */
+.signupSection {
+  background: #fffff9;
+  height: 564px;
+}
+
+.signupInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
+
+.signupLabel {
+  position: absolute;
+  left: 235px;
+  top: 42px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  color: #a51312;
+  white-space: nowrap;
+}
+
+.signupBody {
+  position: absolute;
+  left: 334px;
+  top: 137px;
+  width: 1252px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #a51312;
+}
+
+.signupFrame {
+  position: absolute;
+  right: 0;
+  top: 58px;
+  width: 279px;
+  height: 468px;
+}
+
+.signupFrameImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.signupBtnLeft {
+  position: absolute;
+  left: 334px;
+  top: 483px;
+}
+
+.signupBtnRight {
+  position: absolute;
+  left: 1298px;
+  top: 483px;
+}
+
+.signupBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 2px 0 11px;
+  border-bottom: 3px solid #a51312;
+  border-top-right-radius: 16px;
+  background: #fffff9;
+  overflow: clip;
+}
+
+.signupBtnText {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: normal;
+  color: #a51312;
+  white-space: nowrap;
+}
+
+/* ── Footer ── */
+.footer {
+  width: 100%;
+  background: #fffff9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footerRed {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 24px 80px;
+  background: #a51312;
+  box-sizing: border-box;
+  overflow: clip;
+  position: relative;
+}
+
+.footerRedContent {
+  flex: 1;
+  max-width: 1920px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.footerTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: normal;
+  color: #fffff9;
+  margin: 0;
+}
+
+.footerColumns {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footerCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 67px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #fffff9;
+}
+
+.footerColFirst {
+  gap: 156px;
+  padding-right: 16px;
+}
+
+.footerHoursRow {
+  display: flex;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.footerHoursTime {
+  font-family: "Dark Deco", system-ui, sans-serif;
+}
+
+.footerBranch {
+  position: absolute;
+  right: -160px;
+  top: -484px;
+  width: 720px;
+  height: 715px;
+  pointer-events: none;
+}
+
+.footerBranchInner {
+  width: 532px;
+  height: 518px;
+  position: relative;
+  transform: rotate(-30deg);
+}
+
+.footerYod {
+  position: absolute;
+  right: 80px;
+  top: 146px;
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: transparent;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.footerLinks {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1920px;
+  padding: 24px 80px;
+  box-sizing: border-box;
+}
+
+.footerLinkCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #a51312;
+}
+
+.footerCopyright {
+  padding-top: 16px;
+  width: 274px;
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  line-height: normal;
+  color: #a51312;
+  text-align: right;
+  white-space: nowrap;
+}

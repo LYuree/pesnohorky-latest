@@ -14,7 +14,7 @@ export function Navbar({ className }: NavbarProps) {
       </div>
 
       <div className={styles.links} data-name="nav_links">
-        <Link to="/" className={styles.linkItem}>
+        <Link to="/news" className={styles.linkItem}>
           <p className={styles.linkText}>Новости</p>
         </Link>
         <div className={styles.linkItem}>

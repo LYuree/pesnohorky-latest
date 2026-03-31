@@ -37,4 +37,3 @@ export const figmaAssets = {
   imgGroup54: "https://www.figma.com/api/mcp/asset/e3df7d8a-fece-4ef3-9e15-2a2057e2c555",
   imgFrame18114650: "https://www.figma.com/api/mcp/asset/e8b6004f-87d8-427d-9942-fc6f32899419",
 } as const
-
