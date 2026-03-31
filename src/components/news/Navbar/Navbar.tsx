@@ -6,6 +6,14 @@ type NavbarProps = {
 };
 
 export function Navbar({ className }: NavbarProps) {
+  const navLinks = [
+    { label: "Новости", href: "#news" },
+    { label: "Родителям", href: "#parents" },
+    { label: "Cведения об образовательной организации", href: "#organization" },
+    { label: "О центре", href: "#about" },
+    { label: "Контакты", href: "#contacts" },
+  ];
+
   return (
     <div className={[styles.root, className].filter(Boolean).join(" ")} data-component="Navbar">
       <div className={styles.logoWrap} data-name="pesno3_logo">
@@ -13,21 +21,13 @@ export function Navbar({ className }: NavbarProps) {
       </div>
 
       <div className={styles.links} data-name="nav_links">
-        <div className={styles.linkItem}>
-          <p className={styles.linkText}>Новости</p>
-        </div>
-        <div className={styles.linkItem}>
-          <p className={styles.linkText}>Родителям</p>
-        </div>
-        <div className={styles.linkItem}>
-          <p className={styles.linkText}>Cведения об образовательной организации</p>
-        </div>
-        <div className={styles.linkItem}>
-          <p className={styles.linkText}>О центре</p>
-        </div>
-        <div className={styles.linkItem}>
-          <p className={styles.linkText}>Контакты</p>
-        </div>
+        {navLinks.map((link) => (
+          <div className={styles.linkItem} key={link.href}>
+            <a className={styles.linkText} href={link.href}>
+              {link.label}
+            </a>
+          </div>
+        ))}
       </div>
 
       <div className={styles.right} data-name="nav_right">

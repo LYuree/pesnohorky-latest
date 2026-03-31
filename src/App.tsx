@@ -1,7 +1,7 @@
-import NewsLandingPage from "./pages/NewsLandingPage/NewsLandingPage";
+import MainPage from "./pages/MainPage/MainPage";
 
 function App() {
-  return <NewsLandingPage />;
+  return <MainPage />;
 }
 
 export default App;

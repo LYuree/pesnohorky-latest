@@ -1,0 +1,63 @@
+.page {
+  position: relative;
+  width: 1920px;
+  min-height: 1400px;
+  margin: 0 auto;
+  background: #fffff9;
+  overflow: hidden;
+}
+
+.navbarPos {
+  position: absolute;
+  left: 0;
+  top: 102px;
+}
+
+.main {
+  position: absolute;
+  left: 0;
+  top: 158px;
+  width: 1920px;
+}
+
+.title {
+  margin: 0;
+  position: absolute;
+  left: 274px;
+  top: 300px;
+  color: #a51312;
+  font-size: 64px;
+}
+
+.hero {
+  width: 1920px;
+  height: 367px;
+  background: #a51312;
+}
+
+.heroTitle {
+  margin: 0;
+  position: absolute;
+  left: 274px;
+  top: 75px;
+  color: #fffff9;
+  font-size: 64px;
+}
+
+.subtitle {
+  margin: 0;
+  position: absolute;
+  left: 274px;
+  top: 398px;
+  max-width: 1120px;
+  font-size: 32px;
+  line-height: 1.4;
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  color: #2f2f2f;
+}
+
+.footerPos {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
