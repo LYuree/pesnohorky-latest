@@ -3,7 +3,13 @@
     "allow": [
       "mcp__figma__get_design_context",
       "Bash(npm run:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "mcp__figma__get_metadata",
+      "mcp__figma__get_screenshot",
+      "Bash(for dir:*)",
+      "Bash(do mkdir:*)",
+      "Bash(done)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

@@ -1,4 +1,6 @@
 import { Navbar } from "../../components/news/Navbar/Navbar";
+import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { Footer } from "../../components/shared/Footer/Footer";
 import { Pagination } from "../../components/news/Pagination/Pagination";
 import { FilterChip } from "../../components/news/FilterChip/FilterChip";
 import { NewsCardLight } from "../../components/news/NewsCardLight/NewsCardLight";
@@ -12,6 +14,8 @@ import { Heading } from "../../components/ui/Heading/Heading";
 export default function NewsLandingPage() {
   return (
     <div className={styles.page} data-page="NewsLandingPage">
+      <MobileHeader />
+
       <div className={styles.topRed} data-name="header_red">
         <div className={styles.decorVLine1}>
           <img alt="" className={styles.decorVLineImg} src={figmaAssets.img} />
@@ -151,35 +155,7 @@ export default function NewsLandingPage() {
         </div>
       </div>
 
-      <div className={styles.footer}>
-        <div className={styles.footerRed}>
-          <Heading as="h3" className={styles.footerHeading}>
-            Контакты
-          </Heading>
-          <p className={styles.footerAddress}>11 11 11, г. Барнаул, ул. Ленина, 100</p>
-          <p className={styles.footerPhone}>+7 (913) 123-45-67</p>
-          <p className={styles.footerAgreement}>Пользовательское соглашение</p>
-          <p className={styles.footerMail}>mail@pesnohorki.ru</p>
-          <p className={styles.footerPrivacyPolicy}>Политика конфиденциальности</p>
-          <p className={styles.footerVkLink}>https://vk.com/pesnohorki</p>
-          <p className={styles.footerPersonalData}>Обработка персональных данных</p>
-          <p className={styles.footerHours}>08:00 - 18:00</p>
-          <p className={styles.footerDaysOff}>Пн-Сб</p>
-        </div>
-
-        <div className={styles.footerLinks}>
-          <p className={styles.footerLink1}>Сведения об образовательной организации</p>
-          <p className={styles.footerLink2}>Образование</p>
-          <p className={styles.footerLink3}>Фин-хоз деятельность</p>
-          <p className={styles.footerLink4}>Основные сведения</p>
-          <p className={styles.footerLink5}>Противодействие коррупции</p>
-          <p className={styles.footerLink6}>Образовательные стандарты</p>
-          <p className={styles.footerLink7}>Педсостав</p>
-          <p className={styles.footerLink8}>Противодействие терроризму</p>
-          <p className={styles.footerLink9}>Формы обратной связи</p>
-          <p className={styles.footerLink10}>ЙОD@2026</p>
-        </div>
-      </div>
+      <Footer />
 
       <div className={styles.paginationPos}>
         <Pagination />

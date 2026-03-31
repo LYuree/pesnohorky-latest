@@ -1,4 +1,6 @@
 import { Navbar } from "../../components/news/Navbar/Navbar";
+import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { Footer } from "../../components/shared/Footer/Footer";
 import { aboutInfoAssets } from "../../lib/aboutInfoAssets";
 import styles from "./AboutInfoPage.module.css";
 
@@ -57,6 +59,7 @@ function BranchDeco({ side, img1, img2, img3 }: BranchDecoProps) {
 export default function AboutInfoPage() {
   return (
     <div className={styles.page}>
+      <MobileHeader />
       <Navbar className={styles.navbar} />
 
       {/* ── Block 1: Title + org description ── */}
@@ -431,63 +434,7 @@ export default function AboutInfoPage() {
       </div>
 
       {/* ── Footer ── */}
-      <footer className={styles.footer}>
-        <div className={styles.footerRed}>
-          <div className={styles.footerRedContent}>
-            <h2 className={styles.footerTitle}>Контакты</h2>
-
-            <div className={styles.footerColumns}>
-              <div className={styles.footerColFirst}>
-                <p>11 11 11, г. Барнаул, ул. Ленина, 100</p>
-                <div className={styles.footerHoursRow}>
-                  <span className={styles.footerHoursTime}>08:00 - 18:00</span>
-                  <span>Пн-Сб</span>
-                </div>
-              </div>
-
-              <div className={styles.footerCol}>
-                <p>+7 (913) 123-45-67</p>
-                <p>mail@pesnohorki.ru</p>
-                <p>https://vk.com/pesnohorki</p>
-              </div>
-
-              <div className={styles.footerCol}>
-                <p>Пользовательское соглашение</p>
-                <p>Политика конфиденциальности</p>
-                <p>Обработка персональных данных</p>
-              </div>
-            </div>
-          </div>
-
-          <p className={styles.footerYod}>ЙОD@2026</p>
-        </div>
-
-        <div className={styles.footerLinks}>
-          <div
-            className={[styles.footerLinkCol, styles.footerLinkColFirst]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            <p>Сведения об образовательной организации</p>
-            <p>Основные сведения</p>
-            <p>Педсостав</p>
-          </div>
-
-          <div className={styles.footerLinkCol}>
-            <p>Образование</p>
-            <p>Противодействие коррупции</p>
-            <p>Противодействие терроризму</p>
-          </div>
-
-          <div className={styles.footerLinkCol}>
-            <p>Фин-хоз деятельность</p>
-            <p>Образовательные стандарты</p>
-            <p>Формы обратной связи</p>
-          </div>
-        </div>
-
-        <p className={styles.footerCopyright}>ЙОD@2026</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

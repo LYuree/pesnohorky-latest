@@ -342,6 +342,91 @@
   color: #a51312;
 }
 
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .block1 {
+    padding: 24px 20px;
+  }
+
+  .block1Title {
+    font-size: 32px;
+    width: 100%;
+  }
+
+  .logoAndText {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .orgPhoto {
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: 100%;
+    height: 200px;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .orgText {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .redBlock {
+    padding: 40px 20px;
+  }
+
+  .infoRows {
+    width: 100%;
+    padding: 0;
+  }
+
+  .dottedRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .dottedLabel {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .dottedSep {
+    display: none;
+  }
+
+  .dottedValue,
+  .dottedValueMulti {
+    max-width: 100%;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .branchLeft,
+  .branchRight {
+    display: none;
+  }
+
+  .whiteBlockInner {
+    padding: 40px 20px;
+  }
+
+  .whiteBlockTitle {
+    font-size: 22px;
+  }
+
+  .whiteBlockText {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
 /* ── Disclaimer ── */
 .disclaimer {
   display: flex;
@@ -376,143 +461,16 @@
   width: 1207px;
 }
 
-/* ── Footer ── */
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 100%;
-  background: #fffff9;
-  overflow: hidden;
+@media (max-width: 768px) {
+  .disclaimer {
+    flex-direction: column;
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .disclaimerText {
+    width: 100%;
+    font-size: 14px;
+  }
 }
 
-.footerRed {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-  padding: 24px 80px;
-  background: #a51312;
-  box-sizing: border-box;
-  overflow: clip;
-  position: relative;
-}
-
-.footerRedContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-}
-
-.footerTitle {
-  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 64px;
-  line-height: normal;
-  color: #fffff9;
-  width: 100%;
-  margin: 0;
-}
-
-.footerColumns {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.footerCol {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 67px;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: normal;
-  color: #fffff9;
-}
-
-.footerColFirst {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 156px;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: normal;
-  color: #fffff9;
-  padding-right: 16px;
-}
-
-.footerHoursRow {
-  display: flex;
-  gap: 14px;
-  white-space: nowrap;
-}
-
-.footerHoursTime {
-  font-family: "Dark Deco", system-ui, "Segoe UI", Roboto, sans-serif;
-}
-
-.footerYod {
-  position: absolute;
-  right: 80px;
-  top: 146px;
-  font-family: "Dark Deco", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 24px;
-  line-height: normal;
-  color: transparent;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.footerLinks {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-  padding: 24px 80px;
-  box-sizing: border-box;
-}
-
-.footerLinkCol {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: normal;
-  color: #a51312;
-}
-
-.footerLinkColFirst {
-  padding-right: 16px;
-}
-
-.footerCopyright {
-  padding-top: 16px;
-  font-family: "Dark Deco", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 24px;
-  line-height: normal;
-  color: #a51312;
-  text-align: right;
-  white-space: nowrap;
-}
-
-/* Branch in footer area */
-.footerBranch {
-  position: absolute;
-  right: -184px;
-  top: -484px;
-  width: 720px;
-  height: 715px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
