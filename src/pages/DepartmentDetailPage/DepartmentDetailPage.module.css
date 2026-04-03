@@ -1,0 +1,639 @@
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background: #a51312;
+}
+
+/* ── Hero ── */
+.hero {
+  width: 100%;
+  background: #a51312;
+}
+
+.heroInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 80px 40px;
+  box-sizing: border-box;
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 0;
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  flex-wrap: wrap;
+}
+
+.heroCategory {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  margin-bottom: 8px;
+}
+
+.heroTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  color: #fffff9;
+  margin: 0 0 8px;
+  line-height: normal;
+}
+
+.heroLine {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.heroLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.heroMeta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  margin-bottom: 24px;
+}
+
+.heroDivider {
+  opacity: 0.6;
+}
+
+.enrollBtn {
+  background: #a51312;
+  border: 2px solid #fffff9;
+  border-radius: 0 16px 0 0;
+  padding: 8px 24px;
+  position: relative;
+  overflow: hidden;
+  height: 51px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.enrollBtnWhite {
+  background: #a51312;
+  border: 2px solid #a51312;
+  border-radius: 0 16px 0 0;
+  padding: 8px 24px;
+  position: relative;
+  overflow: hidden;
+  height: 51px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+.enrollBtnText {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  position: relative;
+  z-index: 1;
+}
+
+.enrollBtnLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 9px;
+  object-fit: fill;
+}
+
+.askLink {
+  display: block;
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  text-decoration: underline;
+  margin-top: 8px;
+}
+
+/* ── Shared inner ── */
+.descInner,
+.infoInner,
+.leaderInner,
+.teachersInner,
+.directionsInner,
+.awardsInner,
+.newsInner,
+.contactsInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 40px 230px;
+  box-sizing: border-box;
+}
+
+/* ── Description ── */
+.descSection {
+  background: #fffff9;
+}
+
+.descText {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #a51312;
+  margin: 0;
+  line-height: normal;
+  text-align: justify;
+}
+
+/* ── Info ── */
+.infoSection {
+  background: #a51312;
+}
+
+.infoRow {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.infoItem {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.infoIcon {
+  width: 49px;
+  height: 49px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.infoText {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+}
+
+/* ── Leader ── */
+.leaderSection {
+  background: #a51312;
+}
+
+.sectionLabel {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  margin-bottom: 8px;
+}
+
+.leaderLine {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.leaderLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.leaderRow {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.leaderPhotoWrap {
+  width: 482px;
+  height: 700px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.leaderPhoto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.leaderInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.leaderName {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 64px;
+  color: #fffff9;
+  margin: 0;
+  line-height: normal;
+}
+
+.leaderDetail {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  margin: 0;
+}
+
+.leaderQuote {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  margin: 0;
+  border: none;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* ── Teachers ── */
+.teachersSection {
+  background: #fffff9;
+}
+
+.sectionTitleDark {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  color: #a51312;
+  margin: 0 0 40px;
+  text-align: center;
+}
+
+.teachersGrid {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.teacherCard {
+  width: 394px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.teacherPhotoWrap {
+  width: 394px;
+  height: 526px;
+  position: relative;
+  overflow: hidden;
+}
+
+.teacherPhoto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.teacherFirstName {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 64px;
+  color: #a51312;
+  margin: 0;
+}
+
+.teacherLastName {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 42px;
+  color: #a51312;
+  margin: 0;
+}
+
+.teacherRole {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #a51312;
+  margin: 0;
+}
+
+/* ── Directions ── */
+.directionsSection {
+  background: #a51312;
+}
+
+.directionsLabel {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  margin-bottom: 8px;
+}
+
+.directionsLine {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.directionsLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.directionsRow {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.directionItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.directionIcon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.directionLabel {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  text-align: center;
+}
+
+/* ── Awards ── */
+.awardsSection {
+  background: #fffff9;
+}
+
+.awardsLabel {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #a51312;
+  margin-bottom: 8px;
+}
+
+.awardsLine {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.awardsLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.awardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.awardItem {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.awardIcon {
+  width: 84px;
+  height: 70px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.awardText {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #a51312;
+}
+
+/* ── News ── */
+.newsSection {
+  background: #a51312;
+}
+
+.newsLabel {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #fffff9;
+  margin-bottom: 8px;
+}
+
+.newsLine {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.newsLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.newsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.newsCardImg {
+  width: 100%;
+  height: 225px;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsCardImgInner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.newsCardDate {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  font-family: "Dark Deco", system-ui, sans-serif;
+  color: #fffff9;
+}
+
+.newsDay {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.newsMonth,
+.newsYear {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.newsCardLine {
+  width: 100%;
+  height: 9px;
+  position: relative;
+}
+
+.newsCardLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.newsCardText {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  margin: 0;
+}
+
+/* ── Contacts ── */
+.contactsSection {
+  background: #fffff9;
+}
+
+.contactsLabel {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #a51312;
+  margin-bottom: 8px;
+}
+
+.contactsLine {
+  height: 6px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.contactsLineImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.contactText {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: 36px;
+  color: #a51312;
+  margin: 0 0 8px;
+}
+
+@media (max-width: 768px) {
+  .heroInner,
+  .descInner,
+  .infoInner,
+  .leaderInner,
+  .teachersInner,
+  .directionsInner,
+  .awardsInner,
+  .newsInner,
+  .contactsInner {
+    padding: 24px 20px;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+  }
+
+  .heroCategory,
+  .sectionLabel,
+  .enrollBtnText,
+  .leaderName,
+  .teacherFirstName,
+  .descText,
+  .infoText,
+  .leaderDetail,
+  .leaderQuote,
+  .directionLabel,
+  .directionsLabel,
+  .awardsLabel,
+  .awardText,
+  .newsLabel,
+  .contactsLabel,
+  .contactText,
+  .teacherRole {
+    font-size: 20px;
+  }
+
+  .leaderRow {
+    flex-direction: column;
+  }
+
+  .leaderPhotoWrap {
+    width: 100%;
+    height: 300px;
+  }
+
+  .teachersGrid {
+    flex-direction: column;
+  }
+
+  .teacherCard {
+    width: 100%;
+  }
+
+  .teacherPhotoWrap {
+    width: 100%;
+    height: 300px;
+  }
+
+  .directionsRow {
+    gap: 24px;
+  }
+
+  .newsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .infoRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

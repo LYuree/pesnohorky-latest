@@ -1,178 +1,327 @@
+import { Link } from "react-router-dom";
 import { Navbar } from "../../components/news/Navbar/Navbar";
-import { Footer } from "../../components/news/Footer/Footer";
+import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { Footer } from "../../components/shared/Footer/Footer";
+import { parentsPageAssets } from "../../lib/parentsPageAssets";
 import styles from "./ParentsPage.module.css";
-import heroBg from "../../../figma-archive/assets/ffac021b-87f9-4cd7-834a-76963c54fc82.png";
-import heroCenter from "../../../figma-archive/assets/e470cd11-2072-4b27-ba2a-bcdbc88cfbaa.png";
-import decorLeft from "../../../figma-archive/assets/7e0ee38c-18bb-4d89-859d-c13142c55cf6.svg";
-import decorRight from "../../../figma-archive/assets/3617fb77-0a83-4bde-a303-55a1db24983d.svg";
-import arrowIcon from "../../../figma-archive/assets/b66a11a5-e9d3-4cb4-b6c2-870a036797fe.svg";
 
-const quickAnswers = [
-  { title: "Как записаться?", text: "Пошагово: от выбора направления до первого занятия.", action: "4 шага" },
-  { title: "Объединения", text: "Выберите направление и посмотрите объединения и педагогов.", action: "Список" },
-  { title: "Документы", text: "Какие нужны документы для записи и посещения.", action: "Список" },
-  { title: "Стоимость и льготы", text: "Оплата, стоимость и социальный сертификат.", action: "Условия" },
-  { title: "Что взять на занятие", text: "Подготовка ребенка, вещи и чек-лист.", action: "Чек лист" },
-  { title: "Частые вопросы", text: "Пропуски, переносы, выступления, безопасность.", action: "Ответы" },
-];
+// ─── Quick-answers card data ────────────────────────────────────────────────
 
-const steps = [
-  { n: 1, title: "Выберите направления", text: "Уточним возраст ребенка, группу и удобное расписание." },
-  { n: 2, title: "Оставьте заявку", text: "Заполните заявку на сайте и дождитесь обратного звонка." },
-  { n: 3, title: "Подготовьте документы", text: "Дадим список документов и правила посещения." },
-  { n: 4, title: "Первое занятие", text: "Приходите чуть раньше - поможем адаптироваться и все объясним." },
-];
+type QuickCard = {
+  title: string;
+  subtitle: string;
+  btnLabel: string;
+  to?: string;
+};
 
-const faq = [
+const quickCardsLeft: QuickCard[] = [
   {
-    title: "Выберите направления",
-    text: "Посмотрите направления, объединения и кто ведет занятия.",
+    title: "Как записаться?",
+    subtitle: "Пошагово: от выбора направления до первого занятия.",
+    btnLabel: "4 шага",
+    to: "/departments",
   },
   {
-    title: "Что делать, если ребенок пропустил занятие?",
-    text: "Напишите педагогу или администратору: подскажем варианты отработки или переноса.",
+    title: "Документы",
+    subtitle: "Пропуски, переносы, выступления, безопасность.",
+    btnLabel: "Список",
+    to: "/parents/safety",
   },
   {
-    title: "Нужна ли специальная форма/обувь?",
-    text: "Для ряда направлений есть рекомендации. Отправим список после записи.",
-  },
-  {
-    title: "Как связаться с педагогом?",
-    text: "Обычно через администратора и официальные контакты центра.",
+    title: "Что взять на занятие",
+    subtitle: "Пропуски, переносы, выступления, безопасность.",
+    btnLabel: "Чек лист",
   },
 ];
 
-const additionalInfoLeft = [
-  "Противодействие коррупции",
-  "Профилактика экстремизма",
-  "Социальный сертификат",
-  "Независимая оценка качества",
-  "Температурный режим",
+const quickCardsRight: QuickCard[] = [
+  {
+    title: "Объединения",
+    subtitle: "Выберите направление и посмотрите объединения и педагогов.",
+    btnLabel: "Список",
+    to: "/departments",
+  },
+  {
+    title: "Стоимость и льготы",
+    subtitle: "Оплата, стоимость и социальный сертификат",
+    btnLabel: "Условия",
+    to: "/parents/social-cert",
+  },
+  {
+    title: "Частые вопросы",
+    subtitle: "Пропуски, переносы, выступления, безопасность.",
+    btnLabel: "Ответы",
+  },
 ];
 
-const additionalInfoRight = ["Безопасность", "Умные каникулы", "Памятки"];
+// ─── Enrollment steps ────────────────────────────────────────────────────────
+
+type EnrollStep = { num: number; title: string; description: string };
+
+const enrollSteps: EnrollStep[] = [
+  {
+    num: 1,
+    title: "Выберете направления",
+    description: "Уточним возраст ребёнка, группу и удобное расписание.",
+  },
+  {
+    num: 2,
+    title: "Оставьте заявку",
+    description: "Уточним возраст ребёнка, группу и удобное расписание.",
+  },
+  {
+    num: 3,
+    title: "Подготовьте документы",
+    description: "Дадим список документов и правила посещения.",
+  },
+  {
+    num: 4,
+    title: "Первое занятие",
+    description:
+      "Приходите чуть раньше — поможем адаптироваться и всё объясним.",
+  },
+];
+
+// ─── Documents ───────────────────────────────────────────────────────────────
+
+type DocCard = { title: string; subtitle: string };
+
+const docCards: DocCard[] = [
+  { title: "Заявление на зачисление", subtitle: "PDF / DOCX" },
+  {
+    title: "Правила посещения",
+    subtitle: "Что важно знать родителям и детям.",
+  },
+  {
+    title: "Согласие на фото/видео",
+    subtitle: "Имея мероприятия и публикации.",
+  },
+];
+
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
+
+type FaqItem = { question: string; answer: string };
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Выберите направления",
+    answer:
+      "Посмотрите направления, объединения и кто ведёт занятия.",
+  },
+  {
+    question: "Что делать, если ребёнок пропустил занятие?",
+    answer:
+      "Напишите педагогу или администратору: подскажем варианты отработки/переноса (если предусмотрено).",
+  },
+  {
+    question: "Нужна ли специальная форма/обувь?",
+    answer:
+      "Для танцев и сценических занятий обычно есть рекомендации. Мы отправим список после записи.",
+  },
+  {
+    question: "Как связаться с педагогом?",
+    answer:
+      "Обычно через администратора/официальные контакты центра. Укажите удобный способ связи в заявке.",
+  },
+];
+
+// ─── Additional info accordion links ────────────────────────────────────────
+
+type AdditionalLink = { label: string; to: string };
+
+const additionalLeft: AdditionalLink[] = [
+  { label: "Противодействие коррупции", to: "/parents/anti-corruption" },
+  { label: "Профилактика экстремизма", to: "/parents/anti-extremism" },
+  { label: "Социальный сертификат", to: "/parents/social-cert" },
+  { label: "Независимая оценка качества", to: "/parents/quality-assessment" },
+  { label: "Температурный режим", to: "/parents/temperature" },
+];
+
+const additionalRight: AdditionalLink[] = [
+  { label: "Безопасность", to: "/parents/safety" },
+  { label: "Безопасность", to: "/parents/safety" },
+  { label: "Умные каникулы", to: "/parents/smart-holidays" },
+  { label: "Памятки", to: "/parents/safety" },
+];
+
+// ─── Sub-components ──────────────────────────────────────────────────────────
+
+function QuickCard({ title, subtitle, btnLabel, to }: QuickCard) {
+  return (
+    <div className={styles.quickCard}>
+      <h3 className={styles.quickCardTitle}>{title}</h3>
+      <p className={styles.quickCardSubtitle}>{subtitle}</p>
+      {to ? (
+        <Link to={to} className={styles.quickCardBtn}>
+          {btnLabel}
+        </Link>
+      ) : (
+        <button className={styles.quickCardBtn}>{btnLabel}</button>
+      )}
+    </div>
+  );
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function ParentsPage() {
   return (
     <div className={styles.page}>
-      <header className={styles.navbarPos}>
-        <Navbar />
-      </header>
+      <MobileHeader />
 
-      <main className={styles.main}>
-        <div className={styles.breadcrumbs}>
-          <a href="#main">Главная</a>
-          <span>/</span>
-          <span>Родителям</span>
+      {/* ── Header / Hero ─────────────────────────────────────── */}
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <Navbar />
+
+          <nav className={styles.breadcrumbs} aria-label="Навигация">
+            <Link to="/" className={styles.breadcrumbLink}>Главная</Link>
+            <span className={styles.breadcrumbSep}>/</span>
+            <span>Родителям</span>
+          </nav>
+
+          <div className={styles.heroBody}>
+            <div className={styles.heroText}>
+              <h1 className={styles.heroTitle}>Родителям</h1>
+              <p className={styles.heroSubtitle}>Самая важная информция тут.</p>
+
+              {/* Quick links */}
+              <div className={styles.quickLinks}>
+                <Link to="/parents/safety" className={styles.quickLinkRed}>
+                  Оставить заявку
+                </Link>
+                <Link to="/departments" className={styles.quickLinkUnderline}>
+                  Расписание
+                </Link>
+                <Link to="/parents/safety" className={styles.quickLinkUnderline}>
+                  Безопасность
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.heroSidebarWrapper}>
+              <img
+                src={parentsPageAssets.imgEnrollSidebar}
+                alt="Записаться"
+                className={styles.heroSidebar}
+              />
+              <a href="/parents/safety" className={styles.enrollLink}>
+                Записаться
+              </a>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <section className={styles.hero}>
-          <img alt="" src={heroBg} className={styles.heroBg} />
-          <img alt="" src={heroCenter} className={styles.heroCenter} />
-          <img alt="" src={decorLeft} className={styles.heroDecorLeft} />
-          <img alt="" src={decorRight} className={styles.heroDecorRight} />
-          <h1>Родителям</h1>
-          <p>Самая важная информация тут.</p>
-          <div className={styles.tabs}>
-            <button className={styles.tabActive}>Оставить заявку</button>
-            <a href="#schedule">Расписание</a>
-            <a href="#safety">Безопасность</a>
+      {/* ── Main content ──────────────────────────────────────── */}
+      <main className={styles.main}>
+        {/* 4a. Быстрые ответы */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Быстрые ответы</h2>
+          <div className={styles.quickCardsGrid}>
+            <div className={styles.quickCardsCol}>
+              {quickCardsLeft.map((card) => (
+                <QuickCard key={card.title} {...card} />
+              ))}
+            </div>
+            <div className={styles.quickCardsCol}>
+              {quickCardsRight.map((card) => (
+                <QuickCard key={card.title} {...card} />
+              ))}
+            </div>
           </div>
-          <button className={styles.enrollBtn}>Записаться</button>
         </section>
 
+        {/* 4b. Как проходит запись */}
         <section className={styles.section}>
-          <h2>Быстрые ответы</h2>
-          <div className={styles.quickGrid}>
-            {quickAnswers.map((item) => (
-              <article key={item.title} className={styles.quickCard}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <button>
-                  {item.action}
-                  <img alt="" src={arrowIcon} />
-                </button>
-              </article>
+          <h2 className={styles.sectionTitle}>Как проходит запись</h2>
+          <div className={styles.stepsGrid}>
+            {enrollSteps.map((step) => (
+              <div key={step.num} className={styles.stepCard}>
+                <div className={styles.stepCircle}>{step.num}</div>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDescription}>{step.description}</p>
+              </div>
             ))}
           </div>
         </section>
 
+        {/* 4c. Документы для родителей */}
         <section className={styles.section}>
-          <h2>Как проходит запись</h2>
-          <div className={styles.steps}>
-            {steps.map((step) => (
-              <article key={step.n} className={styles.stepCard}>
-                <div className={styles.stepNum}>{step.n}</div>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
+          <h2 className={styles.sectionTitle}>Документы для родителей</h2>
+          <div className={styles.docsRow}>
+            {docCards.map((doc) => (
+              <div key={doc.title} className={styles.docCard}>
+                <h3 className={styles.docCardTitle}>{doc.title}</h3>
+                <p className={styles.docCardSubtitle}>{doc.subtitle}</p>
+                <div className={styles.docCardBtns}>
+                  <button className={styles.docPillBtn}>Открыть</button>
+                  <button className={styles.docPillBtn}>Скачать</button>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </section>
 
+        {/* 4d. Ответы на вопросы */}
         <section className={styles.section}>
-          <h2>Документы для родителей</h2>
-          <div className={styles.docsGrid}>
-            {["Заявление на зачисление", "Правила посещения", "Согласие на фото/видео"].map((name) => (
-              <article key={name} className={styles.docCard}>
-                <h3>{name}</h3>
-                <p>PDF / DOCX</p>
-                <div>
-                  <button>
-                    Открыть
-                    <img alt="" src={arrowIcon} />
-                  </button>
-                  <button>
-                    Скачать
-                    <img alt="" src={arrowIcon} />
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <h2>Ответы на вопросы</h2>
+          <h2 className={styles.sectionTitle}>Ответы на вопросы</h2>
           <div className={styles.faqList}>
-            {faq.map((item) => (
-              <article key={item.title} className={styles.faqItem}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
+            {faqItems.map((item) => (
+              <div key={item.question} className={styles.faqItem}>
+                <h3 className={styles.faqQuestion}>{item.question}</h3>
+                <p className={styles.faqAnswer}>{item.answer}</p>
+              </div>
             ))}
-          </div>
-        </section>
-
-        <section className={styles.costBlock}>
-          <h2>Стоимость и льготы</h2>
-          <h3>Социальный сертификат дополнительного образования</h3>
-          <p>
-            Это официальное подтверждение возможности ребенка обучаться в кружках и секциях за счет
-            средств государства.
-          </p>
-          <button>Подробнее</button>
-          <small>Платные образовательные услуги в МБУ ДО "ЦЭВ "Песнохорки" не оказываются.</small>
-        </section>
-
-        <section className={styles.section}>
-          <h2>Дополнительная информация</h2>
-          <div className={styles.infoColumns}>
-            <div>
-              {additionalInfoLeft.map((item) => (
-                <a key={item} href="#">{item}</a>
-              ))}
-            </div>
-            <div>
-              {additionalInfoRight.map((item) => (
-                <a key={item} href="#">{item}</a>
-              ))}
-            </div>
           </div>
         </section>
       </main>
+
+      {/* ── Стоимость и льготы (red) ──────────────────────────── */}
+      <section className={styles.certSection}>
+        <div className={styles.certInner}>
+          <h2 className={styles.certTitle}>Стоимость и льготы</h2>
+          <p className={styles.certLead}>
+            Социальный сертификат дополнительного образования
+          </p>
+          <p className={styles.certBody}>
+            Это официальное подтверждение возможности ребёнка обучаться в
+            кружках и секциях за счёт средств государства. Сертификат выдаётся
+            в рамках регионального проекта «Все для детей» нацпроекта «Молодежь
+            и дети».
+          </p>
+          <Link to="/parents/social-cert" className={styles.certBtn}>
+            Подробнее
+          </Link>
+          <p className={styles.certNote}>
+            Платные образовательные услуги в МБУ ДО «ЦЭВ «Песнохорки» не
+            оказываются.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Дополнительная информация ─────────────────────────── */}
+      <section className={styles.additionalSection}>
+        <div className={styles.additionalInner}>
+          <h2 className={styles.sectionTitle}>Дополнительная информация</h2>
+          <div className={styles.additionalGrid}>
+            <div className={styles.additionalCol}>
+              {additionalLeft.map((item) => (
+                <Link key={item.label + item.to} to={item.to} className={styles.additionalBtn}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <div className={styles.additionalCol}>
+              {additionalRight.map((item, idx) => (
+                <Link key={item.label + idx} to={item.to} className={styles.additionalBtnR}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

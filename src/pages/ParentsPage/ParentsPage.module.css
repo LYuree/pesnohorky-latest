@@ -1,355 +1,678 @@
+/* ── Page shell ─────────────────────────────────────────────────────────── */
+
 .page {
-  width: 1920px;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
   background: #fffff9;
 }
 
-.navbarPos {
-  padding-top: 32px;
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Harlequinade';
+  src: url('../../fonts/Harlequinade.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../../fonts/MontserratAlternates-Light.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+.hero {
+  width: 100%;
+  background: #fffff9;
 }
 
-.main {
-  width: 1460px;
+.heroInner {
+  max-width: 1920px;
   margin: 0 auto;
-  color: #a51312;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  padding: 0 80px;
+  box-sizing: border-box;
 }
 
+/* Breadcrumbs */
 .breadcrumbs {
   display: flex;
-  gap: 16px;
-  margin: 28px 0 34px;
-  font-size: 24px;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 20px;
+  color: #a51312;
 }
 
-.breadcrumbs a {
-  color: inherit;
+.breadcrumbLink {
+  color: #a51312;
   text-decoration: none;
 }
 
-.hero {
-  position: relative;
-  min-height: 330px;
-  overflow: hidden;
+.breadcrumbLink:hover {
+  text-decoration: underline;
 }
 
-.heroBg {
-  position: absolute;
-  left: 208px;
-  top: 0;
-  width: 448px;
-  height: 260px;
-  object-fit: cover;
-  opacity: 0.24;
-  mix-blend-mode: multiply;
-}
-
-.heroCenter {
-  position: absolute;
-  left: 360px;
-  top: 0;
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  opacity: 0.18;
-}
-
-.heroDecorLeft {
-  position: absolute;
-  left: 6px;
-  top: 150px;
-  width: 120px;
-  height: auto;
-}
-
-.heroDecorRight {
-  position: absolute;
-  right: 8px;
-  top: 150px;
-  width: 120px;
-  height: auto;
-}
-
-.hero h1 {
-  margin: 0 0 8px;
-  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 64px;
-  font-weight: 400;
-  position: relative;
-  z-index: 1;
-}
-
-.hero p {
-  margin: 0 0 22px;
-  font-size: 24px;
-  position: relative;
-  z-index: 1;
-}
-
-.tabs {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  font-size: 24px;
-  position: relative;
-  z-index: 1;
-}
-
-.tabs a {
+.breadcrumbSep {
   color: #a51312;
 }
 
-.tabActive {
-  border: 0;
-  border-bottom: 4px solid #a51312;
-  background: #a51312;
-  color: #fffff9;
-  border-radius: 6px 6px 0 0;
-  padding: 6px 12px;
-  font-size: 24px;
+/* Hero body: text + sidebar image */
+.heroBody {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 32px 0 48px;
 }
 
-.enrollBtn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 208px;
-  width: 120px;
-  border: 0;
-  border-radius: 16px;
+.heroText {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  color: #a51312;
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.heroSubtitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #a51312;
+  margin: 0 0 36px;
+}
+
+/* Quick links row */
+.quickLinks {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.quickLinkRed {
+  display: inline-block;
   background: #a51312;
   color: #fffff9;
-  font-size: 36px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 20px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.quickLinkRed:hover {
+  opacity: 0.88;
+}
+
+.quickLinkUnderline {
+  color: #a51312;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.quickLinkUnderline:hover {
+  opacity: 0.75;
+}
+
+/* Sidebar enroll image */
+.heroSidebar {
+  width: 229px;
+  height: 468px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+.heroSidebarWrapper {
+  position: relative;   /* контейнер — точка отсчёта для ссылки */
+  width: 229px;
+  height: 468px;
+  display: flex;
+  align-items: center;      /* вертикальное центрирование */
+  justify-content: center; 
+}
+
+.enrollLink {
+  /* Стили текста-ссылки */
+  position: absolute;
+  top: 6%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+
+  /* Ваши характеристики */
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;      /* на случай, если внутри несколько строк */
+  
+  /* Убираем лишнее оформление */
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  text-decoration: none;
+  color: white;             /* без скругления */
+  transform: rotate(180deg);            /* убираем трансформацию */
+  transition: none;   
   writing-mode: vertical-rl;
-  transform: rotate(180deg);
+}
+
+.enrollLink:hover {
+  background: rgba(165,19,18,0.8);
+}
+/* ── Main content ───────────────────────────────────────────────────────── */
+
+.main {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 80px 230px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
 .section {
-  margin-top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.section h2 {
-  margin: 0 0 30px;
-  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
+.sectionTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
   font-size: 48px;
-  font-weight: 400;
-}
-
-.quickGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  padding-left: 104px;
-}
-
-.quickCard {
-  border-radius: 16px;
-  background: #a51312;
-  color: #fffff9;
-  padding: 12px 14px;
-}
-
-.quickCard h3 {
-  margin: 0 0 8px;
-  font-size: 36px;
-  font-weight: 400;
-}
-
-.quickCard p {
-  margin: 0 0 10px;
-  font-size: 24px;
-}
-
-.quickCard button {
-  border: 0;
-  background: #fffff9;
   color: #a51312;
-  border-radius: 12px;
-  padding: 4px 14px;
-  font-size: 28px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  margin: 0;
+  line-height: 1.1;
 }
 
-.quickCard button img {
-  width: 16px;
-  height: 14px;
+/* ── Quick answer cards ─────────────────────────────────────────────────── */
+
+.quickCardsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
-.steps {
+.quickCardsCol {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-left: 104px;
+}
+
+.quickCard {
+  background: #a51312;
+  border-radius: 16px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quickCardTitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  color: #fffff9;
+  margin: 0;
+  padding: 10px;
+  line-height: 1.15;
+}
+
+.quickCardSubtitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  margin: 0;
+  padding: 10px;
+  line-height: 1.4;
+}
+
+.quickCardBtn {
+  align-self: flex-start;
+  background: #fffff9;
+  background-image: url('../../img/parents/line_red.svg');
+  background-position: bottom; 
+  background-repeat: no-repeat;
+  background-position: 100% 107%;
+  color: #a51312;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-top-right-radius: 8px;
+  padding: 10px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 10;
+}
+
+.quickCardBtn:hover {
+  opacity: 0.85;
+}
+
+/* ── Enrollment steps ───────────────────────────────────────────────────── */
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
 .stepCard {
   border: 4px solid #a51312;
   border-radius: 16px;
-  padding: 12px 18px;
+  padding: 18px 10px;
   display: flex;
-  gap: 24px;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
 }
 
-.stepNum {
+.stepCircle {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
   background: #a51312;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-size: 28px;
   color: #fffff9;
-  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 36px;
-  display: grid;
-  place-items: center;
+  flex-shrink: 0;
 }
 
-.stepCard h3 {
-  margin: 0 0 8px;
+.stepTitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 600;
   font-size: 36px;
-  font-weight: 400;
-}
-
-.stepCard p {
+  color: #1a1a1a;
   margin: 0;
-  font-size: 24px;
+  line-height: 1.2;
 }
 
-.docsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
-  padding-left: 104px;
+.stepDescription {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Document cards ─────────────────────────────────────────────────────── */
+
+.docsRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .docCard {
+  width: 400px;
   background: #a51312;
-  color: #fffff9;
   border-radius: 16px;
-  padding: 18px 20px;
-}
-
-.docCard h3 {
-  margin: 0 0 8px;
-  font-size: 24px;
-  font-weight: 400;
-}
-
-.docCard p {
-  margin: 0 0 16px;
-  font-size: 16px;
-}
-
-.docCard div {
+  padding: 20px 18px;
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
-.docCard button {
-  flex: 1;
-  border: 1px solid #fffff9;
-  border-radius: 999px;
-  background: transparent;
+.docCardTitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
   color: #fffff9;
-  font-size: 16px;
-  padding: 8px 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.docCard button img {
-  width: 12px;
-  height: 12px;
-  filter: invert(1);
+.docCardSubtitle {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 16px;
+  color: #fffff9;
+  margin: 0;
+  line-height: 1.4;
 }
+
+.docCardBtns {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.docPillBtn {
+  background: #fffff9;
+  color: #a51312;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 100px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.docPillBtn:hover {
+  opacity: 0.85;
+}
+
+/* ── FAQ ────────────────────────────────────────────────────────────────── */
 
 .faqList {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-left: 104px;
-}
-
-.faqItem {
-  border: 4px solid #d52524;
-  border-radius: 16px;
-  padding: 12px 34px;
-}
-
-.faqItem h3 {
-  margin: 0 0 8px;
-  font-size: 36px;
-  font-weight: 400;
-}
-
-.faqItem p {
-  margin: 0;
-  font-size: 24px;
-}
-
-.costBlock {
-  margin-top: 96px;
-  background: #a51312;
-  color: #fffff9;
-  padding: 80px 230px;
-}
-
-.costBlock h2 {
-  margin: 0 0 30px;
-  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 48px;
-  font-weight: 400;
-}
-
-.costBlock h3 {
-  margin: 0 0 24px;
-  font-size: 36px;
-  font-weight: 400;
-}
-
-.costBlock p {
-  margin: 0 0 22px;
-  max-width: 760px;
-  font-size: 24px;
-}
-
-.costBlock button {
-  border: 0;
-  border-radius: 16px;
-  background: #fffff9;
-  color: #a51312;
-  font-size: 36px;
-  padding: 6px 24px;
-  margin-bottom: 36px;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-}
-
-.costBlock small {
-  display: block;
-  font-size: 24px;
-}
-
-.infoColumns {
-  display: grid;
-  grid-template-columns: 847px 593px;
   gap: 20px;
 }
 
-.infoColumns div {
+.faqItem {
+  border: 2px solid #a51312;
+  border-radius: 16px;
+  padding: 34px 13px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 }
 
-.infoColumns a {
-  display: block;
+.faqQuestion {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #a51312;
+  margin: 0;
+}
+
+.faqAnswer {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 20px;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Cert / Cost section (red bg) ───────────────────────────────────────── */
+
+.certSection {
   background: #a51312;
+  width: 100%;
+}
+
+.certInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 80px 230px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.certTitle {
+  font-family: "Harlequinade", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 48px;
   color: #fffff9;
-  text-decoration: none;
-  border-radius: 14px 36px 0 0;
-  padding: 16px 27px;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.certLead {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-size: 36px;
+  color: #fffff9;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.certBody {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  margin: 0;
+  line-height: 1.55;
+  max-width: 900px;
+}
+
+.certBtn {
+  display: inline-block;
+  align-self: flex-start;
+  background: #fffff9;
+  color: #a51312;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 12px 32px;
+  text-decoration: none;
+  margin: 8px 0;
+}
+
+.certBtn:hover {
+  opacity: 0.88;
+}
+
+.certNote {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 24px;
+  color: #fffff9;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Additional info section ────────────────────────────────────────────── */
+
+.additionalSection {
+  background: #fffff9;
+  width: 100%;
+}
+
+.additionalInner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 80px 230px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.additionalGrid {
+  display: grid;
+  grid-template-columns: 847fr 593fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.additionalCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.additionalBtn {
+  display: flex;
+  align-items: center;
+  background: #a51312;
+  
+  /* Устанавливаем новое фоновое изображение */
+  background-image: url('../../img/parents/Line 1.svg');
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+
+  color: #fffff9;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 36px;
+  text-decoration: none;
+  height: 76px;
+  padding: 0 28px;
+  border-radius: 14px 36px 0px 0px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.additionalBtnR {
+  display: flex;
+  align-items: center;
+  background: #a51312;
+  
+  /* Устанавливаем новое фоновое изображение */
+  background-image: url('../../img/parents/Line 1.svg');
+   
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  color: #fffff9;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 36px;
+  text-decoration: none;
+  height: 76px;
+  padding: 0 28px;
+  border-radius: 14px 36px 0px 0px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.additionalBtn:hover {
+  opacity: 0.88;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .heroInner {
+    padding: 0 40px;
+  }
+
+  .main {
+    padding: 60px 80px;
+  }
+
+  .certInner,
+  .additionalInner {
+    padding: 60px 80px;
+  }
+
+  .stepsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .additionalGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroInner {
+    padding: 0 20px;
+  }
+
+  .heroBody {
+    flex-direction: column;
+    padding: 20px 0 32px;
+  }
+
+  .heroTitle {
+    font-size: 40px;
+  }
+
+  .heroSubtitle {
+    font-size: 18px;
+  }
+
+  .heroSidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .main {
+    padding: 40px 20px;
+    gap: 48px;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+  }
+
+  .quickCardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .quickCardTitle {
+    font-size: 24px;
+  }
+
+  .quickCardSubtitle {
+    font-size: 16px;
+  }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stepTitle {
+    font-size: 22px;
+  }
+
+  .stepDescription {
+    font-size: 16px;
+  }
+
+  .docsRow {
+    flex-direction: column;
+  }
+
+  .docCard {
+    width: 100%;
+  }
+
+  .certInner,
+  .additionalInner {
+    padding: 40px 20px;
+  }
+
+  .certTitle {
+    font-size: 32px;
+  }
+
+  .certLead {
+    font-size: 22px;
+  }
+
+  .certBody,
+  .certNote {
+    font-size: 16px;
+  }
+
+  .additionalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .additionalBtn {
+    font-size: 20px;
+    height: auto;
+    padding: 14px 20px;
+    white-space: normal;
+  }
+
+  .faqQuestion {
+    font-size: 18px;
+  }
+
+  .faqAnswer {
+    font-size: 15px;
+  }
 }

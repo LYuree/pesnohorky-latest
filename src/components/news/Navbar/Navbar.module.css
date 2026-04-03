@@ -12,6 +12,12 @@
   background: rgba(255, 255, 255, 0.01);
 }
 
+@media (max-width: 768px) {
+  .root {
+    display: none;
+  }
+}
+
 .logoWrap {
   position: relative;
   width: 212px;
@@ -43,17 +49,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .linkText {
   margin: 0;
   font-weight: 400;
-  color: inherit;
-  text-decoration: none;
-}
-
-.linkText:hover {
-  text-decoration: underline;
 }
 
 .right {

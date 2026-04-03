@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { figmaAssets } from "../../../lib/figmaAssets";
 
@@ -6,14 +7,6 @@ type NavbarProps = {
 };
 
 export function Navbar({ className }: NavbarProps) {
-  const navLinks = [
-    { label: "Новости", href: "C:/Users/korsi/OneDrive/Рабочий стол/pesnochorky/pesnohorky-latest/src/pages/NewsLandingPage/NewsLandingPage.tsx" },
-    { label: "Родителям", href: "#parents" },
-    { label: "Cведения об образовательной организации", href: "#organization" },
-    { label: "О центре", href: "#about" },
-    { label: "Контакты", href: "#contacts" },
-  ];
-
   return (
     <div className={[styles.root, className].filter(Boolean).join(" ")} data-component="Navbar">
       <div className={styles.logoWrap} data-name="pesno3_logo">
@@ -21,13 +14,21 @@ export function Navbar({ className }: NavbarProps) {
       </div>
 
       <div className={styles.links} data-name="nav_links">
-        {navLinks.map((link) => (
-          <div className={styles.linkItem} key={link.href}>
-            <a className={styles.linkText} href={link.href}>
-              {link.label}
-            </a>
-          </div>
-        ))}
+        <Link to="/news" className={styles.linkItem}>
+          <p className={styles.linkText}>Новости</p>
+        </Link>
+        <Link to="/parents" className={styles.linkItem}>
+          <p className={styles.linkText}>Родителям</p>
+        </Link>
+        <Link to="/about-info" className={styles.linkItem}>
+          <p className={styles.linkText}>Cведения об образовательной организации</p>
+        </Link>
+        <Link to="/about" className={styles.linkItem}>
+          <p className={styles.linkText}>О центре</p>
+        </Link>
+        <Link to="/contacts" className={styles.linkItem}>
+          <p className={styles.linkText}>Контакты</p>
+        </Link>
       </div>
 
       <div className={styles.right} data-name="nav_right">
