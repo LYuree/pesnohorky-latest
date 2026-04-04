@@ -1,801 +1,412 @@
+/* ══════════════════════════════════════════
+   NewsLandingPage — flex/grid layout
+   ══════════════════════════════════════════ */
+
+/* ── Page root ── */
 .page {
-  position: relative;
-  width: 1920px;
-  min-height: 6100px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background: #fffff9;
+}
+
+/* ── Reusable container ── */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+/* ── Generic section spacing ── */
+.section {
+  padding: clamp(24px, 4vw, 60px) 0;
+}
+
+/* ══════════════════════════════════════════
+   Hero (red header)
+   ══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  background: #a51312;
+  padding: clamp(32px, 5vw, 75px) 0 clamp(24px, 4vw, 50px);
   overflow: hidden;
 }
 
-.topRed {
-  position: absolute;
-  left: 0;
-  top: 158px;
-  width: 1920px;
-  height: 367px;
-  background: #a51312;
-  overflow: clip;
-}
-
-.navbarPos {
-  position: absolute;
-  left: 0;
-  top: 102px;
-}
-
-.decorVLine1 {
-  position: absolute;
-  left: 586.2px;
-  top: 203.72px;
-  width: 1.92px;
-  height: 19.68px;
-}
-
-.decorVLine2 {
-  position: absolute;
-  left: 317.2px;
-  top: 203.72px;
-  width: 1.92px;
-  height: 19.68px;
-}
-
-.decorVLineImg {
+/* Decorative floral elements — absolute justified for pure decoration */
+.heroDecor {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.topTitle {
+.heroDecorImg1 {
   position: absolute;
-  left: calc(50% - 730px);
-  top: 75px;
-  margin: 0;
+  right: 8%;
+  top: 5%;
+  width: clamp(120px, 15vw, 290px);
+  height: auto;
+  transform: rotate(-60deg);
+  opacity: 0.8;
+}
+
+.heroDecorImg2 {
+  position: absolute;
+  right: 2%;
+  top: 25%;
+  width: clamp(130px, 17vw, 325px);
+  height: auto;
+  transform: rotate(120deg) scaleY(-1);
+  opacity: 0.8;
+}
+
+.heroTitle {
+  margin: 0 0 clamp(16px, 2.5vw, 32px);
   font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
   font-weight: 400;
-  font-size: 64px;
+  font-size: clamp(36px, 4vw, 64px);
   line-height: 1;
   color: #fffff9;
-  white-space: nowrap;
 }
 
-.filterChip1,
-.filterChip2 {
-  position: absolute;
+/* ── Filter row ── */
+.filterRow {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 4px 8px;
-  border: 1px solid #fffff9;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-  overflow: clip;
-  box-sizing: border-box;
-}
-
-.filterChip1 {
-  left: 345px;
-  top: 193px;
-}
-
-.filterChip2 {
-  left: 614px;
-  top: 193px;
-}
-
-.filterChipBg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-  pointer-events: none;
-}
-
-.filterChipLabel {
-  position: relative;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  color: #fffff9;
-  line-height: 1;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.filterChipIcon {
-  position: relative;
-  width: 16px;
-  height: 13px;
-}
-
-.filterChipIconInner {
-  position: absolute;
-  left: 2.87px;
-  top: 0;
-  width: 10.134px;
-  height: 10.5px;
-  overflow: visible;
-}
-
-.filterChipIconImg {
-  position: absolute;
-  inset: -9.52% -9.87% -8.54% -9.87%;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.searchBox {
-  position: absolute;
-  left: 1097px;
-  top: 262px;
-  width: 489px;
-  height: 60px;
-  border: 2px solid #fffff9;
-  border-radius: 16px;
-  box-sizing: border-box;
-}
-
-.searchPlaceholder {
-  position: absolute;
-  left: 19px;
-  top: 43px;
-  transform: translateY(-100%);
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 1;
-  color: rgba(255, 255, 249, 0.4);
-  white-space: nowrap;
-}
-
-.searchIconBox {
-  position: absolute;
-  left: 387px;
-  top: -2px;
-  width: 100px;
-  height: 60px;
-  border: 1px solid #fffff9;
-  border-radius: 16px;
-  box-sizing: border-box;
-}
-
-.searchIconInner {
-  position: absolute;
-  left: 32px;
-  top: 11px;
-  width: 34px;
-  height: 37px;
-}
-
-.searchIconImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  gap: 16px;
+  margin-bottom: clamp(12px, 2vw, 24px);
 }
 
 .filterAll {
-  position: absolute;
-  left: 230px;
-  top: 193px;
+  flex-shrink: 0;
 }
 
-.filterDateRow {
-  position: absolute;
-  left: 230px;
-  top: 280px;
+.filterChip {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  padding: 4px 12px;
+  border: 1px solid #fffff9;
+  border-radius: 0 12px 12px 0;
+  background: rgba(255, 255, 249, 0.08);
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.filterAllTime {
+.filterChipLabel {
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(16px, 1.5vw, 24px);
+  font-weight: 400;
+  color: #fffff9;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.filterChipIcon {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* ── Controls row (date filters + search) ── */
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(16px, 3vw, 40px);
   position: relative;
-  width: 167px;
-  height: 29px;
+  z-index: 1;
 }
 
-.filterDateText {
-  position: absolute;
-  left: 0;
-  top: 29px;
-  transform: translateY(-100%);
-  margin: 0;
+.dateFilters {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 16px);
+  flex-wrap: wrap;
+}
+
+.dateLabel {
   font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
   font-weight: 500;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   line-height: 1;
   color: #fffff9;
   white-space: nowrap;
 }
 
-.sep5 {
-  position: relative;
+.dateSep {
   width: 5px;
   height: 27px;
-}
-
-.sepImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
-.yearChip,
-.monthChip {
+.dateChip {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   padding: 4px 8px;
-  box-sizing: border-box;
-}
-
-.filterChipText {
-  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
   font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
   font-weight: 500;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   line-height: 1;
   color: #fffff9;
   white-space: nowrap;
 }
 
-.smallIcon {
-  position: relative;
-  width: 16px;
-  height: 13px;
-  overflow: clip;
-}
-
-.smallIconInner {
-  position: absolute;
-  left: 2.87px;
-  top: 0;
-  width: 10.134px;
-  height: 10.5px;
-}
-
-.smallIconImg {
-  position: absolute;
-  inset: -9.52% -9.87% -8.54% -9.87%;
-  width: 100%;
-  height: 100%;
+.dateChipIcon {
+  width: 12px;
+  height: 12px;
   object-fit: contain;
-}
-
-.dayChip {
-  position: relative;
-  width: 57px;
-  height: 29px;
-}
-
-.dayChipText {
-  position: absolute;
-  left: 0;
-  top: 29px;
-  transform: translateY(-100%);
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 1;
-  color: #fffff9;
-  white-space: nowrap;
-}
-
-.daySmallIcon {
-  position: absolute;
-  left: 41px;
-  top: 8px;
-  width: 16px;
-  height: 13px;
-  overflow: clip;
+  filter: brightness(0) invert(1);
 }
 
 .calendarIcon {
-  position: relative;
   width: 24px;
   height: 24px;
-}
-
-.calendarIconImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   object-fit: contain;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
 }
 
-.decorGroups {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.decorGroup1 {
-  position: absolute;
-  left: 1714.24px;
-  top: 111.93px;
-  width: 324.924px;
-  height: 284.664px;
+/* ── Search box ── */
+.searchBox {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  border: 2px solid #fffff9;
+  border-radius: 16px;
+  overflow: hidden;
+  flex: 1;
+  min-width: 200px;
+  max-width: 489px;
 }
 
-.decorGroup1Inner {
-  width: 168.129px;
-  height: 278.12px;
-  transform: rotate(120deg) scaleY(-1);
-  transform-origin: center;
-  position: relative;
-}
-
-.decorGroup2 {
-  position: absolute;
-  left: 1645.61px;
-  top: 7px;
-  width: 290.184px;
-  height: 254.86px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.decorGroup2Inner {
-  width: 151.246px;
-  height: 247.754px;
-  transform: rotate(-60deg);
-  transform-origin: center;
-  position: relative;
-}
-
-.decorGroupImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.closestEventsTitle {
-  position: absolute;
-  left: calc(35.71% - 372.71px);
-  top: 580px;
-  margin: 0;
-  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 48px;
+.searchInput {
+  flex: 1;
+  padding: 14px 19px;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-weight: 500;
+  font-size: clamp(16px, 1.5vw, 24px);
   line-height: 1;
-  color: #a51312;
-  white-space: nowrap;
+  color: #fffff9;
 }
 
+.searchInput::placeholder {
+  color: rgba(255, 255, 249, 0.4);
+}
+
+.searchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(60px, 6vw, 100px);
+  border: none;
+  border-left: 1px solid #fffff9;
+  background: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.searchBtnIcon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* ══════════════════════════════════════════
+   Medium cards row
+   ══════════════════════════════════════════ */
+.mediumCardsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+}
+
+/* ══════════════════════════════════════════
+   News band (red divider)
+   ══════════════════════════════════════════ */
 .newsBand {
-  position: absolute;
-  left: 0;
-  top: 1178px;
-  width: 1920px;
-  height: 102px;
+  position: relative;
   background: #a51312;
-  overflow: clip;
+  padding: clamp(10px, 1.5vw, 20px) 0;
+  overflow: hidden;
 }
 
 .newsBandTitle {
-  position: absolute;
-  left: 313px;
-  top: 10px;
+  position: relative;
+  z-index: 1;
   margin: 0;
   font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
   font-weight: 400;
-  font-size: 48px;
+  font-size: clamp(28px, 3vw, 48px);
   line-height: 1;
   color: #fffff9;
-  white-space: nowrap;
 }
 
 .newsBandDecor {
   position: absolute;
-  left: 51.93%;
-  right: -3.28%;
-  top: calc(50% - 3px);
-  height: 140px;
+  right: -3%;
+  top: 50%;
   transform: translateY(-50%);
-}
-
-.newsBandDecorImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 140px;
   object-fit: contain;
-}
-
-.eventsList {
-  position: absolute;
-  left: 50%;
-  top: 2422px;
-  width: 1252px;
-  height: 2853px;
-  transform: translateX(-50%);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.sideFeatured {
-  position: absolute;
-  left: calc(14.29% + 59.71px);
-  top: 1336px;
-  display: flex;
-  gap: 70px;
-  align-items: center;
-}
-
-.sideColumn {
-  width: 579px;
-  height: 978px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 1920px;
-  height: 585px;
-  background: #fffff9;
-  overflow: hidden;
-}
-
-.footerRed {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1920px;
-  height: 361px;
-  background: #a51312;
-}
-
-.footerHeading {
-  position: absolute;
-  left: 89px;
-  top: 24px;
-  margin: 0;
-  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 1;
-  color: #ffffff;
-}
-
-.footerAddress {
-  position: absolute;
-  left: 82px;
-  top: 101px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerPhone {
-  position: absolute;
-  left: 589px;
-  top: 101px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerAgreement {
-  position: absolute;
-  left: 1101px;
-  top: 101px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerMail {
-  position: absolute;
-  left: 589px;
-  top: 197px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerPrivacyPolicy {
-  position: absolute;
-  left: 1101px;
-  top: 197px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerVkLink {
-  position: absolute;
-  left: 589px;
-  top: 293px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerPersonalData {
-  position: absolute;
-  left: 1101px;
-  top: 293px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerHours {
-  position: absolute;
-  left: 82px;
-  top: 286px;
-  margin: 0;
-  font-family: "Dark Deco", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerDaysOff {
-  position: absolute;
-  left: 250px;
-  top: 286px;
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.footerLinks {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1920px;
-  height: 585px;
+  object-position: right;
   pointer-events: none;
 }
 
-.footerLink1,
-.footerLink2,
-.footerLink3,
-.footerLink4,
-.footerLink5,
-.footerLink6,
-.footerLink7,
-.footerLink8,
-.footerLink9,
-.footerLink10 {
-  pointer-events: auto;
-  position: absolute;
-  margin: 0;
-  font-size: 24px;
-  line-height: 1;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  color: #a51312;
-  white-space: nowrap;
-}
-
-.footerLink1 {
-  left: 80px;
-  top: 388px;
-}
-.footerLink2 {
-  left: calc(28.57% + 40.43px);
-  top: 417px;
-}
-.footerLink3 {
-  left: calc(57.14% + 3.86px);
-  top: 417px;
-}
-.footerLink4 {
-  left: 80px;
-  top: 454px;
-}
-.footerLink5 {
-  left: calc(28.57% + 40.43px);
-  top: 454px;
-}
-.footerLink6 {
-  left: calc(57.14% + 3.86px);
-  top: 454px;
-}
-.footerLink7 {
-  left: 80px;
-  top: 491px;
-}
-.footerLink8 {
-  left: calc(28.57% + 40.43px);
-  top: 491px;
-}
-.footerLink9 {
-  left: calc(57.14% + 3.86px);
-  top: 491px;
-}
-.footerLink10 {
-  left: calc(85.71% + 194.29px);
-  top: 501px;
-  text-align: right;
-  transform: translateX(-100%);
-  font-family: "Dark Deco", system-ui, "Segoe UI", Roboto, sans-serif;
-}
-
-.footerNewsRowPos {
-  position: absolute;
-  top: 702px;
-  left: calc(14.29% + 59.71px);
-  width: 1252px;
+/* ══════════════════════════════════════════
+   Featured + Light cards
+   ══════════════════════════════════════════ */
+.featuredRow {
   display: flex;
-  gap: 64px;
-  align-items: center;
+  gap: clamp(24px, 5vw, 70px);
+  align-items: flex-start;
 }
 
-.paginationPos {
-  position: absolute;
-  top: 5318px;
-  left: calc(78.57% - 128.07px);
-  transform: translateX(-50%);
+.lightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 48px);
+  flex: 1;
+  min-width: 0;
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .page {
-    width: 100%;
-    min-height: auto;
-    overflow: visible;
+/* ══════════════════════════════════════════
+   Section title
+   ══════════════════════════════════════════ */
+.sectionTitle {
+  margin: 0 0 clamp(20px, 3vw, 40px);
+  font-family: "Harlequinade", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 48px);
+  line-height: 1;
+  color: #a51312;
+}
+
+/* ══════════════════════════════════════════
+   Events list
+   ══════════════════════════════════════════ */
+.eventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ══════════════════════════════════════════
+   Pagination
+   ══════════════════════════════════════════ */
+.paginationWrap {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: clamp(20px, 3vw, 40px);
+}
+
+/* ══════════════════════════════════════════
+   Responsive — Tablet (≤1024px)
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 40px;
   }
 
-  .topRed {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-    height: auto;
-    padding: 20px 20px 32px;
-    display: flex;
+  .mediumCardsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featuredRow {
     flex-direction: column;
-    gap: 16px;
   }
 
-  .topTitle {
-    position: static;
-    left: auto;
-    font-size: 36px;
-    text-align: center;
-    white-space: normal;
+  .lightColumn {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   Responsive — Mobile (≤768px)
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
   }
 
-  .filterChip1,
-  .filterChip2,
-  .filterAll,
-  .filterDateRow,
-  .searchBox,
-  .decorGroups,
-  .decorVLine1,
-  .decorVLine2 {
+  .hero {
+    padding: 20px 0 24px;
+  }
+
+  .heroDecor {
     display: none;
   }
 
-  .closestEventsTitle {
-    position: static;
-    font-size: 28px;
-    padding: 20px 20px 0;
-    white-space: normal;
+  .filterRow {
+    gap: 10px;
   }
 
-  .newsBand {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-    height: auto;
-    padding: 10px 20px;
+  .filterChip {
+    padding: 4px 8px;
   }
 
-  .newsBandTitle {
-    position: static;
-    font-size: 28px;
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dateFilters {
+    display: none;
+  }
+
+  .searchBox {
+    max-width: 100%;
+  }
+
+  .mediumCardsRow {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .newsBandDecor {
     display: none;
   }
 
-  .eventsList {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    width: 100%;
-    height: auto;
-    padding: 0 20px;
-  }
-
-  .sideFeatured {
-    position: relative;
-    left: auto;
-    top: auto;
+  .featuredRow {
     flex-direction: column;
     gap: 24px;
-    padding: 20px;
-    align-items: stretch;
   }
 
-  .sideColumn {
-    width: 100%;
-    height: auto;
-    gap: 24px;
-  }
-
-  .footerNewsRowPos {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
+  .lightColumn {
     flex-direction: column;
     gap: 24px;
-    padding: 0 20px 20px;
   }
 
-  .paginationPos {
-    position: static;
-    margin: 20px auto;
-    width: fit-content;
-    transform: none;
-    left: auto;
+  .paginationWrap {
+    justify-content: center;
   }
 }
 
+/* ══════════════════════════════════════════
+   Responsive — Small mobile (≤480px)
+   ══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .filterRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
