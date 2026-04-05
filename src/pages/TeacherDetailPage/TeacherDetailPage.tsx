@@ -8,15 +8,14 @@ export default function TeacherDetailPage() {
   return (
     <div className={styles.page}>
       <MobileHeader />
-      <div className={styles.header}>
-        <Navbar />
-        <div className={styles.breadcrumbs}>
-          <span>Главная</span>
-          <span>/</span>
-          <span>О центре</span>
-          <span>/</span>
-          <span>Бурдина Алена Максимовна</span>
-        </div>
+      <Navbar />
+
+      <div className={styles.breadcrumbs}>
+        <span>Главная</span>
+        <span>/</span>
+        <span>О центре</span>
+        <span>/</span>
+        <span>Бурдина Алена Максимовна</span>
       </div>
 
       <main className={styles.main}>
@@ -28,19 +27,19 @@ export default function TeacherDetailPage() {
             <div className={styles.info}>
               <h1 className={styles.name}>Бурдина Алена Максимовна</h1>
 
-              <div className={styles.infoSection}>
+              <div className={styles.infoBlock}>
                 <p className={styles.label}>Должность:</p>
                 <p className={styles.value}>
                   Педагог дополнительного образования, руководитель хореографической студии «Орбита»
                 </p>
               </div>
 
-              <div className={styles.infoSection}>
+              <div className={styles.infoBlock}>
                 <p className={styles.label}>Квалификация:</p>
                 <p className={styles.value}>Первая квалификационная категория</p>
               </div>
 
-              <div className={styles.infoSection}>
+              <div className={styles.infoBlock}>
                 <p className={styles.label}>Преподаваемые дисциплины:</p>
                 <a
                   className={styles.disciplineLink}

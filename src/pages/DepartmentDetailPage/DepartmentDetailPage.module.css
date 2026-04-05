@@ -1,3 +1,7 @@
+/* ══════════════════════════════════════════
+   DepartmentDetailPage — responsive flex layout
+   ══════════════════════════════════════════ */
+
 .page {
   width: 100%;
   display: flex;
@@ -13,26 +17,26 @@
 }
 
 .heroInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 80px 40px;
+  padding: 0 clamp(20px, 5vw, 80px) clamp(24px, 3vw, 40px);
   box-sizing: border-box;
 }
 
 .breadcrumbs {
   display: flex;
-  gap: 16px;
+  gap: clamp(8px, 1vw, 16px);
   align-items: center;
   padding: 10px 0;
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   color: #fffff9;
   flex-wrap: wrap;
 }
 
 .heroCategory {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   color: #fffff9;
   margin-bottom: 8px;
 }
@@ -40,35 +44,27 @@
 .heroTitle {
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 64px;
+  font-size: clamp(32px, 4vw, 64px);
   color: #fffff9;
   margin: 0 0 8px;
-  line-height: normal;
+  line-height: 1.1;
 }
 
 .heroLine {
-  height: 6px;
+  height: 2px;
   width: 100%;
-  position: relative;
+  background: rgba(255, 255, 249, 0.25);
   margin-bottom: 16px;
-}
-
-.heroLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .heroMeta {
   display: flex;
-  gap: 16px;
+  gap: clamp(8px, 1vw, 16px);
   flex-wrap: wrap;
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   color: #fffff9;
-  margin-bottom: 24px;
+  margin-bottom: clamp(16px, 2vw, 24px);
 }
 
 .heroDivider {
@@ -79,69 +75,75 @@
   background: #a51312;
   border: 2px solid #fffff9;
   border-radius: 0 16px 0 0;
-  padding: 8px 24px;
-  position: relative;
-  overflow: hidden;
-  height: 51px;
+  padding: clamp(6px, 0.8vw, 8px) clamp(12px, 2vw, 24px);
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   margin-bottom: 8px;
 }
 
-.enrollBtnWhite {
+.enrollBtnDark {
   background: #a51312;
   border: 2px solid #a51312;
   border-radius: 0 16px 0 0;
-  padding: 8px 24px;
-  position: relative;
-  overflow: hidden;
-  height: 51px;
+  padding: clamp(6px, 0.8vw, 8px) clamp(12px, 2vw, 24px);
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  margin-top: 24px;
+  margin-top: clamp(16px, 2vw, 24px);
 }
 
 .enrollBtnText {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(16px, 2vw, 36px);
   color: #fffff9;
-  position: relative;
-  z-index: 1;
-}
-
-.enrollBtnLine {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 9px;
-  object-fit: fill;
 }
 
 .askLink {
   display: block;
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(16px, 2vw, 36px);
   color: #fffff9;
   text-decoration: underline;
   margin-top: 8px;
 }
 
-/* ── Shared inner ── */
-.descInner,
-.infoInner,
-.leaderInner,
-.teachersInner,
-.directionsInner,
-.awardsInner,
-.newsInner,
-.contactsInner {
-  max-width: 1920px;
+/* ── Shared section inner ── */
+.sectionInner {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 40px 230px;
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 5vw, 80px);
   box-sizing: border-box;
+}
+
+/* ── Shared divider lines ── */
+.dividerLine {
+  height: 2px;
+  width: 100%;
+  background: rgba(255, 255, 249, 0.25);
+  margin-bottom: clamp(16px, 2vw, 32px);
+}
+
+.dividerLineDark {
+  height: 2px;
+  width: 100%;
+  background: rgba(165, 19, 18, 0.15);
+  margin-bottom: clamp(16px, 2vw, 32px);
+}
+
+/* ── Section labels ── */
+.sectionLabel {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: clamp(20px, 2.5vw, 36px);
+  color: #fffff9;
+  margin-bottom: 8px;
+}
+
+.sectionLabelDark {
+  font-family: "Dark Deco", system-ui, sans-serif;
+  font-size: clamp(20px, 2.5vw, 36px);
+  color: #a51312;
+  margin-bottom: 8px;
 }
 
 /* ── Description ── */
@@ -151,10 +153,10 @@
 
 .descText {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(16px, 2vw, 36px);
   color: #a51312;
   margin: 0;
-  line-height: normal;
+  line-height: 1.5;
   text-align: justify;
 }
 
@@ -165,26 +167,26 @@
 
 .infoRow {
   display: flex;
-  gap: 40px;
+  gap: clamp(16px, 3vw, 40px);
   flex-wrap: wrap;
 }
 
 .infoItem {
   display: flex;
-  gap: 16px;
+  gap: clamp(8px, 1vw, 16px);
   align-items: center;
 }
 
 .infoIcon {
-  width: 49px;
-  height: 49px;
+  width: clamp(32px, 3.5vw, 49px);
+  height: clamp(32px, 3.5vw, 49px);
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .infoText {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(14px, 1.8vw, 36px);
   color: #fffff9;
 }
 
@@ -193,38 +195,15 @@
   background: #a51312;
 }
 
-.sectionLabel {
-  font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
-  color: #fffff9;
-  margin-bottom: 8px;
-}
-
-.leaderLine {
-  height: 6px;
-  width: 100%;
-  position: relative;
-  margin-bottom: 32px;
-}
-
-.leaderLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 .leaderRow {
   display: flex;
-  gap: 32px;
+  gap: clamp(16px, 2.5vw, 32px);
   align-items: flex-start;
 }
 
 .leaderPhotoWrap {
-  width: 482px;
-  height: 700px;
-  flex-shrink: 0;
+  flex: 0 0 clamp(200px, 35%, 482px);
+  aspect-ratio: 482 / 700;
   position: relative;
   overflow: hidden;
 }
@@ -241,27 +220,28 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: clamp(12px, 1.5vw, 24px);
+  min-width: 0;
 }
 
 .leaderName {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 64px;
+  font-size: clamp(24px, 4vw, 64px);
   color: #fffff9;
   margin: 0;
-  line-height: normal;
+  line-height: 1.1;
 }
 
 .leaderDetail {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(14px, 2vw, 36px);
   color: #fffff9;
   margin: 0;
 }
 
 .leaderQuote {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(14px, 2vw, 36px);
   color: #fffff9;
   margin: 0;
   border: none;
@@ -277,28 +257,28 @@
 .sectionTitleDark {
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 64px;
+  font-size: clamp(28px, 4vw, 64px);
   color: #a51312;
-  margin: 0 0 40px;
+  margin: 0 0 clamp(20px, 3vw, 40px);
   text-align: center;
 }
 
 .teachersGrid {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: clamp(20px, 3vw, 40px);
 }
 
 .teacherCard {
-  width: 394px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(8px, 1vw, 12px);
+  text-decoration: none;
 }
 
 .teacherPhotoWrap {
-  width: 394px;
-  height: 526px;
+  width: 100%;
+  aspect-ratio: 394 / 526;
   position: relative;
   overflow: hidden;
 }
@@ -313,21 +293,21 @@
 
 .teacherFirstName {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 64px;
+  font-size: clamp(24px, 4vw, 64px);
   color: #a51312;
   margin: 0;
 }
 
 .teacherLastName {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 42px;
+  font-size: clamp(20px, 2.5vw, 42px);
   color: #a51312;
   margin: 0;
 }
 
 .teacherRole {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(14px, 2vw, 36px);
   color: #a51312;
   margin: 0;
 }
@@ -337,31 +317,9 @@
   background: #a51312;
 }
 
-.directionsLabel {
-  font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
-  color: #fffff9;
-  margin-bottom: 8px;
-}
-
-.directionsLine {
-  height: 6px;
-  width: 100%;
-  position: relative;
-  margin-bottom: 32px;
-}
-
-.directionsLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 .directionsRow {
   display: flex;
-  gap: 48px;
+  gap: clamp(20px, 3.5vw, 48px);
   flex-wrap: wrap;
 }
 
@@ -369,18 +327,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: clamp(8px, 1vw, 12px);
 }
 
 .directionIcon {
-  width: 80px;
-  height: 80px;
+  width: clamp(48px, 5vw, 80px);
+  height: clamp(48px, 5vw, 80px);
   object-fit: contain;
 }
 
 .directionLabel {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(14px, 2vw, 36px);
   color: #fffff9;
   text-align: center;
 }
@@ -390,50 +348,28 @@
   background: #fffff9;
 }
 
-.awardsLabel {
-  font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
-  color: #a51312;
-  margin-bottom: 8px;
-}
-
-.awardsLine {
-  height: 6px;
-  width: 100%;
-  position: relative;
-  margin-bottom: 32px;
-}
-
-.awardsLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 .awardsList {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(12px, 1.5vw, 16px);
 }
 
 .awardItem {
   display: flex;
-  gap: 16px;
+  gap: clamp(8px, 1vw, 16px);
   align-items: center;
 }
 
 .awardIcon {
-  width: 84px;
-  height: 70px;
+  width: clamp(40px, 5vw, 84px);
+  height: clamp(34px, 4vw, 70px);
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .awardText {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(14px, 2vw, 36px);
   color: #a51312;
 }
 
@@ -442,32 +378,10 @@
   background: #a51312;
 }
 
-.newsLabel {
-  font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
-  color: #fffff9;
-  margin-bottom: 8px;
-}
-
-.newsLine {
-  height: 6px;
-  width: 100%;
-  position: relative;
-  margin-bottom: 32px;
-}
-
-.newsLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 .newsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  gap: clamp(16px, 2.5vw, 32px);
 }
 
 .newsCard {
@@ -478,7 +392,7 @@
 
 .newsCardImg {
   width: 100%;
-  height: 225px;
+  aspect-ratio: 277 / 225;
   position: relative;
   overflow: hidden;
 }
@@ -500,32 +414,25 @@
 }
 
 .newsDay {
-  font-size: 48px;
+  font-size: clamp(28px, 3vw, 48px);
   line-height: 1;
 }
 
 .newsMonth,
 .newsYear {
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: 1;
 }
 
 .newsCardLine {
   width: 100%;
-  height: 9px;
-  position: relative;
-}
-
-.newsCardLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  height: 1px;
+  background: rgba(255, 255, 249, 0.3);
 }
 
 .newsCardText {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   color: #fffff9;
   margin: 0;
 }
@@ -535,70 +442,19 @@
   background: #fffff9;
 }
 
-.contactsLabel {
-  font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
-  color: #a51312;
-  margin-bottom: 8px;
-}
-
-.contactsLine {
-  height: 6px;
-  width: 100%;
-  position: relative;
-  margin-bottom: 24px;
-}
-
-.contactsLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 .contactText {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+  font-size: clamp(16px, 2vw, 36px);
   color: #a51312;
   margin: 0 0 8px;
 }
 
-@media (max-width: 768px) {
-  .heroInner,
-  .descInner,
-  .infoInner,
-  .leaderInner,
-  .teachersInner,
-  .directionsInner,
-  .awardsInner,
-  .newsInner,
-  .contactsInner {
-    padding: 24px 20px;
-  }
-
-  .heroTitle {
-    font-size: 36px;
-  }
-
-  .heroCategory,
-  .sectionLabel,
-  .enrollBtnText,
-  .leaderName,
-  .teacherFirstName,
-  .descText,
-  .infoText,
-  .leaderDetail,
-  .leaderQuote,
-  .directionLabel,
-  .directionsLabel,
-  .awardsLabel,
-  .awardText,
-  .newsLabel,
-  .contactsLabel,
-  .contactText,
-  .teacherRole {
-    font-size: 20px;
+/* ══════════════════════════════════════════
+   Tablet (≤1024px)
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .newsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .leaderRow {
@@ -606,34 +462,47 @@
   }
 
   .leaderPhotoWrap {
+    flex: none;
     width: 100%;
-    height: 300px;
+    max-width: 400px;
   }
 
-  .teachersGrid {
+  .infoRow {
+    gap: 16px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   Mobile (≤768px)
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .heroMeta {
     flex-direction: column;
+    gap: 4px;
   }
 
-  .teacherCard {
-    width: 100%;
-  }
-
-  .teacherPhotoWrap {
-    width: 100%;
-    height: 300px;
+  .heroDivider {
+    display: none;
   }
 
   .directionsRow {
-    gap: 24px;
-  }
-
-  .newsGrid {
-    grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
 
   .infoRow {
     flex-direction: column;
-    gap: 16px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   Small mobile (≤480px)
+   ══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .newsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .breadcrumbs {
+    gap: 6px;
   }
 }

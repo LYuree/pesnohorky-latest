@@ -80,8 +80,9 @@ export default function DepartmentsPage() {
     <div className={styles.page}>
       <MobileHeader />
 
-      {/* Navbar */}
-      <Navbar />
+      <div className={styles.navbarWrap}>
+        <Navbar />
+      </div>
 
       {/* Red hero */}
       <section className={styles.hero}>

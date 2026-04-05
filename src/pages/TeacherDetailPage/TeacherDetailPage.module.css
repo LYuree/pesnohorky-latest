@@ -1,3 +1,7 @@
+/* ══════════════════════════════════════════
+   TeacherDetailPage — responsive flex layout
+   ══════════════════════════════════════════ */
+
 .page {
   width: 100%;
   display: flex;
@@ -6,18 +10,13 @@
   background: #fffff9;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-}
-
 .breadcrumbs {
   display: flex;
-  gap: 16px;
+  gap: clamp(8px, 1vw, 16px);
   align-items: center;
-  padding: 10px 80px;
+  padding: clamp(8px, 1vw, 10px) clamp(20px, 5vw, 80px);
   font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   color: #a51312;
   flex-wrap: wrap;
 }
@@ -27,25 +26,24 @@
 }
 
 .content {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 40px 333px 80px;
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 5vw, 80px) clamp(40px, 5vw, 80px);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: clamp(24px, 3vw, 40px);
 }
 
 .columns {
   display: flex;
-  gap: 20px;
+  gap: clamp(16px, 2.5vw, 40px);
   align-items: flex-start;
 }
 
 .photoWrap {
-  width: 489px;
-  height: 866px;
-  flex-shrink: 0;
+  flex: 0 0 clamp(200px, 35%, 489px);
+  aspect-ratio: 489 / 866;
   position: relative;
   overflow: hidden;
 }
@@ -62,41 +60,42 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: clamp(20px, 3vw, 40px);
+  min-width: 0;
 }
 
 .name {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 700;
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   color: #a51312;
   margin: 0;
 }
 
-.infoSection {
+.infoBlock {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(6px, 0.8vw, 10px);
 }
 
 .label {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   color: #a51312;
   margin: 0;
 }
 
 .value {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   color: #a51312;
   margin: 0;
 }
 
 .disciplineLink {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   color: #a51312;
   text-decoration: underline;
 }
@@ -104,54 +103,36 @@
 .education {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(12px, 1.5vw, 20px);
 }
 
 .educationTitle {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   color: #a51312;
   margin: 0;
 }
 
 .educationText {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   color: #a51312;
   margin: 0;
   line-height: 1.5;
 }
 
-@media (max-width: 768px) {
-  .breadcrumbs {
-    padding: 8px 20px;
-    font-size: 14px;
-    gap: 8px;
-  }
-
-  .content {
-    padding: 24px 20px 60px;
-  }
-
+/* ══════════════════════════════════════════
+   Tablet (≤1024px)
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
   .columns {
     flex-direction: column;
   }
 
   .photoWrap {
+    flex: none;
     width: 100%;
-    height: 400px;
-  }
-
-  .name {
-    font-size: 24px;
-  }
-
-  .label,
-  .value,
-  .disciplineLink,
-  .educationTitle,
-  .educationText {
-    font-size: 18px;
+    max-width: 400px;
   }
 }

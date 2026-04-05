@@ -10,6 +10,11 @@
   background: #a51312;
 }
 
+/* ── Navbar wrapper ── */
+.navbarWrap {
+  background: #fffff9;
+}
+
 /* ── Hero ── */
 .hero {
   width: 100%;
