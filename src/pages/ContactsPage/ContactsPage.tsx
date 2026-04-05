@@ -85,7 +85,6 @@ export default function ContactsPage() {
           <iframe id="map_824747155" width="1252px" height="400px" src="https://makemap.2gis.ru/widget?data=eJw1jsFugzAMht_Fu0YVCQQCD7Bpt94qbeoBEW-LFHAUXGkt4t1noPPFln_7_78FKHvM6N-QRuQccIbucwG-J4QOXrHnW0ZQkDIlzLzrCwwUKYv-Uhinv4zoHDhuHzJ6nIccEgeajsXjffL4C50u_mtV8H0E3je7Z9qZwsRyP5BAhannHcaVp9q50lbKlidpxtir_AcPndN2vSoY-3SmORyBC8SeoXveNq7STWVqWyuIm7y7ta0p2kKMjNGCRzQKXCOmAk4xXn4Q48e-5XzD9Q_FQVke" sandbox="allow-modals allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation"></iframe>
 
           </div>
-          
         </section>
       </main>
 

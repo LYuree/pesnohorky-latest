@@ -21,6 +21,7 @@
   font-weight: 400;
   font-style: normal;
 }
+
 .hero {
   width: 100%;
   background: #fffff9;
@@ -256,6 +257,7 @@
   text-decoration: none;
   display: inline-block;
   margin-bottom: 10;
+
 }
 
 .quickCardBtn:hover {

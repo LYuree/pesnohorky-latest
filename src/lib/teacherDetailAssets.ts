@@ -1,4 +1,5 @@
-// Image assets for TeacherDetailPage
+
+// Local image assets for TeacherDetailPage (stored in public/images/teacher-detail/)
 export const teacherDetailAssets = {
-  imgTeacher: "https://www.figma.com/api/mcp/asset/83c38635-20e0-440d-b64f-5f57d42ac9e7",
+  imgTeacher: "/images/teacher-detail/teacher-photo.svg",
 } as const;

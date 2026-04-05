@@ -1,5 +1,5 @@
 .root {
-  width: 1252px;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -7,8 +7,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-bottom: 40px;
+  gap: clamp(20px, 3vw, 40px);
+  padding-bottom: clamp(20px, 3vw, 40px);
   position: relative;
 }
 
@@ -17,15 +17,15 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: clamp(16px, 2vw, 20px);
 }
 
 .texts {
-  flex: 1 0 0;
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: clamp(24px, 4vw, 64px);
   min-width: 0;
-  padding-right: 20px;
   font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
   color: #a51312;
 }
@@ -33,21 +33,20 @@
 .textBlock {
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: clamp(16px, 3vw, 64px);
 }
 
 .heading {
   margin: 0;
-  font-size: 36px;
-  line-height: 1;
+  font-size: clamp(20px, 2.5vw, 36px);
+  line-height: 1.2;
   font-weight: 400;
-  white-space: nowrap;
 }
 
 .paragraph {
   margin: 0;
-  font-size: 24px;
-  line-height: 1;
+  font-size: clamp(14px, 1.5vw, 24px);
+  line-height: 1.4;
   font-weight: 400;
 }
 
@@ -57,7 +56,7 @@
   align-items: flex-end;
   font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
   color: #a51312;
-  white-space: nowrap;
+  flex-wrap: wrap;
 }
 
 .dateCol {
@@ -69,32 +68,31 @@
 
 .dateDay {
   margin: 0;
-  font-size: 48px;
+  font-size: clamp(28px, 3vw, 48px);
   font-weight: 400;
   line-height: 1;
 }
 
 .dateMonth {
   margin: 0;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   font-weight: 400;
   line-height: 1;
 }
 
 .dateYear {
   margin: 0;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   font-weight: 400;
   line-height: 1;
 }
 
 .media {
-  width: 560px;
-  max-width: 560px;
+  width: clamp(200px, 40%, 560px);
   aspect-ratio: 489 / 400;
-  max-height: 458.0777px;
   position: relative;
   flex: 0 0 auto;
+  overflow: hidden;
 }
 
 .mediaImg {
@@ -107,17 +105,30 @@
 
 .bottomLine {
   width: 100%;
-  height: 0;
-  position: relative;
+  height: 1px;
+  background: rgba(165, 19, 18, 0.15);
 }
 
 .bottomLineImg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -1.5px;
-  width: 100%;
-  height: auto;
-  display: block;
+  display: none;
 }
 
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .contents {
+    flex-direction: column;
+  }
+
+  .media {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .texts {
+    gap: 16px;
+  }
+
+  .textBlock {
+    gap: 12px;
+  }
+}

@@ -16,157 +16,194 @@ export default function NewsLandingPage() {
     <div className={styles.page} data-page="NewsLandingPage">
       <MobileHeader />
 
-      <div className={styles.topRed} data-name="header_red">
-        <div className={styles.decorVLine1}>
-          <img alt="" className={styles.decorVLineImg} src={figmaAssets.img} />
-        </div>
-        <div className={styles.decorVLine2}>
-          <img alt="" className={styles.decorVLineImg} src={figmaAssets.img} />
-        </div>
+      {/* ── Navbar ── */}
+      <Navbar />
 
-        <Heading as="h1" className={styles.topTitle}>
-          Новости и Анонсы
-        </Heading>
-
-        <div className={styles.filterChip1}>
-          <img alt="" className={styles.filterChipBg} src={figmaAssets.imgFrame18114623} />
-          <div className={styles.filterChipLabel}>Направления</div>
-          <div className={styles.filterChipIcon}>
-            <div className={styles.filterChipIconInner}>
-              <img alt="" className={styles.filterChipIconImg} src={figmaAssets.imgVector} />
-            </div>
-          </div>
+      {/* ── Hero / Header Red ── */}
+      <section className={styles.hero}>
+        {/* Decorative elements — absolute is justified here */}
+        <div className={styles.heroDecor} aria-hidden="true">
+          <img
+            className={styles.heroDecorImg1}
+            src={figmaAssets.imgGroup12}
+            alt=""
+          />
+          <img
+            className={styles.heroDecorImg2}
+            src={figmaAssets.imgGroup10}
+            alt=""
+          />
         </div>
 
-        <div className={styles.filterChip2}>
-          <img alt="" className={styles.filterChipBg} src={figmaAssets.imgFrame18114623} />
-          <div className={styles.filterChipLabel}>Преподаватели</div>
-          <div className={styles.filterChipIcon}>
-            <div className={styles.filterChipIconInner}>
-              <img alt="" className={styles.filterChipIconImg} src={figmaAssets.imgVector} />
+        <div className={styles.container}>
+          <Heading as="h1" className={styles.heroTitle}>
+            Новости и Анонсы
+          </Heading>
+
+          {/* Filter row */}
+          <div className={styles.filterRow}>
+            <FilterChip className={styles.filterAll} label="Все" />
+
+            <button className={styles.filterChip} type="button">
+              <span className={styles.filterChipLabel}>Направления</span>
+              <img
+                className={styles.filterChipIcon}
+                src={figmaAssets.imgVector}
+                alt=""
+              />
+            </button>
+
+            <button className={styles.filterChip} type="button">
+              <span className={styles.filterChipLabel}>Преподаватели</span>
+              <img
+                className={styles.filterChipIcon}
+                src={figmaAssets.imgVector}
+                alt=""
+              />
+            </button>
+          </div>
+
+          {/* Search + date filters */}
+          <div className={styles.controlsRow}>
+            <div className={styles.dateFilters}>
+              <span className={styles.dateLabel}>За все время</span>
+
+              <img
+                className={styles.dateSep}
+                src={figmaAssets.imgFrame18114650}
+                alt=""
+              />
+
+              <button className={styles.dateChip} type="button">
+                <span>2026</span>
+                <img
+                  className={styles.dateChipIcon}
+                  src={figmaAssets.imgVector}
+                  alt=""
+                />
+              </button>
+
+              <img
+                className={styles.dateSep}
+                src={figmaAssets.imgFrame18114650}
+                alt=""
+              />
+
+              <button className={styles.dateChip} type="button">
+                <span>Март</span>
+                <img
+                  className={styles.dateChipIcon}
+                  src={figmaAssets.imgVector}
+                  alt=""
+                />
+              </button>
+
+              <img
+                className={styles.dateSep}
+                src={figmaAssets.imgFrame18114650}
+                alt=""
+              />
+
+              <button className={styles.dateChip} type="button">
+                <span>23</span>
+                <img
+                  className={styles.dateChipIcon}
+                  src={figmaAssets.imgVector}
+                  alt=""
+                />
+              </button>
+
+              <img
+                className={styles.dateSep}
+                src={figmaAssets.imgFrame18114650}
+                alt=""
+              />
+
+              <img
+                className={styles.calendarIcon}
+                src={figmaAssets.imgTablerIconCalendarWeek}
+                alt=""
+              />
+            </div>
+
+            <div className={styles.searchBox}>
+              <input
+                className={styles.searchInput}
+                type="text"
+                placeholder="Поиск новостей"
+              />
+              <button className={styles.searchBtn} type="button">
+                <img
+                  className={styles.searchBtnIcon}
+                  src={figmaAssets.imgFrame382}
+                  alt="Поиск"
+                />
+              </button>
             </div>
           </div>
         </div>
+      </section>
 
-        <div className={styles.searchBox}>
-          <div className={styles.searchPlaceholder}>Поиск новостей</div>
-          <div className={styles.searchIconBox}>
-            <div className={styles.searchIconInner}>
-              <img alt="" className={styles.searchIconImg} src={figmaAssets.imgFrame382} />
-            </div>
+      {/* ── News row (3 medium cards) ── */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.mediumCardsRow}>
+            <NewsCardMedium />
+            <NewsCardMedium />
+            <NewsCardMedium />
           </div>
         </div>
+      </section>
 
-        <FilterChip className={styles.filterAll} label="Все" />
-
-        <div className={styles.filterDateRow}>
-          <div className={styles.filterAllTime}>
-            <p className={styles.filterDateText}>За все время</p>
-          </div>
-
-          <div className={styles.sep5}>
-            <img alt="" className={styles.sepImg} src={figmaAssets.imgFrame18114650} />
-          </div>
-
-          <div className={styles.yearChip}>
-            <p className={styles.filterChipText}>2026</p>
-            <div className={styles.smallIcon}>
-              <div className={styles.smallIconInner}>
-                <img alt="" className={styles.smallIconImg} src={figmaAssets.imgVector} />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.sep5}>
-            <img alt="" className={styles.sepImg} src={figmaAssets.imgFrame18114650} />
-          </div>
-
-          <div className={styles.monthChip}>
-            <p className={styles.filterChipText}>Март</p>
-            <div className={styles.smallIcon}>
-              <div className={styles.smallIconInner}>
-                <img alt="" className={styles.smallIconImg} src={figmaAssets.imgVector} />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.sep5}>
-            <img alt="" className={styles.sepImg} src={figmaAssets.imgFrame18114650} />
-          </div>
-
-          <div className={styles.dayChip}>
-            <p className={styles.dayChipText}>23</p>
-            <div className={styles.daySmallIcon}>
-              <div className={styles.smallIconInner}>
-                <img alt="" className={styles.smallIconImg} src={figmaAssets.imgVector} />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.sep5}>
-            <img alt="" className={styles.sepImg} src={figmaAssets.imgFrame18114650} />
-          </div>
-
-          <div className={styles.calendarIcon}>
-            <img alt="" className={styles.calendarIconImg} src={figmaAssets.imgTablerIconCalendarWeek} />
-          </div>
-        </div>
-
-        <div className={styles.decorGroups}>
-          <div className={styles.decorGroup1}>
-            <div className={styles.decorGroup1Inner}>
-              <img alt="" className={styles.decorGroupImg} src={figmaAssets.imgGroup10} />
-            </div>
-          </div>
-          <div className={styles.decorGroup2}>
-            <div className={styles.decorGroup2Inner}>
-              <img alt="" className={styles.decorGroupImg} src={figmaAssets.imgGroup12} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Navbar className={styles.navbarPos} />
-
-      <Heading as="h2" className={styles.closestEventsTitle}>
-        Ближайшие события
-      </Heading>
-
+      {/* ── News band ── */}
       <div className={styles.newsBand}>
-        <Heading as="h2" className={styles.newsBandTitle}>
-          Новости
-        </Heading>
-        <div className={styles.newsBandDecor}>
-          <img alt="" className={styles.newsBandDecorImg} src={figmaAssets.imgGroup54} />
+        <div className={styles.container}>
+          <Heading as="h2" className={styles.newsBandTitle}>
+            Новости
+          </Heading>
         </div>
+        <img
+          className={styles.newsBandDecor}
+          src={figmaAssets.imgGroup54}
+          alt=""
+          aria-hidden="true"
+        />
       </div>
 
-      <div className={styles.eventsList}>
-        {new Array(8).fill(null).map((_, idx) => (
-          <NewsCardEvent key={idx} />
-        ))}
-      </div>
-
-      <div className={styles.sideFeatured}>
-        <NewsCardFeatured />
-        <div className={styles.sideColumn}>
-          <NewsCardLight />
-          <NewsCardLight />
+      {/* ── Featured + Light cards ── */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.featuredRow}>
+            <NewsCardFeatured />
+            <div className={styles.lightColumn}>
+              <NewsCardLight />
+              <NewsCardLight />
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
+      {/* ── Closest events ── */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Ближайшие события
+          </Heading>
+
+          <div className={styles.eventsList}>
+            {new Array(8).fill(null).map((_, idx) => (
+              <NewsCardEvent key={idx} />
+            ))}
+          </div>
+
+          <div className={styles.paginationWrap}>
+            <Pagination />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
       <Footer />
-
-      <div className={styles.paginationPos}>
-        <Pagination />
-      </div>
-
-      <div className={styles.footerNewsRowPos}>
-        <NewsCardMedium />
-        <NewsCardMedium />
-        <NewsCardMedium />
-      </div>
     </div>
   );
 }
-

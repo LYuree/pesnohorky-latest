@@ -1,7 +1,8 @@
 .root {
   display: flex;
-  gap: 21px;
+  gap: clamp(8px, 1.5vw, 21px);
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .arrowWrap {
@@ -9,6 +10,7 @@
   width: 24px;
   height: 24px;
   flex: 0 0 auto;
+  cursor: pointer;
 }
 
 .arrowImg {
@@ -22,18 +24,19 @@
 .pageBtn {
   border: 1px solid #a51312;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  width: 36px;
+  min-width: clamp(32px, 3vw, 36px);
+  min-height: clamp(32px, 3vw, 36px);
+  padding: clamp(6px, 1vw, 10px);
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .pageBtnText {
   margin: 0;
   font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   line-height: 1;
   font-weight: 400;
   color: #a51312;
@@ -43,25 +46,29 @@
 .pageBtnActive {
   background: #a51312;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  width: 36px;
+  min-width: clamp(32px, 3vw, 36px);
+  min-height: clamp(32px, 3vw, 36px);
+  padding: clamp(6px, 1vw, 10px);
   box-sizing: border-box;
   border-top-right-radius: 16px;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  cursor: pointer;
 }
 
 .pageBtnActiveText {
   margin: 0;
   font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   line-height: 1;
   font-weight: 400;
   color: #fffff9;
   white-space: nowrap;
 }
 
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .root {
+    justify-content: center;
+  }
+}

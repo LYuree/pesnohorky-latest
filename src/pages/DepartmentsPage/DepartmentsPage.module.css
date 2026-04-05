@@ -1,3 +1,4 @@
+
 .page {
   width: 100%;
   display: flex;
@@ -6,6 +7,10 @@
   background: #a51312;
 }
 
+/* ── Navbar wrapper ── */
+.navbarWrap {
+  background: #fffff9;
+}
 /* ── Hero ── */
 .hero {
   width: 100%;
@@ -13,19 +18,19 @@
 }
 
 .heroInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 80px 40px;
+  padding: 0 clamp(20px, 5vw, 80px) clamp(24px, 3vw, 40px);
   box-sizing: border-box;
 }
 
 .breadcrumbs {
   display: flex;
-  gap: 16px;
+  gap: clamp(8px, 1vw, 16px);
   align-items: center;
   padding: 10px 0;
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   color: #fffff9;
   flex-wrap: wrap;
 }
@@ -37,27 +42,23 @@
 }
 
 .heroLine {
-  height: 6px;
+  height: 2px;
   width: 100%;
-  position: relative;
+  background: rgba(255, 255, 249, 0.25);
   margin-bottom: 8px;
 }
 
 .heroLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+  display: none;
 }
 
 .heroTitle {
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 64px;
+  font-size: clamp(32px, 4vw, 64px);
   color: #fffff9;
   margin: 8px 0 16px;
-  line-height: normal;
+  line-height: 1.1;
 }
 
 /* ── Content ── */
@@ -67,29 +68,30 @@
 }
 
 .contentInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 40px 230px 80px;
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 5vw, 80px) clamp(40px, 5vw, 80px);
   box-sizing: border-box;
 }
 
 /* ── Filters ── */
 .filters {
   display: flex;
-  gap: 24px;
+  gap: clamp(8px, 1.5vw, 24px);
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: clamp(24px, 3vw, 40px);
 }
 
 .filterTab {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   color: #fffff9;
   background: #a51312;
   border: none;
-  padding: 4px 12px;
+  padding: clamp(4px, 0.5vw, 6px) clamp(8px, 1vw, 12px);
   cursor: pointer;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 .filterTab:hover {
@@ -98,36 +100,41 @@
 
 /* ── Group ── */
 .group {
-  margin-bottom: 40px;
+  margin-bottom: clamp(24px, 3vw, 40px);
 }
 
 .groupTitle {
   font-family: "Dark Deco", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(24px, 2.5vw, 36px);
   color: #a51312;
-  margin: 0 0 24px;
+  margin: 0 0 clamp(16px, 2vw, 24px);
 }
 
 .groupRow {
   display: flex;
-  gap: 34px;
+  gap: clamp(20px, 2.5vw, 34px);
   align-items: flex-start;
 }
 
 /* ── Featured card ── */
 .featuredCard {
-  width: 603px;
-  flex-shrink: 0;
+  flex: 0 0 45%;
+  max-width: 603px;
   display: flex;
   flex-direction: column;
   text-decoration: none;
   position: relative;
+
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .featuredImgWrap {
   width: 100%;
-  height: 468px;
+
+  aspect-ratio: 603 / 468;
+
   position: relative;
   overflow: hidden;
 }
@@ -151,7 +158,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px 30px;
+
+  padding: clamp(12px, 2vw, 16px) clamp(16px, 2vw, 30px);
+
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -159,28 +168,30 @@
 
 .featuredType {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+
+  font-size: clamp(20px, 2.5vw, 36px);
+
   color: #fffff9;
 }
 
 .featuredCardLine {
-  height: 3px;
-  width: 443px;
-  max-width: 100%;
-  position: relative;
+
+  height: 1px;
+  width: 100%;
+  max-width: 443px;
+  background: rgba(255, 255, 249, 0.4);
 }
 
 .featuredLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+  display: none;
+
 }
 
 .featuredName {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 36px;
+
+  font-size: clamp(20px, 2.5vw, 36px);
+
   color: #fffff9;
 }
 
@@ -189,7 +200,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+
+  gap: clamp(16px, 2vw, 24px);
+  min-width: 0;
+
 }
 
 .smallCard {
@@ -201,8 +215,11 @@
 
 .smallCardImg {
   width: 100%;
-  height: 225px;
-  background: #c4c4c4;
+
+  aspect-ratio: 16 / 9;
+  background: #e0d0d0;
+  border-radius: 4px;
+
 }
 
 .smallCardInfo {
@@ -213,28 +230,28 @@
 
 .smallCardName {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+
+  font-size: clamp(16px, 1.5vw, 24px);
   color: #a51312;
   margin: 0;
 }
 
 .smallCardLine {
-  height: 3px;
+
+  height: 1px;
   width: 100%;
-  position: relative;
+  background: rgba(165, 19, 18, 0.15);
 }
 
 .smallCardLineImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+  display: none;
+
 }
 
 .smallCardMeta {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+
+  font-size: clamp(14px, 1.3vw, 24px);
   color: #a51312;
   margin: 0;
 }
@@ -246,92 +263,86 @@
 .enrollBtn {
   background: #a51312;
   border-radius: 0 16px 0 0;
-  padding: 8px 9px;
-  position: relative;
-  overflow: hidden;
-  height: 51px;
+
+  padding: clamp(6px, 1vw, 8px) clamp(8px, 1vw, 12px);
   display: flex;
   align-items: center;
+  align-self: flex-start;
 }
 
 .enrollBtnText {
   font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+
+  font-size: clamp(14px, 1.3vw, 24px);
   color: #fffff9;
-  position: relative;
-  z-index: 1;
 }
 
 .enrollBtnLine {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 9px;
-  object-fit: fill;
+  display: none;
 }
 
 /* ── Divider ── */
 .sectionDivider {
-  height: 6px;
+  height: 1px;
   width: 100%;
-  position: relative;
-  margin-top: 40px;
+  background: rgba(165, 19, 18, 0.15);
+  margin-top: clamp(24px, 3vw, 40px);
 }
 
 .sectionDividerImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+  display: none;
 }
 
-@media (max-width: 768px) {
-  .heroInner {
-    padding: 0 20px 24px;
-  }
-
-  .breadcrumbs {
-    font-size: 14px;
-    gap: 8px;
-  }
-
-  .heroTitle {
-    font-size: 36px;
-  }
-
-  .contentInner {
-    padding: 24px 20px 60px;
-  }
-
-  .filters {
-    gap: 12px;
-  }
-
-  .filterTab {
-    font-size: 18px;
-  }
-
+/* ══════════════════════════════════════════
+   Tablet (≤1024px)
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
   .groupRow {
     flex-direction: column;
-    gap: 24px;
   }
 
   .featuredCard {
+    flex: none;
     width: 100%;
+    max-width: 100%;
   }
 
-  .featuredImgWrap {
-    height: 280px;
+  .smallCards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ══════════════════════════════════════════
+   Mobile (≤768px)
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .filters {
+    gap: 8px;
   }
 
-  .groupTitle,
-  .featuredType,
-  .featuredName,
-  .smallCardName,
-  .smallCardMeta,
-  .enrollBtnText {
-    font-size: 20px;
+  .smallCards {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredText {
+    padding: 10px 16px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   Small mobile (≤480px)
+   ══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .breadcrumbs {
+    gap: 6px;
+  }
+
+  .filters {
+    gap: 6px;
+  }
+
+  .filterTab {
+    padding: 4px 8px;
   }
 }

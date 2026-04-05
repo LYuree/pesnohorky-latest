@@ -29,7 +29,11 @@ export function Footer() {
         </div>
         <div className={styles.footerBranch}>
           <div className={styles.footerBranchInner}>
+<<<<<<< HEAD
             <img alt="" className={styles.branchImg} src= '../../img/footer/branchred.svg' />
+=======
+            <img alt="" className={styles.branchImg} src={homeAssets.imgBranchFooter1} />
+>>>>>>> main
           </div>
         </div>
         <p className={styles.footerYod}>ЙОD@2026</p>

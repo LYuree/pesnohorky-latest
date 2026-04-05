@@ -37,18 +37,28 @@
 
 .footerColumns {
   display: flex;
+<<<<<<< HEAD
   align-items: stretch;      /* все колонки одной высоты */
   justify-content: space-between;
   width: 100%;
   min-height: 10vh;         /* футер на всю высоту экрана — при необходимости */
+=======
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+>>>>>>> main
 }
 
 .footerCol {
   flex: 1;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   justify-content: space-between;  /* верхний элемент прижат к верху, нижний — к низу */
   gap: 0;                          /* убираем gap, чтобы не нарушать space-between */
+=======
+  gap: 67px;
+>>>>>>> main
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
   font-size: 24px;
@@ -57,7 +67,11 @@
 }
 
 .footerColFirst {
+<<<<<<< HEAD
   gap: 0;                          /* вместо 156px */
+=======
+  gap: 156px;
+>>>>>>> main
   padding-right: 16px;
 }
 
@@ -68,7 +82,11 @@
 }
 
 .footerHoursTime {
+<<<<<<< HEAD
   font-family: "Montserrat Alternates", system-ui, sans-serif;
+=======
+  font-family: "Dark Deco", system-ui, sans-serif;
+>>>>>>> main
 }
 
 .footerBranch {
