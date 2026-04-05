@@ -382,6 +382,7 @@
     display: none;
   }
 
+
   .featuredRow {
     flex-direction: column;
     gap: 24px;
@@ -410,3 +411,4 @@
     align-items: flex-start;
   }
 }
+

@@ -1,3 +1,4 @@
+
 // Local image assets for DepartmentsPage (stored in public/images/departments/)
 export const departmentsPageAssets = {
   imgPhotoStreet: "/images/departments/photo-street.svg",

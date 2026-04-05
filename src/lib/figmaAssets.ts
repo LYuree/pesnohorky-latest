@@ -31,3 +31,4 @@ export const figmaAssets = {
   imgGroup54: "/images/news/news-band-decor.svg",
   imgFrame18114650: "/images/news/separator.svg",
 } as const;
+

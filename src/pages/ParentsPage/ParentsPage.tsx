@@ -199,11 +199,16 @@ export default function ParentsPage() {
               </div>
             </div>
 
-            <img
-              src={parentsPageAssets.imgEnrollSidebar}
-              alt="Записаться"
-              className={styles.heroSidebar}
-            />
+            <div className={styles.heroSidebarWrapper}>
+              <img
+                src={parentsPageAssets.imgEnrollSidebar}
+                alt="Записаться"
+                className={styles.heroSidebar}
+              />
+              <a href="/parents/safety" className={styles.enrollLink}>
+                Записаться
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -309,7 +314,7 @@ export default function ParentsPage() {
             </div>
             <div className={styles.additionalCol}>
               {additionalRight.map((item, idx) => (
-                <Link key={item.label + idx} to={item.to} className={styles.additionalBtn}>
+                <Link key={item.label + idx} to={item.to} className={styles.additionalBtnR}>
                   {item.label}
                 </Link>
               ))}

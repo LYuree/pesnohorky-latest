@@ -9,6 +9,18 @@
 }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Harlequinade';
+  src: url('../../fonts/Harlequinade.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../../fonts/MontserratAlternates-Light.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 
 .hero {
   width: 100%;
@@ -72,7 +84,7 @@
 .heroSubtitle {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-size: 24px;
-  color: #1a1a1a;
+  color: #a51312;
   margin: 0 0 36px;
 }
 
@@ -119,7 +131,44 @@
   flex-shrink: 0;
   border-radius: 12px;
 }
+.heroSidebarWrapper {
+  position: relative;   /* контейнер — точка отсчёта для ссылки */
+  width: 229px;
+  height: 468px;
+  display: flex;
+  align-items: center;      /* вертикальное центрирование */
+  justify-content: center; 
+}
 
+.enrollLink {
+  /* Стили текста-ссылки */
+  position: absolute;
+  top: 6%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+
+  /* Ваши характеристики */
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;      /* на случай, если внутри несколько строк */
+  
+  /* Убираем лишнее оформление */
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  text-decoration: none;
+  color: white;             /* без скругления */
+  transform: rotate(180deg);            /* убираем трансформацию */
+  transition: none;   
+  writing-mode: vertical-rl;
+}
+
+.enrollLink:hover {
+  background: rgba(165,19,18,0.8);
+}
 /* ── Main content ───────────────────────────────────────────────────────── */
 
 .main {
@@ -165,7 +214,7 @@
 .quickCard {
   background: #a51312;
   border-radius: 16px;
-  padding: 28px 24px;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -177,6 +226,7 @@
   font-size: 36px;
   color: #fffff9;
   margin: 0;
+  padding: 10px;
   line-height: 1.15;
 }
 
@@ -185,23 +235,29 @@
   font-size: 24px;
   color: #fffff9;
   margin: 0;
+  padding: 10px;
   line-height: 1.4;
 }
 
 .quickCardBtn {
   align-self: flex-start;
   background: #fffff9;
+  background-image: url('../../img/parents/line_red.svg');
+  background-position: bottom; 
+  background-repeat: no-repeat;
+  background-position: 100% 107%;
   color: #a51312;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-size: 20px;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-top-right-radius: 8px;
   padding: 10px 24px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  margin-top: 4px;
+  margin-bottom: 10;
+
 }
 
 .quickCardBtn:hover {
@@ -452,19 +508,46 @@
   display: flex;
   align-items: center;
   background: #a51312;
+  
+  /* Устанавливаем новое фоновое изображение */
+  background-image: url('../../img/parents/Line 1.svg');
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+
   color: #fffff9;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-size: 36px;
   text-decoration: none;
   height: 76px;
   padding: 0 28px;
-  border-radius: 14px 36px 36px 14px;
+  border-radius: 14px 36px 0px 0px;
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.additionalBtnR {
+  display: flex;
+  align-items: center;
+  background: #a51312;
+  
+  /* Устанавливаем новое фоновое изображение */
+  background-image: url('../../img/parents/Line 1.svg');
+   
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  color: #fffff9;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 36px;
+  text-decoration: none;
+  height: 76px;
+  padding: 0 28px;
+  border-radius: 14px 36px 0px 0px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .additionalBtn:hover {
   opacity: 0.88;
 }

@@ -1,3 +1,4 @@
+
 // Local image assets for DepartmentDetailPage (stored in public/images/department-detail/)
 export const departmentDetailAssets = {
   imgLeaderPhoto: "/images/department-detail/leader-photo.svg",
