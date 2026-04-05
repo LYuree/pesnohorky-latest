@@ -4,6 +4,7 @@ import path from "path";
 import { initDB } from "./db.js";
 import teachersRouter from "./routes/teachers.js";
 import newsRouter from "./routes/news.js";
+import uploadRouter from "./routes/upload.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -20,11 +21,16 @@ app.use((_req, res, next) => {
   next();
 });
 
+// Статика: загруженные файлы
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Статика: админка и публичные страницы
 app.use("/admin", express.static(path.join(__dirname, "..", "public", "admin")));
 app.use("/pages", express.static(path.join(__dirname, "..", "public", "pages")));
 
 // API routes
+app.use("/api/upload", uploadRouter);
+
 app.use("/api/teachers", teachersRouter);
 app.use("/api/admin/teachers", teachersRouter);
 
@@ -37,8 +43,6 @@ async function start() {
     console.log(`Сервер запущен: http://localhost:${PORT}`);
     console.log(`Админка педагогов: http://localhost:${PORT}/admin/teachers.html`);
     console.log(`Админка новостей:  http://localhost:${PORT}/admin/news.html`);
-    console.log(`Страница педагогов: http://localhost:${PORT}/pages/teachers.html`);
-    console.log(`Страница новостей:  http://localhost:${PORT}/pages/news.html`);
   });
 }
 

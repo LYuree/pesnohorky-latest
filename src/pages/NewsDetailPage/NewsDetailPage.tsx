@@ -74,11 +74,10 @@ export default function NewsDetailPage() {
           {error && <p className={styles.articleText}>Ошибка: {error}</p>}
 
           {news && (
-            <div className={styles.articleMain}>
-              {news.content.split("\n").map((p, i) => (
-                <p key={i} className={styles.articleText}>{p}</p>
-              ))}
-            </div>
+            <div
+              className={styles.articleMain}
+              dangerouslySetInnerHTML={{ __html: news.content }}
+            />
           )}
         </div>
       </section>

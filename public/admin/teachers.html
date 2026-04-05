@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Админка — Педагоги</title>
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; color: #333; padding: 20px; max-width: 900px; margin: 0 auto; }
+    body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; color: #333; padding: 20px; max-width: 960px; margin: 0 auto; }
     h1 { margin-bottom: 8px; color: #a51312; }
     nav { margin-bottom: 24px; font-size: 14px; }
     nav a { color: #a51312; margin-right: 16px; }
     .form-card { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 32px; }
     .form-card h2 { margin-bottom: 16px; font-size: 18px; }
     label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; }
-    input, textarea { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; margin-bottom: 12px; }
-    textarea { min-height: 100px; resize: vertical; }
+    input[type="text"] { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; margin-bottom: 12px; }
+    .editor-wrap { margin-bottom: 12px; }
+    .editor-wrap .ql-editor { min-height: 120px; }
     button[type="submit"] { background: #a51312; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 14px; }
     button[type="submit"]:hover { background: #8a0f0e; }
     .msg { padding: 8px 12px; border-radius: 4px; margin-bottom: 12px; display: none; }
@@ -26,6 +28,14 @@
     .btn-del { background: #dc3545; color: #fff; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; }
     .btn-del:hover { background: #b02a37; }
     .photo-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; }
+
+    /* Upload area */
+    .upload-area { border: 2px dashed #ccc; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 12px; cursor: pointer; transition: border-color .2s; position: relative; }
+    .upload-area:hover { border-color: #a51312; }
+    .upload-area.has-file { border-color: #28a745; }
+    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-area img { max-width: 120px; max-height: 120px; margin-top: 8px; border-radius: 50%; }
+    .upload-hint { color: #888; font-size: 13px; }
   </style>
 </head>
 <body>
@@ -41,13 +51,20 @@
   <div id="msg" class="msg"></div>
   <form id="form">
     <label for="name">Имя *</label>
-    <input id="name" name="name" required placeholder="Иванов Иван Иванович">
+    <input id="name" name="name" type="text" required placeholder="Иванов Иван Иванович">
 
-    <label for="bio">Биография *</label>
-    <textarea id="bio" name="bio" required placeholder="Педагог дополнительного образования..."></textarea>
+    <label>Биография *</label>
+    <div class="editor-wrap">
+      <div id="editor"></div>
+    </div>
 
-    <label for="photo_url">URL фото</label>
-    <input id="photo_url" name="photo_url" placeholder="https://example.com/photo.jpg">
+    <label>Фото</label>
+    <div class="upload-area" id="upload-area">
+      <input type="file" id="photo-file" accept="image/*">
+      <p class="upload-hint">Перетащите или нажмите для загрузки</p>
+      <img id="photo-preview" style="display:none" alt="">
+    </div>
+    <input type="hidden" id="photo_url" name="photo_url">
 
     <button type="submit">Создать</button>
   </form>
@@ -59,16 +76,59 @@
   <tbody id="tbody"></tbody>
 </table>
 
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
 const API = "http://localhost:3001";
 
+// Quill editor
+const quill = new Quill("#editor", {
+  theme: "snow",
+  modules: {
+    toolbar: [
+      ["bold", "italic", "underline"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link"],
+      ["clean"],
+    ],
+  },
+  placeholder: "Педагог дополнительного образования...",
+});
+
+// Photo upload
+const fileInput = document.getElementById("photo-file");
+const uploadArea = document.getElementById("upload-area");
+const preview = document.getElementById("photo-preview");
+const photoUrlInput = document.getElementById("photo_url");
+
+fileInput.addEventListener("change", async () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const fd = new FormData();
+  fd.append("file", file);
+
+  try {
+    const res = await fetch(API + "/api/upload", { method: "POST", body: fd });
+    if (!res.ok) throw new Error((await res.json()).error);
+    const { url } = await res.json();
+    photoUrlInput.value = url;
+    preview.src = API + url;
+    preview.style.display = "block";
+    uploadArea.classList.add("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = file.name;
+  } catch (err) {
+    alert("Ошибка загрузки: " + err.message);
+  }
+});
+
+// Load teachers list
 async function load() {
   const res = await fetch(API + "/api/teachers");
   const data = await res.json();
   const tbody = document.getElementById("tbody");
   tbody.innerHTML = data.map(t => `
     <tr>
-      <td>${t.photo_url ? `<img class="photo-thumb" src="${esc(t.photo_url)}" alt="">` : "—"}</td>
+      <td>${t.photo_url ? `<img class="photo-thumb" src="${esc(t.photo_url.startsWith("/") ? API + t.photo_url : t.photo_url)}" alt="">` : "—"}</td>
       <td>${t.id}</td>
       <td>${esc(t.name)}</td>
       <td>${t.created_at || ""}</td>
@@ -79,7 +139,7 @@ async function load() {
 
 function esc(s) {
   const d = document.createElement("div");
-  d.textContent = s;
+  d.textContent = s || "";
   return d.innerHTML;
 }
 
@@ -92,10 +152,16 @@ async function del(id) {
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("msg");
+  const bio = quill.root.innerHTML.trim();
+  if (!bio || bio === "<p><br></p>") {
+    msg.className = "msg err";
+    msg.textContent = "Биография обязательна";
+    return;
+  }
   const body = {
     name: document.getElementById("name").value.trim(),
-    bio: document.getElementById("bio").value.trim(),
-    photo_url: document.getElementById("photo_url").value.trim() || undefined,
+    bio,
+    photo_url: photoUrlInput.value || undefined,
   };
   try {
     const res = await fetch(API + "/api/admin/teachers", {
@@ -107,6 +173,11 @@ document.getElementById("form").addEventListener("submit", async (e) => {
     msg.className = "msg ok";
     msg.textContent = "Педагог добавлен!";
     document.getElementById("form").reset();
+    quill.setContents([]);
+    preview.style.display = "none";
+    photoUrlInput.value = "";
+    uploadArea.classList.remove("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
     load();
   } catch (err) {
     msg.className = "msg err";

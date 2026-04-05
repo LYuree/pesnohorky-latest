@@ -34,7 +34,9 @@
       "Bash(mv card-rect-alt.png card-rect-alt.svg)",
       "Bash(mv card-frame-684.png card-frame-684.svg)",
       "Bash(mv card-frame-683.png card-frame-683.svg)",
-      "Bash(mkdir -p C:/FRONT/horki/pesnohorky-latest/public/images/departments)"
+      "Bash(mkdir -p C:/FRONT/horki/pesnohorky-latest/public/images/departments)",
+      "Bash(npm start:*)",
+      "Bash(grep -v \"^/c/FRONT/horki/pesnohorky-latest/src/pages$\")"
     ]
   }
 }

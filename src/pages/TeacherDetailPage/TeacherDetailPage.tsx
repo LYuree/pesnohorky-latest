@@ -53,9 +53,10 @@ export default function TeacherDetailPage() {
 
                   <div className={styles.education}>
                     <h2 className={styles.educationTitle}>О педагоге</h2>
-                    {teacher.bio.split("\n").map((p, i) => (
-                      <p key={i} className={styles.educationText}>{p}</p>
-                    ))}
+                    <div
+                      className={styles.educationText}
+                      dangerouslySetInnerHTML={{ __html: teacher.bio }}
+                    />
                   </div>
                 </div>
               </div>

@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Админка — Новости</title>
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; color: #333; padding: 20px; max-width: 900px; margin: 0 auto; }
+    body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; color: #333; padding: 20px; max-width: 960px; margin: 0 auto; }
     h1 { margin-bottom: 8px; color: #a51312; }
     nav { margin-bottom: 24px; font-size: 14px; }
     nav a { color: #a51312; margin-right: 16px; }
     .form-card { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 32px; }
     .form-card h2 { margin-bottom: 16px; font-size: 18px; }
     label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; }
-    input, textarea { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; margin-bottom: 12px; }
-    textarea { min-height: 120px; resize: vertical; }
+    input[type="text"], input[type="date"] { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; margin-bottom: 12px; }
+    .editor-wrap { margin-bottom: 12px; }
+    .editor-wrap .ql-editor { min-height: 160px; }
     button[type="submit"] { background: #a51312; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 14px; }
     button[type="submit"]:hover { background: #8a0f0e; }
     .msg { padding: 8px 12px; border-radius: 4px; margin-bottom: 12px; display: none; }
@@ -26,6 +28,15 @@
     .btn-del { background: #dc3545; color: #fff; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; }
     .btn-del:hover { background: #b02a37; }
     .preview { max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .photo-thumb { width: 60px; height: 40px; object-fit: cover; border-radius: 4px; }
+
+    /* Upload area */
+    .upload-area { border: 2px dashed #ccc; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 12px; cursor: pointer; transition: border-color .2s; position: relative; }
+    .upload-area:hover { border-color: #a51312; }
+    .upload-area.has-file { border-color: #28a745; }
+    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-area img { max-width: 200px; max-height: 120px; margin-top: 8px; border-radius: 4px; }
+    .upload-hint { color: #888; font-size: 13px; }
   </style>
 </head>
 <body>
@@ -41,16 +52,23 @@
   <div id="msg" class="msg"></div>
   <form id="form">
     <label for="title">Заголовок *</label>
-    <input id="title" name="title" required placeholder="Весенний калейдоскоп">
+    <input id="title" name="title" type="text" required placeholder="Весенний калейдоскоп">
 
-    <label for="content">Содержание *</label>
-    <textarea id="content" name="content" required placeholder="Текст новости..."></textarea>
+    <label>Содержание *</label>
+    <div class="editor-wrap">
+      <div id="editor"></div>
+    </div>
 
     <label for="date">Дата *</label>
     <input id="date" name="date" type="date" required>
 
-    <label for="image_url">URL изображения</label>
-    <input id="image_url" name="image_url" placeholder="https://example.com/image.jpg">
+    <label>Изображение</label>
+    <div class="upload-area" id="upload-area">
+      <input type="file" id="image-file" accept="image/*">
+      <p class="upload-hint">Перетащите или нажмите для загрузки</p>
+      <img id="image-preview" style="display:none" alt="">
+    </div>
+    <input type="hidden" id="image_url" name="image_url">
 
     <button type="submit">Создать</button>
   </form>
@@ -58,23 +76,68 @@
 
 <h2 style="margin-bottom:12px">Список новостей</h2>
 <table>
-  <thead><tr><th>ID</th><th>Заголовок</th><th>Дата</th><th>Превью</th><th></th></tr></thead>
+  <thead><tr><th></th><th>ID</th><th>Заголовок</th><th>Дата</th><th>Превью</th><th></th></tr></thead>
   <tbody id="tbody"></tbody>
 </table>
 
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
 const API = "http://localhost:3001";
 
+// Quill editor
+const quill = new Quill("#editor", {
+  theme: "snow",
+  modules: {
+    toolbar: [
+      [{ header: [2, 3, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["blockquote", "link"],
+      ["clean"],
+    ],
+  },
+  placeholder: "Текст ново��ти...",
+});
+
+// Photo upload
+const fileInput = document.getElementById("image-file");
+const uploadArea = document.getElementById("upload-area");
+const preview = document.getElementById("image-preview");
+const imageUrlInput = document.getElementById("image_url");
+
+fileInput.addEventListener("change", async () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const fd = new FormData();
+  fd.append("file", file);
+
+  try {
+    const res = await fetch(API + "/api/upload", { method: "POST", body: fd });
+    if (!res.ok) throw new Error((await res.json()).error);
+    const { url } = await res.json();
+    imageUrlInput.value = url;
+    preview.src = API + url;
+    preview.style.display = "block";
+    uploadArea.classList.add("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = file.name;
+  } catch (err) {
+    alert("Ошибка загрузки: " + err.message);
+  }
+});
+
+// Load news list
 async function load() {
   const res = await fetch(API + "/api/news");
   const data = await res.json();
   const tbody = document.getElementById("tbody");
   tbody.innerHTML = data.map(n => `
     <tr>
+      <td>${n.image_url ? `<img class="photo-thumb" src="${esc(n.image_url.startsWith("/") ? API + n.image_url : n.image_url)}" alt="">` : "—"}</td>
       <td>${n.id}</td>
       <td>${esc(n.title)}</td>
       <td>${esc(n.date)}</td>
-      <td class="preview">${esc(n.preview || "")}</td>
+      <td class="preview">${esc(stripHtml(n.preview || ""))}</td>
       <td><button class="btn-del" onclick="del(${n.id})">Удалить</button></td>
     </tr>
   `).join("");
@@ -82,8 +145,14 @@ async function load() {
 
 function esc(s) {
   const d = document.createElement("div");
-  d.textContent = s;
+  d.textContent = s || "";
   return d.innerHTML;
+}
+
+function stripHtml(html) {
+  const d = document.createElement("div");
+  d.innerHTML = html;
+  return d.textContent || "";
 }
 
 async function del(id) {
@@ -95,11 +164,17 @@ async function del(id) {
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("msg");
+  const content = quill.root.innerHTML.trim();
+  if (!content || content === "<p><br></p>") {
+    msg.className = "msg err";
+    msg.textContent = "Содержание обязательно";
+    return;
+  }
   const body = {
     title: document.getElementById("title").value.trim(),
-    content: document.getElementById("content").value.trim(),
+    content,
     date: document.getElementById("date").value,
-    image_url: document.getElementById("image_url").value.trim() || undefined,
+    image_url: imageUrlInput.value || undefined,
   };
   try {
     const res = await fetch(API + "/api/admin/news", {
@@ -111,6 +186,11 @@ document.getElementById("form").addEventListener("submit", async (e) => {
     msg.className = "msg ok";
     msg.textContent = "Новость добавлена!";
     document.getElementById("form").reset();
+    quill.setContents([]);
+    preview.style.display = "none";
+    imageUrlInput.value = "";
+    uploadArea.classList.remove("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
     load();
   } catch (err) {
     msg.className = "msg err";

@@ -9,22 +9,26 @@ export default function HomePage() {
     <div className={styles.page}>
       <MobileHeader />
 
-      {/* ── Hero (includes header) ── */}
+      {/* ── Navbar ── */}
+      <div className={styles.navbarWrap}>
+        <Navbar />
+      </div>
+
+      {/* ── Breadcrumbs + Hero ── */}
+      <div className={styles.header}>
+        <div className={styles.breadcrumbs}>
+          <span>Главная</span>
+          <span>/</span>
+          <span>Родителям</span>
+          <span>/</span>
+          <span>Родителям</span>
+          <span>/</span>
+          <span>Родителям</span>
+        </div>
+      </div>
+
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          {/* Header */}
-          <div className={styles.header}>
-            <Navbar />
-            <div className={styles.breadcrumbs}>
-              <span>Главная</span>
-              <span>/</span>
-              <span>Родителям</span>
-              <span>/</span>
-              <span>Родителям</span>
-              <span>/</span>
-              <span>Родителям</span>
-            </div>
-          </div>
 
           <img alt="" className={styles.heroImgLeft} src={homeAssets.imgImage26} />
           <img alt="" className={styles.heroImgRight} src={homeAssets.imgImage26} />
@@ -403,23 +407,25 @@ export default function HomePage() {
           <div className={styles.signupFrame}>
             <img alt="" className={styles.signupFrameImg} src={homeAssets.imgFrame60} />
           </div>
-          <div className={styles.signupBtnLeft}>
-            <div className={styles.signupBtn}>
-              <div className={styles.btnContent}>
-                <span className={styles.signupBtnText}>Документ 1</span>
-              </div>
-              <div className={styles.btnCorner}>
-                <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine8} />
+          <div className={styles.signupBtns}>
+            <div className={styles.signupBtnLeft}>
+              <div className={styles.signupBtn}>
+                <div className={styles.btnContent}>
+                  <span className={styles.signupBtnText}>Документ 1</span>
+                </div>
+                <div className={styles.btnCorner}>
+                  <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine8} />
+                </div>
               </div>
             </div>
-          </div>
-          <div className={styles.signupBtnRight}>
-            <div className={styles.signupBtn}>
-              <div className={styles.btnContent}>
-                <span className={styles.signupBtnText}>Документ 2</span>
-              </div>
-              <div className={styles.btnCorner}>
-                <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine8} />
+            <div className={styles.signupBtnRight}>
+              <div className={styles.signupBtn}>
+                <div className={styles.btnContent}>
+                  <span className={styles.signupBtnText}>Документ 2</span>
+                </div>
+                <div className={styles.btnCorner}>
+                  <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine8} />
+                </div>
               </div>
             </div>
           </div>
