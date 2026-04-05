@@ -1,0 +1,68 @@
+import sqlite3 from "sqlite3";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DB_PATH = path.join(__dirname, "database.sqlite");
+
+const db = new sqlite3.Database(DB_PATH);
+
+export function initDB() {
+  return new Promise((resolve, reject) => {
+    db.serialize(() => {
+      db.run(`
+        CREATE TABLE IF NOT EXISTS teachers (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL,
+          bio TEXT NOT NULL,
+          photo_url TEXT,
+          created_at TEXT DEFAULT (datetime('now'))
+        )
+      `);
+      db.run(
+        `
+        CREATE TABLE IF NOT EXISTS news (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          title TEXT NOT NULL,
+          content TEXT NOT NULL,
+          date TEXT NOT NULL,
+          image_url TEXT
+        )
+      `,
+        (err) => {
+          if (err) reject(err);
+          else resolve();
+        }
+      );
+    });
+  });
+}
+
+export function dbAll(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.all(sql, params, (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+}
+
+export function dbGet(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => {
+      if (err) reject(err);
+      else resolve(row);
+    });
+  });
+}
+
+export function dbRun(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.run(sql, params, function (err) {
+      if (err) reject(err);
+      else resolve({ lastID: this.lastID, changes: this.changes });
+    });
+  });
+}
+
+export default db;
