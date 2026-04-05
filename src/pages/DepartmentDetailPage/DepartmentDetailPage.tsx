@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
@@ -12,8 +13,8 @@ const relatedNews = [
 ];
 
 const teachers = [
-  { photo: departmentDetailAssets.imgTeacher1, firstName: "Бурдина", lastName: "Алёна Максимовна", role: "Педагог дополнительного образования, руководитель хореографической студии «Орбита»" },
-  { photo: departmentDetailAssets.imgTeacher2, firstName: "Кем", lastName: "Анастасия Сергеевна", role: "Педагог дополнительного образования, руководитель объединения «Перспектива»" },
+  { id: 1, photo: departmentDetailAssets.imgTeacher1, firstName: "Бурдина", lastName: "Алёна Максимовна", role: "Педагог дополнительного образования, руководитель хореографической студии «Орбита»" },
+  { id: 2, photo: departmentDetailAssets.imgTeacher2, firstName: "Кем", lastName: "Анастасия Сергеевна", role: "Педагог дополнительного образования, руководитель объединения «Перспектива»" },
 ];
 
 const awards = [
@@ -38,8 +39,8 @@ export default function DepartmentDetailPage() {
 
       {/* Hero: red section */}
       <section className={styles.hero}>
+        <Navbar />
         <div className={styles.heroInner}>
-          <Navbar />
           <div className={styles.breadcrumbs}>
             <span>Главная</span>
             <span>/</span>
@@ -51,9 +52,7 @@ export default function DepartmentDetailPage() {
           </div>
           <div className={styles.heroCategory}>Наши Объединения</div>
           <h1 className={styles.heroTitle}>Песнохорки</h1>
-          <div className={styles.heroLine}>
-            <img alt="" className={styles.heroLineImg} src={departmentDetailAssets.imgLineDivider} />
-          </div>
+          <div className={styles.heroLine} />
           <div className={styles.heroMeta}>
             <span>Песнохорки</span>
             <span className={styles.heroDivider}>|</span>
@@ -65,7 +64,6 @@ export default function DepartmentDetailPage() {
           </div>
           <button className={styles.enrollBtn} type="button">
             <span className={styles.enrollBtnText}>Записать ребёнка</span>
-            <img alt="" className={styles.enrollBtnLine} src={departmentDetailAssets.imgLineBtn} />
           </button>
           <a className={styles.askLink} href="#contacts">задать вопрос</a>
         </div>
@@ -73,7 +71,7 @@ export default function DepartmentDetailPage() {
 
       {/* Description: white section */}
       <section className={styles.descSection}>
-        <div className={styles.descInner}>
+        <div className={styles.sectionInner}>
           <p className={styles.descText}>
             Песнохорки — народный хор для детей и подростков 7–18 лет.
             Учим петь, понимать русскую культуру и выступать на сцене.
@@ -89,7 +87,7 @@ export default function DepartmentDetailPage() {
 
       {/* Info: red section */}
       <section className={styles.infoSection}>
-        <div className={styles.infoInner}>
+        <div className={styles.sectionInner}>
           <div className={styles.infoRow}>
             <div className={styles.infoItem}>
               <img alt="" className={styles.infoIcon} src={departmentDetailAssets.imgIconOvz} />
@@ -113,11 +111,9 @@ export default function DepartmentDetailPage() {
 
       {/* Leader: red section */}
       <section className={styles.leaderSection}>
-        <div className={styles.leaderInner}>
+        <div className={styles.sectionInner}>
           <div className={styles.sectionLabel}>Руководитель:</div>
-          <div className={styles.leaderLine}>
-            <img alt="" className={styles.leaderLineImg} src={departmentDetailAssets.imgLineDivider} />
-          </div>
+          <div className={styles.dividerLine} />
           <div className={styles.leaderRow}>
             <div className={styles.leaderPhotoWrap}>
               <img alt="Иванова Анна Петровна" className={styles.leaderPhoto} src={departmentDetailAssets.imgLeaderPhoto} />
@@ -137,18 +133,18 @@ export default function DepartmentDetailPage() {
 
       {/* Teachers: white section */}
       <section className={styles.teachersSection}>
-        <div className={styles.teachersInner}>
+        <div className={styles.sectionInner}>
           <h2 className={styles.sectionTitleDark}>Педагоги</h2>
           <div className={styles.teachersGrid}>
-            {teachers.map((t, i) => (
-              <div className={styles.teacherCard} key={i}>
+            {teachers.map((t) => (
+              <Link className={styles.teacherCard} key={t.id} to={`/teachers/${t.id}`}>
                 <div className={styles.teacherPhotoWrap}>
                   <img alt={t.firstName} className={styles.teacherPhoto} src={t.photo} />
                 </div>
                 <p className={styles.teacherFirstName}>{t.firstName}</p>
                 <p className={styles.teacherLastName}>{t.lastName}</p>
                 <p className={styles.teacherRole}>{t.role}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -156,11 +152,9 @@ export default function DepartmentDetailPage() {
 
       {/* Directions: red section */}
       <section className={styles.directionsSection}>
-        <div className={styles.directionsInner}>
-          <div className={styles.directionsLabel}>Направления</div>
-          <div className={styles.directionsLine}>
-            <img alt="" className={styles.directionsLineImg} src={departmentDetailAssets.imgLineDivider} />
-          </div>
+        <div className={styles.sectionInner}>
+          <div className={styles.sectionLabel}>Направления</div>
+          <div className={styles.dividerLine} />
           <div className={styles.directionsRow}>
             {directions.map((d) => (
               <div className={styles.directionItem} key={d.label}>
@@ -174,11 +168,9 @@ export default function DepartmentDetailPage() {
 
       {/* Awards: white section */}
       <section className={styles.awardsSection}>
-        <div className={styles.awardsInner}>
-          <div className={styles.awardsLabel}>Награды</div>
-          <div className={styles.awardsLine}>
-            <img alt="" className={styles.awardsLineImg} src={departmentDetailAssets.imgLineCard} />
-          </div>
+        <div className={styles.sectionInner}>
+          <div className={styles.sectionLabelDark}>Награды</div>
+          <div className={styles.dividerLineDark} />
           <div className={styles.awardsList}>
             {awards.map((award, i) => (
               <div className={styles.awardItem} key={i}>
@@ -192,11 +184,9 @@ export default function DepartmentDetailPage() {
 
       {/* News: red section */}
       <section className={styles.newsSection}>
-        <div className={styles.newsInner}>
-          <div className={styles.newsLabel}>Последние новости</div>
-          <div className={styles.newsLine}>
-            <img alt="" className={styles.newsLineImg} src={departmentDetailAssets.imgLineDivider} />
-          </div>
+        <div className={styles.sectionInner}>
+          <div className={styles.sectionLabel}>Последние новости</div>
+          <div className={styles.dividerLine} />
           <div className={styles.newsGrid}>
             {relatedNews.map((item, i) => (
               <div className={styles.newsCard} key={i}>
@@ -208,9 +198,7 @@ export default function DepartmentDetailPage() {
                   <span className={styles.newsMonth}>{item.month}</span>
                   <span className={styles.newsYear}>{item.year}</span>
                 </div>
-                <div className={styles.newsCardLine}>
-                  <img alt="" className={styles.newsCardLineImg} src={departmentDetailAssets.imgLineBtn} />
-                </div>
+                <div className={styles.newsCardLine} />
                 <p className={styles.newsCardText}>{item.text}</p>
               </div>
             ))}
@@ -220,17 +208,14 @@ export default function DepartmentDetailPage() {
 
       {/* Contacts: white section */}
       <section className={styles.contactsSection} id="contacts">
-        <div className={styles.contactsInner}>
-          <div className={styles.contactsLabel}>Контакты</div>
-          <div className={styles.contactsLine}>
-            <img alt="" className={styles.contactsLineImg} src={departmentDetailAssets.imgLineCard} />
-          </div>
+        <div className={styles.sectionInner}>
+          <div className={styles.sectionLabelDark}>Контакты</div>
+          <div className={styles.dividerLineDark} />
           <p className={styles.contactText}>Кабинет: 215 (3 этаж)</p>
           <p className={styles.contactText}>8 913 000 00 00</p>
           <p className={styles.contactText}>pesnohorki@mail.com</p>
-          <button className={styles.enrollBtnWhite} type="button">
+          <button className={styles.enrollBtnDark} type="button">
             <span className={styles.enrollBtnText}>Записать ребёнка</span>
-            <img alt="" className={styles.enrollBtnLine} src={departmentDetailAssets.imgLineBtn} />
           </button>
         </div>
       </section>

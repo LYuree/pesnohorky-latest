@@ -9,7 +9,32 @@
       "Bash(for dir:*)",
       "Bash(do mkdir:*)",
       "Bash(done)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(curl -sL -o public/images/news/decor-vline.svg \"https://www.figma.com/api/mcp/asset/05a3bafa-b73a-4f2f-a0b3-3b622f68d66e\")",
+      "Bash(curl -sL -o public/images/news/filter-chip-bg.png \"https://www.figma.com/api/mcp/asset/1c168da7-3f88-4e0f-b24e-130f44c4b739\")",
+      "Bash(curl -sL -o public/images/news/chevron-down.svg \"https://www.figma.com/api/mcp/asset/af28c673-9672-4db6-8f48-c47a36f29107\")",
+      "Bash(curl -sL -o public/images/news/search-icon.svg \"https://www.figma.com/api/mcp/asset/bd06b56a-0b5d-4894-8318-5b2520e001cc\")",
+      "Bash(curl -sL -o public/images/news/separator.svg \"https://www.figma.com/api/mcp/asset/e8b6004f-87d8-427d-9942-fc6f32899419\")",
+      "Bash(curl -sL -o public/images/news/calendar-icon.svg \"https://www.figma.com/api/mcp/asset/eac019ed-4398-4c80-906f-e92de30e852b\")",
+      "Bash(curl -sL -o public/images/news/decor-group1.svg \"https://www.figma.com/api/mcp/asset/567137ac-db88-41fc-bf56-0c65f5f47148\")",
+      "Bash(curl -sL -o public/images/news/decor-group2.svg \"https://www.figma.com/api/mcp/asset/3be63f00-9ce3-4135-8f78-1bdb8fd5a93b\")",
+      "Bash(curl -sL -o public/images/news/news-band-decor.svg \"https://www.figma.com/api/mcp/asset/e3df7d8a-fece-4ef3-9e15-2a2057e2c555\")",
+      "Bash(curl -sL -o public/images/news/logo.svg \"https://www.figma.com/api/mcp/asset/338899ca-93bf-417c-9401-6c81e611126e\")",
+      "Bash(curl -sL -o public/images/news/vk-icon.svg \"https://www.figma.com/api/mcp/asset/8f27bcd3-4077-46e5-9675-235cc0b33a05\")",
+      "Bash(curl -sL -o public/images/news/mobile-icon.svg \"https://www.figma.com/api/mcp/asset/693c615c-d6f9-42bf-97a8-3141b02c0651\")",
+      "Bash(curl -sL -o public/images/news/telegram-icon.svg \"https://www.figma.com/api/mcp/asset/97959abe-caff-47a9-b11e-ba6a8fa82cd5\")",
+      "Bash(curl -sL -o public/images/news/whatsapp-icon.svg \"https://www.figma.com/api/mcp/asset/cf717ea8-c50b-4286-9896-adc80c72aef2\")",
+      "Bash(curl -sL -o public/images/news/card-frame-large.png \"https://www.figma.com/api/mcp/asset/86a26083-b0b3-4377-b267-744b7e75d45c\")",
+      "Bash(curl -sL -o public/images/news/card-rect.png \"https://www.figma.com/api/mcp/asset/317dee10-d1eb-422b-866a-e5444d17d20a\")",
+      "Bash(curl -sL -o public/images/news/line12.svg \"https://www.figma.com/api/mcp/asset/0a370948-c915-4235-a3be-85a74156b1b8\")",
+      "Bash(curl -sL -o public/images/news/card-rect-alt.png \"https://www.figma.com/api/mcp/asset/f0c90f31-50db-480d-a2b5-3ffafa3d5833\")",
+      "Bash(curl -sL -o public/images/news/line3.svg \"https://www.figma.com/api/mcp/asset/43adf115-7610-457d-88e7-0f129fdceda7\")",
+      "Bash(mv card-frame-large.png card-frame-large.svg)",
+      "Bash(mv card-rect.png card-rect.svg)",
+      "Bash(mv card-rect-alt.png card-rect-alt.svg)",
+      "Bash(mv card-frame-684.png card-frame-684.svg)",
+      "Bash(mv card-frame-683.png card-frame-683.svg)",
+      "Bash(mkdir -p C:/FRONT/horki/pesnohorky-latest/public/images/departments)"
     ]
   }
 }
