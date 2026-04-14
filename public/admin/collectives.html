@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админка — Коллективы</title>
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; color: #333; padding: 20px; max-width: 960px; margin: 0 auto; }
+    h1 { margin-bottom: 8px; color: #a51312; }
+    nav { margin-bottom: 24px; font-size: 14px; }
+    nav a { color: #a51312; margin-right: 16px; }
+    .form-card { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 32px; }
+    .form-card h2 { margin-bottom: 16px; font-size: 18px; }
+    label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; }
+    input[type="text"] { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; margin-bottom: 12px; }
+    .editor-wrap { margin-bottom: 12px; }
+    .editor-wrap .ql-editor { min-height: 120px; }
+    button[type="submit"] { background: #a51312; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+    button[type="submit"]:hover { background: #8a0f0e; }
+    .btn-cancel { background: #6c757d; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-left: 8px; }
+    .btn-cancel:hover { background: #5a6268; }
+    .msg { padding: 8px 12px; border-radius: 4px; margin-bottom: 12px; display: none; }
+    .msg.ok { display: block; background: #d4edda; color: #155724; }
+    .msg.err { display: block; background: #f8d7da; color: #721c24; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
+    th { background: #a51312; color: #fff; }
+    .btn-del { background: #dc3545; color: #fff; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; }
+    .btn-del:hover { background: #b02a37; }
+    .btn-edit { background: #ffc107; color: #333; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; margin-right: 4px; }
+    .btn-edit:hover { background: #e0a800; }
+    .photo-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; }
+
+    /* Upload area */
+    .upload-area { border: 2px dashed #ccc; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 12px; cursor: pointer; transition: border-color .2s; position: relative; }
+    .upload-area:hover { border-color: #a51312; }
+    .upload-area.has-file { border-color: #28a745; }
+    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-area img { max-width: 120px; max-height: 120px; margin-top: 8px; border-radius: 50%; }
+    .upload-hint { color: #888; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<h1>Коллективы</h1>
+<nav>
+  <a href="/admin/teachers.html">Педагоги</a>
+  <a href="/admin/news.html">Новости</a>
+  <a href="/admin/collectives.html">Коллективы</a>
+  <a href="/admin/applications.html">Заявки</a>
+  <a href="/admin/pages.html">Страницы</a>
+</nav>
+
+<div class="form-card">
+  <h2 id="form-title">Добавить коллектив</h2>
+  <div id="msg" class="msg"></div>
+  <form id="form">
+    <input type="hidden" id="edit-id">
+
+    <label for="name">Название *</label>
+    <input id="name" name="name" type="text" required placeholder="Народный хор">
+
+    <label>Описание</label>
+    <div class="editor-wrap">
+      <div id="editor"></div>
+    </div>
+
+    <label>Фото</label>
+    <div class="upload-area" id="upload-area">
+      <input type="file" id="photo-file" accept="image/*">
+      <p class="upload-hint">Перетащите или нажмите для загрузки</p>
+      <img id="photo-preview" style="display:none" alt="">
+    </div>
+    <input type="hidden" id="photo_url" name="photo_url">
+
+    <label for="age_range">Возрастной диапазон</label>
+    <input id="age_range" name="age_range" type="text" placeholder="5-7 лет">
+
+    <label for="schedule">Расписание</label>
+    <input id="schedule" name="schedule" type="text" placeholder="Пн, Ср 16:00-17:30">
+
+    <label for="teacher_name">Руководитель</label>
+    <select id="teacher_name" name="teacher_name" style="width:100%;padding:8px 12px;border:1px solid #ccc;border-radius:4px;font-size:14px;margin-bottom:12px;">
+      <option value="">Выберите руководителя</option>
+    </select>
+
+    <div>
+      <button type="submit" id="btn-submit">Создать</button>
+      <button type="button" class="btn-cancel" id="btn-cancel" style="display:none" onclick="cancelEdit()">Отмена</button>
+    </div>
+  </form>
+</div>
+
+<h2 style="margin-bottom:12px">Список коллективов</h2>
+<table>
+  <thead><tr><th></th><th>ID</th><th>Название</th><th>Возраст</th><th>Руководитель</th><th></th></tr></thead>
+  <tbody id="tbody"></tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<script>
+const API = "http://localhost:3001";
+
+// Quill editor
+const quill = new Quill("#editor", {
+  theme: "snow",
+  modules: {
+    toolbar: [
+      ["bold", "italic", "underline"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link"],
+      ["clean"],
+    ],
+  },
+  placeholder: "Описание коллектива...",
+});
+
+// Photo upload
+const fileInput = document.getElementById("photo-file");
+const uploadArea = document.getElementById("upload-area");
+const preview = document.getElementById("photo-preview");
+const photoUrlInput = document.getElementById("photo_url");
+
+fileInput.addEventListener("change", async () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const fd = new FormData();
+  fd.append("file", file);
+
+  try {
+    const res = await fetch(API + "/api/upload", { method: "POST", body: fd });
+    if (!res.ok) throw new Error((await res.json()).error);
+    const { url } = await res.json();
+    photoUrlInput.value = url;
+    preview.src = API + url;
+    preview.style.display = "block";
+    uploadArea.classList.add("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = file.name;
+  } catch (err) {
+    alert("Ошибка загрузки: " + err.message);
+  }
+});
+
+// Load teachers for the dropdown
+async function loadTeachers() {
+  try {
+    const res = await fetch(API + "/api/teachers");
+    const teachers = await res.json();
+    const select = document.getElementById("teacher_name");
+    // Keep the first empty option, remove the rest
+    while (select.options.length > 1) select.remove(1);
+    teachers.forEach(t => {
+      const opt = document.createElement("option");
+      opt.value = t.name;
+      opt.textContent = t.name;
+      select.appendChild(opt);
+    });
+  } catch (err) {
+    console.error("Не удалось загрузить педагогов:", err);
+  }
+}
+
+// Load collectives list
+async function load() {
+  const res = await fetch(API + "/api/collectives");
+  const data = await res.json();
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = data.map(c => `
+    <tr>
+      <td>${c.photo_url ? `<img class="photo-thumb" src="${esc(c.photo_url.startsWith("/") ? API + c.photo_url : c.photo_url)}" alt="">` : "—"}</td>
+      <td>${c.id}</td>
+      <td>${esc(c.name)}</td>
+      <td>${esc(c.age_range || "")}</td>
+      <td>${esc(c.teacher_name || "")}</td>
+      <td>
+        <button class="btn-edit" onclick="edit(${c.id})">Редактировать</button>
+        <button class="btn-del" onclick="del(${c.id})">Удалить</button>
+      </td>
+    </tr>
+  `).join("");
+}
+
+function esc(s) {
+  const d = document.createElement("div");
+  d.textContent = s || "";
+  return d.innerHTML;
+}
+
+async function del(id) {
+  if (!confirm("Удалить коллектив?")) return;
+  await fetch(API + "/api/admin/collectives/" + id, { method: "DELETE" });
+  load();
+}
+
+async function edit(id) {
+  const res = await fetch(API + "/api/collectives/" + id);
+  if (!res.ok) return alert("Не удалось загрузить коллектив");
+  const c = await res.json();
+
+  document.getElementById("edit-id").value = c.id;
+  document.getElementById("name").value = c.name;
+  quill.root.innerHTML = c.description || "";
+  document.getElementById("age_range").value = c.age_range || "";
+  document.getElementById("schedule").value = c.schedule || "";
+  document.getElementById("teacher_name").value = c.teacher_name || "";
+  photoUrlInput.value = c.photo_url || "";
+
+  if (c.photo_url) {
+    preview.src = c.photo_url.startsWith("/") ? API + c.photo_url : c.photo_url;
+    preview.style.display = "block";
+    uploadArea.classList.add("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = "Фото загружено";
+  } else {
+    preview.style.display = "none";
+    uploadArea.classList.remove("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
+  }
+
+  document.getElementById("form-title").textContent = "Редактировать коллектив";
+  document.getElementById("btn-submit").textContent = "Сохранить";
+  document.getElementById("btn-cancel").style.display = "inline-block";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function cancelEdit() {
+  document.getElementById("edit-id").value = "";
+  document.getElementById("form").reset();
+  quill.setContents([]);
+  preview.style.display = "none";
+  photoUrlInput.value = "";
+  uploadArea.classList.remove("has-file");
+  uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
+  document.getElementById("form-title").textContent = "Добавить коллектив";
+  document.getElementById("btn-submit").textContent = "Создать";
+  document.getElementById("btn-cancel").style.display = "none";
+  document.getElementById("msg").className = "msg";
+}
+
+document.getElementById("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("msg");
+  const editId = document.getElementById("edit-id").value;
+  const description = quill.root.innerHTML.trim();
+
+  const body = {
+    name: document.getElementById("name").value.trim(),
+    description: (description && description !== "<p><br></p>") ? description : null,
+    photo_url: photoUrlInput.value || undefined,
+    age_range: document.getElementById("age_range").value.trim() || undefined,
+    schedule: document.getElementById("schedule").value.trim() || undefined,
+    teacher_name: document.getElementById("teacher_name").value.trim() || undefined,
+  };
+
+  try {
+    const isEdit = !!editId;
+    const url = isEdit
+      ? API + "/api/admin/collectives/" + editId
+      : API + "/api/admin/collectives";
+    const method = isEdit ? "PUT" : "POST";
+
+    const res = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) { const d = await res.json(); throw new Error(d.error); }
+    msg.className = "msg ok";
+    msg.textContent = isEdit ? "Коллектив обновлён!" : "Коллектив добавлен!";
+    cancelEdit();
+    load();
+  } catch (err) {
+    msg.className = "msg err";
+    msg.textContent = "Ошибка: " + err.message;
+  }
+});
+
+load();
+loadTeachers();
+</script>
+
+</body>
+</html>

@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
+import { EnrollModal } from "../../components/shared/EnrollModal/EnrollModal";
 import { contactsAssets } from "../../lib/contactsAssets";
 import styles from "./ContactsPage.module.css";
 
 export default function ContactsPage() {
+  const [showEnroll, setShowEnroll] = useState(false);
   return (
     <div className={styles.page}>
       <MobileHeader />
@@ -84,8 +87,27 @@ export default function ContactsPage() {
           <h2 className={styles.mapTitle}>Карта</h2>
           <div className={styles.mapPlaceholder} />
         </section>
+        <section style={{ textAlign: "center", padding: "40px 0" }}>
+          <button
+            type="button"
+            onClick={() => setShowEnroll(true)}
+            style={{
+              background: "#a51312",
+              color: "#fff",
+              border: "none",
+              padding: "14px 36px",
+              borderRadius: "8px",
+              fontSize: "16px",
+              fontFamily: "'Montserrat Alternates', sans-serif",
+              cursor: "pointer",
+            }}
+          >
+            Оставить заявку
+          </button>
+        </section>
       </main>
 
+      <EnrollModal isOpen={showEnroll} onClose={() => setShowEnroll(false)} />
       <Footer />
     </div>
   );

@@ -90,9 +90,7 @@ export default function DepartmentsPage() {
           <div className={styles.breadcrumbs}>
             <span>Главная</span>
             <span>/</span>
-            <span>Объединения</span>
-            <span>/</span>
-            <span>Все коллективы</span>
+            <span>Направления</span>
           </div>
           <div className={styles.heroTitleRow}>
             <div className={styles.heroLine}>

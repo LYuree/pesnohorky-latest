@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node backend/index.js"
+    "start": "node backend/index.js",
+    "seed:teachers": "node backend/seed-teachers.js",
+    "seed": "node backend/seed-pages.js"
   },
   "dependencies": {
     "express": "^5.2.1",

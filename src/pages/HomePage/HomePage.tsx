@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
+import { EnrollModal } from "../../components/shared/EnrollModal/EnrollModal";
 import { homeAssets } from "../../lib/homeAssets";
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
+  const [showEnroll, setShowEnroll] = useState(false);
   return (
     <div className={styles.page}>
       <MobileHeader />
@@ -18,12 +21,6 @@ export default function HomePage() {
       <div className={styles.header}>
         <div className={styles.breadcrumbs}>
           <span>Главная</span>
-          <span>/</span>
-          <span>Родителям</span>
-          <span>/</span>
-          <span>Родителям</span>
-          <span>/</span>
-          <span>Родителям</span>
         </div>
       </div>
 
@@ -42,7 +39,7 @@ export default function HomePage() {
 
           <h1 className={styles.heroTitle}>Песнохорки</h1>
 
-          <div className={styles.heroBtn}>
+          <div className={styles.heroBtn} onClick={() => setShowEnroll(true)} style={{ cursor: "pointer" }}>
             <div className={styles.btnContent}>
               <span className={styles.btnText}>Записать ребёнка</span>
             </div>
@@ -180,7 +177,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className={styles.sozvBtn}>
-            <div className={styles.heroBtn}>
+            <div className={styles.heroBtn} onClick={() => setShowEnroll(true)} style={{ cursor: "pointer" }}>
               <div className={styles.btnContent}>
                 <span className={[styles.btnText, styles.btnTextLarge].join(" ")}>
                   Записать ребёнка
@@ -431,6 +428,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <EnrollModal isOpen={showEnroll} onClose={() => setShowEnroll(false)} />
 
       {/* ── Footer ── */}
       <Footer />

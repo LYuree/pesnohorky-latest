@@ -64,6 +64,11 @@ export default function AboutInfoPage() {
 
       {/* ── Block 1: Title + org description ── */}
       <section className={styles.block1}>
+        <div className={styles.breadcrumbs}>
+          <span>Главная</span>
+          <span>/</span>
+          <span>Сведения об организации</span>
+        </div>
         <h1 className={styles.block1Title}>Основные сведения</h1>
 
         <div className={styles.logoAndText}>

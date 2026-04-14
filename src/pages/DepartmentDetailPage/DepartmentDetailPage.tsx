@@ -44,9 +44,7 @@ export default function DepartmentDetailPage() {
           <div className={styles.breadcrumbs}>
             <span>Главная</span>
             <span>/</span>
-            <span>Объединения</span>
-            <span>/</span>
-            <span>[Категория]</span>
+            <span>Направления</span>
             <span>/</span>
             <span>[Название]</span>
           </div>

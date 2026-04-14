@@ -19,14 +19,50 @@ export function initDB() {
           created_at TEXT DEFAULT (datetime('now'))
         )
       `);
-      db.run(
-        `
+      db.run(`
         CREATE TABLE IF NOT EXISTS news (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           title TEXT NOT NULL,
           content TEXT NOT NULL,
           date TEXT NOT NULL,
           image_url TEXT
+        )
+      `);
+      db.run(`
+        CREATE TABLE IF NOT EXISTS collectives (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL,
+          description TEXT,
+          photo_url TEXT,
+          age_range TEXT,
+          schedule TEXT,
+          teacher_name TEXT,
+          created_at TEXT DEFAULT (datetime('now'))
+        )
+      `);
+      db.run(`
+        CREATE TABLE IF NOT EXISTS applications (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          parent_name TEXT NOT NULL,
+          phone TEXT NOT NULL,
+          child_name TEXT,
+          child_age TEXT,
+          collective_name TEXT,
+          message TEXT,
+          status TEXT DEFAULT 'new',
+          created_at TEXT DEFAULT (datetime('now'))
+        )
+      `);
+      db.run(
+        `
+        CREATE TABLE IF NOT EXISTS static_pages (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          slug TEXT NOT NULL UNIQUE,
+          title TEXT NOT NULL,
+          content TEXT NOT NULL,
+          section TEXT,
+          created_at TEXT DEFAULT (datetime('now')),
+          updated_at TEXT DEFAULT (datetime('now'))
         )
       `,
         (err) => {
