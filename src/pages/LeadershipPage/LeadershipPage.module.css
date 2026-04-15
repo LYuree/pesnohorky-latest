@@ -1,168 +1,26 @@
-.page {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
-  background: #fffff9;
-}
+.page { width: 100%; display: flex; flex-direction: column; min-height: 100svh; background: #fffff9; }
+.hero { width: 100%; background: #fffff9; }
+.heroInner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px); box-sizing: border-box; }
+.breadcrumbs { display: flex; gap: clamp(8px, 1vw, 16px); align-items: center; padding: 10px 0; font-family: "Montserrat Alternates", system-ui, sans-serif; font-size: clamp(14px, 1.5vw, 24px); color: #a51312; flex-wrap: wrap; }
+.breadcrumbs a { color: #a51312; text-decoration: none; }
+.breadcrumbs a:hover { text-decoration: underline; }
+.content { flex: 1; }
+.contentInner { max-width: 1280px; margin: 0 auto; padding: clamp(24px, 3vw, 40px) clamp(20px, 5vw, 80px); box-sizing: border-box; }
+.title { font-family: "Harlequinade", system-ui, sans-serif; font-weight: 400; font-size: clamp(24px, 3vw, 48px); color: #a51312; margin: 0 0 clamp(24px, 3vw, 40px); line-height: 1.1; }
+.body { font-family: "Montserrat Alternates", system-ui, sans-serif; font-size: clamp(16px, 1.5vw, 24px); color: #a51312; line-height: 1.5; }
+.body a { color: #a51312; text-decoration: underline; }
 
-.hero {
-  width: 100%;
-  background: #fffff9;
-}
+.personRow { display: flex; gap: clamp(16px, 2.5vw, 32px); align-items: flex-start; margin-bottom: clamp(24px, 3vw, 40px); }
+.personPhoto { flex: 0 0 clamp(180px, 35%, 489px); aspect-ratio: 489 / 579; object-fit: cover; }
+.personInfo { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.personName { font-family: "Montserrat Alternates", system-ui, sans-serif; font-size: clamp(20px, 2.5vw, 36px); color: #a51312; margin: 0; }
+.personDetail { font-family: "Montserrat Alternates", system-ui, sans-serif; font-size: clamp(16px, 1.5vw, 24px); color: #a51312; margin: 0; }
+.personDetail a { color: #a51312; text-decoration: underline; }
+.personDivider { height: 1px; background: #a51312; margin: 0 0 clamp(24px, 3vw, 40px); }
+.footerNote { font-family: "Montserrat Alternates", system-ui, sans-serif; font-size: clamp(16px, 1.5vw, 24px); color: #a51312; margin: 0; }
+.footerNote a { color: #a51312; text-decoration: underline; }
 
-.heroInner {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 80px;
-  box-sizing: border-box;
-}
-
-.breadcrumbs {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: 10px 0;
-  font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
-  color: #a51312;
-  flex-wrap: wrap;
-}
-
-.breadcrumbs a {
-  color: #a51312;
-  text-decoration: none;
-}
-
-.breadcrumbs a:hover {
-  text-decoration: underline;
-}
-
-.content {
-  flex: 1;
-}
-
-.contentInner {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 40px 230px 80px;
-  box-sizing: border-box;
-}
-
-.title {
-  font-family: "Harlequinade", system-ui, sans-serif;
-  font-weight: 400;
-  font-size: 48px;
-  color: #a51312;
-  margin: 0 0 40px;
-  line-height: normal;
-}
-
-.body {
-  font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
-  color: #a51312;
-  line-height: normal;
-}
-
-.body a {
-  color: #a51312;
-  text-decoration: underline;
-}
-
-.personRow {
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-  margin-bottom: 40px;
-}
-
-.personPhoto {
-  width: 489px;
-  height: 579px;
-  flex-shrink: 0;
-  object-fit: cover;
-}
-
-.personInfo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.personName {
-  font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 36px;
-  color: #a51312;
-  margin: 0;
-}
-
-.personDetail {
-  font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
-  color: #a51312;
-  margin: 0;
-}
-
-.personDetail a {
-  color: #a51312;
-  text-decoration: underline;
-}
-
-.personDivider {
-  height: 1px;
-  background: #a51312;
-  margin: 0 0 40px;
-}
-
-.footerNote {
-  font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
-  color: #a51312;
-  margin: 0;
-}
-
-.footerNote a {
-  color: #a51312;
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .heroInner {
-    padding: 0 20px;
-  }
-
-  .contentInner {
-    padding: 24px 20px 60px;
-  }
-
-  .title {
-    font-size: 32px;
-  }
-
-  .body {
-    font-size: 16px;
-  }
-
-  .personRow {
-    flex-direction: column;
-  }
-
-  .personPhoto {
-    width: 100%;
-    height: 280px;
-  }
-
-  .personName {
-    font-size: 24px;
-  }
-
-  .personDetail {
-    font-size: 16px;
-  }
-
-  .footerNote {
-    font-size: 16px;
-  }
+@media (max-width: 1024px) {
+  .personRow { flex-direction: column; }
+  .personPhoto { flex: none; width: 100%; max-width: 400px; }
 }

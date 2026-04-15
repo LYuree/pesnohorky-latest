@@ -7,13 +7,10 @@
   overflow: hidden;
 }
 
-/* ── Centered content container ── */
-.container {
+/* ── Navbar wrapper ── */
+.navbarWrap {
   width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  position: relative;
-  box-sizing: border-box;
+  background: #fffff9;
 }
 
 /* ── Full-width section base ── */
@@ -25,78 +22,74 @@
 
 /* ── Header ── */
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 0 clamp(20px, 5vw, 80px);
+  box-sizing: border-box;
 }
 
 .breadcrumbs {
   display: flex;
   gap: 16px;
   align-items: center;
-  padding: 10px 80px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   color: #a51312;
   white-space: nowrap;
-  max-width: 1920px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 /* ── Hero ── */
 .hero {
   width: 100%;
   position: relative;
-  height: 828px;
   overflow: visible;
 }
 
 .heroInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
   position: relative;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(20px, 4vw, 60px) clamp(20px, 5vw, 80px);
+  gap: clamp(16px, 2vw, 32px);
 }
 
 .heroTitle {
-  position: absolute;
-  left: 50%;
-  top: 607px;
-  transform: translateX(-50%);
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 80px;
+  font-size: clamp(40px, 6vw, 80px);
   line-height: normal;
   color: #a51312;
   text-align: center;
   white-space: nowrap;
   margin: 0;
+  order: 3;
 }
 
 .heroSubtitle {
-  position: absolute;
-  left: 235px;
-  top: 186px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(16px, 1.8vw, 24px);
   line-height: normal;
   color: #a51312;
+  text-align: center;
+  order: 1;
+  margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .heroImgLeft {
   position: absolute;
-  left: calc(50% - 408px);
-  top: 161px;
-  width: 370px;
-  height: 431px;
+  left: calc(50% - 30%);
+  top: 20%;
+  width: clamp(180px, 25vw, 370px);
+  aspect-ratio: 370 / 431;
   object-fit: cover;
   opacity: 0.54;
   mix-blend-mode: multiply;
@@ -105,10 +98,10 @@
 
 .heroImgRight {
   position: absolute;
-  left: calc(50% + 39px);
-  top: 161px;
-  width: 370px;
-  height: 431px;
+  left: calc(50% + 3%);
+  top: 20%;
+  width: clamp(180px, 25vw, 370px);
+  aspect-ratio: 370 / 431;
   object-fit: cover;
   opacity: 0.54;
   mix-blend-mode: multiply;
@@ -117,75 +110,72 @@
 }
 
 .heroMatryoshka {
-  position: absolute;
-  left: 50%;
-  top: 193px;
-  transform: translateX(-50%);
-  width: 478px;
-  height: 478px;
+  width: clamp(200px, 35vw, 478px);
+  aspect-ratio: 1;
   object-fit: cover;
   pointer-events: none;
+  order: 2;
 }
 
 .heroBranches {
   position: absolute;
-  right: -89px;
-  top: 295px;
-  width: 720px;
-  height: 715px;
+  right: -5%;
+  top: 30%;
+  width: clamp(300px, 50vw, 720px);
+  aspect-ratio: 720 / 715;
   pointer-events: none;
 }
 
 .heroBranch1 {
   position: absolute;
-  left: 307px;
-  top: 160px;
-  width: 420px;
-  height: 445px;
+  left: 42.6%;
+  top: 22.4%;
+  width: 58.3%;
+  height: 62.2%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .heroBranch1Inner {
-  width: 282px;
-  height: 351px;
+  width: 67%;
+  height: 79%;
   position: relative;
   transform: rotate(149.86deg) scaleY(-1);
 }
 
 .heroBranch2 {
   position: absolute;
-  left: 417px;
-  top: 118px;
-  width: 303px;
-  height: 345px;
+  left: 57.9%;
+  top: 16.5%;
+  width: 42.1%;
+  height: 48.3%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .heroBranch2Inner {
-  width: 179px;
-  height: 295px;
+  width: 59%;
+  height: 85.5%;
   position: relative;
   transform: rotate(-30.14deg);
 }
 
 .heroBranch3 {
   position: absolute;
-  left: 64px;
+  left: 8.9%;
   top: 0;
-  width: 454px;
-  height: 476px;
+  width: 63.1%;
+  height: 66.6%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .heroBranch3Inner {
-  width: 310px;
-  height: 371px;
+  width: 68.3%;
+  height: 77.9%;
   position: relative;
   transform: rotate(-30.14deg);
 }
@@ -199,9 +189,6 @@
 }
 
 .heroBtn {
-  position: absolute;
-  left: 235px;
-  top: 672px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -211,6 +198,7 @@
   border-top-right-radius: 16px;
   background: #a51312;
   overflow: clip;
+  order: 4;
 }
 
 .btnContent {
@@ -224,7 +212,7 @@
 .btnText {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(16px, 1.8vw, 24px);
   line-height: normal;
   color: #fffff9;
   text-align: center;
@@ -232,7 +220,7 @@
 }
 
 .btnTextLarge {
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
 }
 
 .btnCorner {
@@ -252,30 +240,27 @@
 /* ── Info section (red, "Песнохорки") ── */
 .infoSection {
   background: #a51312;
-  height: 760px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 62px;
-  padding-bottom: 62px;
+  padding: clamp(30px, 5vw, 62px) clamp(20px, 5vw, 80px);
   box-sizing: border-box;
 }
 
 .infoInner {
-  max-width: 1920px;
+  max-width: 1280px;
   width: 100%;
   position: relative;
-  height: 100%;
   display: flex;
   justify-content: center;
 }
 
 .infoDollLeft {
   position: absolute;
-  left: -671px;
-  top: -102px;
-  width: 1034px;
-  height: 1335px;
+  left: -50%;
+  top: -15%;
+  width: 70%;
+  aspect-ratio: 1034 / 1335;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,8 +268,8 @@
 }
 
 .infoDollLeftInner {
-  width: 729px;
-  height: 1176px;
+  width: 70%;
+  aspect-ratio: 729 / 1176;
   transform: rotate(-16.59deg);
   opacity: 0.9;
   object-fit: cover;
@@ -292,10 +277,10 @@
 
 .infoPesno5 {
   position: absolute;
-  right: -153px;
-  top: 99px;
-  width: 526px;
-  height: 1023px;
+  right: -12%;
+  top: 15%;
+  width: 35%;
+  aspect-ratio: 526 / 1023;
   opacity: 0.5;
   overflow: hidden;
   pointer-events: none;
@@ -311,11 +296,11 @@
 
 .infoContent {
   position: relative;
-  width: 1507px;
-  max-width: calc(100% - 80px);
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 27px;
+  gap: clamp(16px, 2vw, 27px);
 }
 
 .infoHeader {
@@ -336,7 +321,7 @@
 .infoHeaderTopText {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   line-height: normal;
   color: #fffff9;
   white-space: nowrap;
@@ -347,12 +332,14 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .infoTitle {
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 64px;
+  font-size: clamp(36px, 5vw, 64px);
   line-height: normal;
   color: #fffff9;
   white-space: nowrap;
@@ -362,7 +349,7 @@
 .infoSubtitle {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(18px, 2.5vw, 36px);
   line-height: normal;
   color: #fffff9;
   text-align: right;
@@ -371,12 +358,12 @@
 }
 
 .infoBody {
-  width: 1250px;
+  width: 100%;
   max-width: 100%;
   padding: 10px 0;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
   color: #fffff9;
   text-align: justify;
@@ -384,7 +371,6 @@
 
 /* ── Department section (shared for Техносказка / Созвучие) ── */
 .deptSection {
-  height: 750px;
   position: relative;
 }
 
@@ -397,70 +383,63 @@
 }
 
 .deptInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
   position: relative;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 20px);
+  padding: clamp(30px, 5vw, 84px) clamp(20px, 5vw, 80px);
 }
 
 .deptSectionLabel {
-  position: absolute;
-  left: 236px;
-  top: 84px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(18px, 2.5vw, 36px);
   line-height: normal;
   white-space: nowrap;
 }
 
 .deptLine {
-  position: absolute;
-  left: 230px;
-  top: 104px;
-  width: 1507px;
-  height: 0;
+  width: 100%;
+  height: 3px;
+  position: relative;
 }
 
 .deptLineInner {
   position: absolute;
-  inset: -3px 0 0 0;
+  inset: 0;
   width: 100%;
   height: 100%;
+  display: block;
+  object-fit: fill;
 }
 
 .deptTitle {
-  position: absolute;
-  left: 230px;
-  top: 93px;
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 64px;
+  font-size: clamp(36px, 5vw, 64px);
   line-height: normal;
   white-space: nowrap;
   margin: 0;
 }
 
 .deptSubtitleRight {
-  position: absolute;
-  right: 184px;
-  top: 146px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(18px, 2.5vw, 36px);
   line-height: normal;
   text-align: right;
   white-space: nowrap;
+  align-self: flex-end;
 }
 
 .deptBody {
-  position: absolute;
-  left: 337px;
-  top: 250px;
-  width: 1250px;
+  width: 100%;
+  max-width: 100%;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
   text-align: justify;
 }
@@ -471,10 +450,10 @@
 /* Техносказка images */
 .techPesno9 {
   position: absolute;
-  right: -525px;
-  top: 172px;
-  width: 820px;
-  height: 613px;
+  right: -50%;
+  top: 20%;
+  width: 50%;
+  aspect-ratio: 820 / 613;
   opacity: 0.8;
   overflow: hidden;
   pointer-events: none;
@@ -491,10 +470,10 @@
 
 .techChatGpt {
   position: absolute;
-  left: -385px;
-  top: 279px;
-  width: 722px;
-  height: 559px;
+  left: -50%;
+  top: 35%;
+  width: 45%;
+  aspect-ratio: 722 / 559;
   pointer-events: none;
 }
 
@@ -519,10 +498,10 @@
 /* Созвучие images */
 .sozvPesno10 {
   position: absolute;
-  left: -664px;
-  top: 11px;
-  width: 952px;
-  height: 952px;
+  left: -45%;
+  top: 2%;
+  width: 60%;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -530,18 +509,18 @@
 }
 
 .sozvPesno10Inner {
-  width: 832px;
-  height: 832px;
+  width: 87%;
+  aspect-ratio: 1;
   transform: rotate(-9.01deg);
   object-fit: cover;
 }
 
 .sozvPesno7 {
   position: absolute;
-  right: -202px;
-  top: 16px;
-  width: 679px;
-  height: 894px;
+  right: -15%;
+  top: 2%;
+  width: 45%;
+  aspect-ratio: 679 / 894;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -549,73 +528,63 @@
 }
 
 .sozvPesno7Inner {
-  width: 476px;
-  height: 793px;
+  width: 70%;
+  aspect-ratio: 476 / 793;
   opacity: 0.5;
   transform: rotate(-16.28deg);
   object-fit: cover;
 }
 
 .sozvBtn {
-  position: absolute;
-  left: 236px;
-  bottom: 81px;
+  margin-top: clamp(8px, 1.5vw, 20px);
 }
 
 /* ── "А также..." ── */
 .alsoSection {
   background: #a51312;
-  height: 750px;
 }
 
 .alsoInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
-  position: relative;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(30px, 5vw, 60px) clamp(20px, 5vw, 80px);
+  gap: clamp(12px, 1.5vw, 20px);
 }
 
 .alsoLabel {
-  position: absolute;
-  left: 235px;
-  top: 59px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   line-height: normal;
   color: #fffff9;
   white-space: nowrap;
 }
 
 .alsoLine {
-  position: absolute;
-  left: 230px;
-  top: 101px;
-  width: 1690px;
-  height: 0;
+  width: 100%;
+  height: 3px;
+  position: relative;
 }
 
 .alsoCards {
-  position: absolute;
-  left: 50%;
-  top: 217px;
-  transform: translateX(-50%);
-  width: 1252px;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 277px);
-  gap: 80px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 3vw, 80px);
+  margin-top: clamp(12px, 2vw, 40px);
 }
 
 .alsoCard {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  height: 420px;
+  gap: clamp(12px, 1.5vw, 24px);
 }
 
 .alsoCardImg {
   width: 100%;
-  height: 225px;
+  aspect-ratio: 277 / 225;
   object-fit: cover;
   pointer-events: none;
 }
@@ -637,7 +606,7 @@
 .alsoCardTitle {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 48px;
+  font-size: clamp(24px, 3.5vw, 48px);
   line-height: normal;
   color: #fffff9;
 }
@@ -645,7 +614,7 @@
 .alsoCardSubtitle {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
   color: #fffff9;
 }
@@ -675,7 +644,7 @@
   flex: 1;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: clamp(14px, 1.3vw, 20px);
   line-height: normal;
   color: #fffff9;
   overflow: hidden;
@@ -683,9 +652,6 @@
 }
 
 .alsoBtn {
-  position: absolute;
-  right: 313px;
-  top: 583px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -694,6 +660,8 @@
   border-bottom: 3px solid #fffff9;
   border-top-right-radius: 16px;
   overflow: clip;
+  align-self: flex-end;
+  margin-top: clamp(12px, 2vw, 30px);
 }
 
 .alsoBtnContent {
@@ -707,7 +675,7 @@
 .alsoBtnText {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(16px, 1.8vw, 24px);
   line-height: normal;
   color: #fffff9;
   white-space: nowrap;
@@ -730,7 +698,7 @@
 /* ── Red banner ── */
 .redBanner {
   width: 100%;
-  height: 125px;
+  height: clamp(60px, 8vw, 125px);
   background: #a51312;
 }
 
@@ -738,35 +706,34 @@
 .teachersSection {
   width: 100%;
   background: #fffff9;
-  padding: 32px 0 64px;
+  padding: clamp(20px, 3vw, 32px) 0 clamp(32px, 5vw, 64px);
 }
 
 .teachersInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
-  position: relative;
+  padding: 0 clamp(20px, 5vw, 80px);
 }
 
 .teachersTitle {
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 80px;
+  font-size: clamp(40px, 6vw, 80px);
   line-height: normal;
   color: #a51312;
   text-align: center;
-  margin: 0 0 32px;
+  margin: 0 0 clamp(16px, 2vw, 32px);
 }
 
 .teachersGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 36px;
-  padding: 0 48px;
+  gap: clamp(20px, 3vw, 36px);
 }
 
 .teacherCard {
   display: flex;
-  gap: 36px;
+  gap: clamp(16px, 2vw, 36px);
   align-items: flex-end;
 }
 
@@ -775,8 +742,8 @@
 }
 
 .teacherPhoto {
-  width: 394px;
-  height: 526px;
+  width: clamp(160px, 30%, 394px);
+  aspect-ratio: 394 / 526;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
@@ -794,20 +761,20 @@
 .teacherInfo {
   display: flex;
   flex-direction: column;
-  gap: 58px;
+  gap: clamp(16px, 3vw, 58px);
   color: #a51312;
+  flex: 1;
+  min-width: 0;
 }
 
 .teacherInfoRight {
   align-items: flex-end;
   text-align: right;
-  width: 437px;
 }
 
 .teacherInfoLeft {
   align-items: flex-start;
   text-align: left;
-  width: 377px;
 }
 
 .teacherName {
@@ -819,7 +786,7 @@
 .teacherSurname {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 500;
-  font-size: 64px;
+  font-size: clamp(28px, 4.5vw, 64px);
   line-height: normal;
   margin: 0;
 }
@@ -827,7 +794,7 @@
 .teacherFirstName {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(16px, 2.5vw, 36px);
   line-height: normal;
   margin: 0;
 }
@@ -835,9 +802,9 @@
 .teacherDesc {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(12px, 1.5vw, 24px);
   line-height: normal;
-  width: 254px;
+  max-width: 280px;
 }
 
 /* ── Последние новости ── */
@@ -846,15 +813,16 @@
   background: #a51312;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: clamp(20px, 3vw, 36px);
   align-items: center;
-  padding: 32px 0 64px;
+  padding: clamp(20px, 3vw, 32px) clamp(20px, 5vw, 80px) clamp(32px, 5vw, 64px);
+  box-sizing: border-box;
 }
 
 .newsTitle {
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 80px;
+  font-size: clamp(40px, 6vw, 80px);
   line-height: normal;
   color: #fffff9;
   text-align: center;
@@ -864,21 +832,23 @@
 
 .newsContent {
   display: flex;
-  gap: 70px;
-  align-items: center;
-  max-width: 1252px;
+  gap: clamp(24px, 5vw, 70px);
+  align-items: flex-start;
+  max-width: 1280px;
+  width: 100%;
 }
 
 .newsFeatured {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  width: 603px;
+  gap: clamp(12px, 1.5vw, 24px);
+  flex: 1;
+  min-width: 0;
 }
 
 .newsFeaturedImg {
   width: 100%;
-  height: 468px;
+  aspect-ratio: 603 / 468;
   overflow: hidden;
   position: relative;
 }
@@ -902,24 +872,24 @@
 }
 
 .newsDateDay {
-  font-size: 48px;
+  font-size: clamp(28px, 3.5vw, 48px);
   line-height: normal;
 }
 
 .newsDateRest {
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
 }
 
 .newsDateLine {
-  width: 190px;
-  height: 0;
+  width: clamp(100px, 15vw, 190px);
+  height: 3px;
   position: relative;
 }
 
 .newsDateLineImg {
   position: absolute;
-  inset: -3px 0 0 0;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
@@ -927,32 +897,31 @@
 .newsFeaturedHeadline {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
   color: #fffff9;
-  width: 567px;
+  width: 100%;
 }
 
 .newsFeaturedSummary {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: clamp(12px, 1.3vw, 20px);
   line-height: normal;
   color: #fffff9;
-  width: 567px;
+  width: 100%;
 }
 
 .newsTags {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
   color: #fffff9;
   white-space: nowrap;
-  width: 100%;
 }
 
 .newsRight {
@@ -960,8 +929,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-  height: 978px;
-  width: 579px;
+  gap: clamp(20px, 3vw, 36px);
+  flex: 1;
+  min-width: 0;
 }
 
 .newsLightCard {
@@ -976,6 +946,7 @@
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
+  gap: 16px;
 }
 
 .newsLightDate {
@@ -989,10 +960,11 @@
 }
 
 .newsLightImg {
-  width: 276px;
-  height: 250px;
+  width: clamp(120px, 20vw, 276px);
+  aspect-ratio: 276 / 250;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .newsLightImgInner {
@@ -1007,7 +979,7 @@
 .newsLightHeadline {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
   color: #fffff9;
 }
@@ -1026,46 +998,43 @@
 /* ── Как записаться ── */
 .signupSection {
   background: #fffff9;
-  height: 564px;
 }
 
 .signupInner {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 24px);
+  padding: clamp(30px, 5vw, 42px) clamp(20px, 5vw, 80px) clamp(30px, 5vw, 60px);
   position: relative;
-  height: 100%;
 }
 
 .signupLabel {
-  position: absolute;
-  left: 235px;
-  top: 42px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   line-height: normal;
   color: #a51312;
   white-space: nowrap;
 }
 
 .signupBody {
-  position: absolute;
-  left: 334px;
-  top: 137px;
-  width: 1252px;
+  width: 100%;
+  max-width: 75%;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: clamp(14px, 1.5vw, 24px);
   line-height: normal;
   color: #a51312;
 }
 
 .signupFrame {
   position: absolute;
-  right: 0;
-  top: 58px;
-  width: 279px;
-  height: 468px;
+  right: clamp(20px, 5vw, 80px);
+  top: clamp(30px, 5vw, 58px);
+  width: clamp(140px, 18vw, 279px);
+  aspect-ratio: 279 / 468;
 }
 
 .signupFrameImg {
@@ -1076,16 +1045,16 @@
   display: block;
 }
 
-.signupBtnLeft {
-  position: absolute;
-  left: 334px;
-  top: 483px;
+.signupBtns {
+  display: flex;
+  gap: clamp(16px, 3vw, 40px);
+  flex-wrap: wrap;
+  margin-top: clamp(8px, 1.5vw, 20px);
 }
 
+.signupBtnLeft,
 .signupBtnRight {
-  position: absolute;
-  left: 1298px;
-  top: 483px;
+  /* kept for class name compatibility */
 }
 
 .signupBtn {
@@ -1103,128 +1072,84 @@
 .signupBtnText {
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   line-height: normal;
   color: #a51312;
   white-space: nowrap;
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  /* ── Hero ── */
-  .hero {
-    height: auto;
-    overflow: hidden;
-  }
+/* ══════════════════════════════════════
+   Responsive breakpoints
+   ══════════════════════════════════════ */
 
-  .heroInner {
-    height: auto;
-    padding: 24px 20px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .header {
-    position: static;
-  }
-
-  .breadcrumbs {
-    display: none;
-  }
-
+/* ── Tablet: 1024px ── */
+@media (max-width: 1024px) {
   .heroImgLeft,
   .heroImgRight,
   .heroBranches {
     display: none;
   }
 
-  .heroMatryoshka {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    width: 200px;
-    height: 200px;
-    order: 1;
+  .teachersGrid {
+    grid-template-columns: 1fr;
   }
 
-  .heroSubtitle {
-    position: relative;
-    left: auto;
-    top: auto;
-    text-align: center;
-    font-size: 16px;
-    order: 2;
+  .teacherCard {
+    justify-content: center;
+  }
+
+  .alsoCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newsContent {
+    flex-direction: column;
+  }
+
+  .newsRight {
+    width: 100%;
+  }
+
+  .signupFrame {
+    display: none;
+  }
+
+  .signupBody {
+    max-width: 100%;
+  }
+}
+
+/* ── Mobile: 768px ── */
+@media (max-width: 768px) {
+  .breadcrumbs {
+    display: none;
+  }
+
+  .heroMatryoshka {
+    width: clamp(150px, 50vw, 250px);
   }
 
   .heroTitle {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    font-size: 48px;
-    order: 3;
     white-space: normal;
-    text-align: center;
-    margin: 0;
   }
 
-  .heroBtn {
-    position: relative;
-    left: auto;
-    top: auto;
-    order: 4;
+  .infoTitle {
+    white-space: normal;
   }
 
-  /* ── Info section ── */
-  .infoSection {
-    height: auto;
-    padding: 40px 20px;
+  .infoSubtitle {
+    white-space: normal;
+    text-align: left;
   }
 
-  .infoInner {
-    height: auto;
+  .infoHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .infoDollLeft,
   .infoPesno5 {
     display: none;
-  }
-
-  .infoContent {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .infoTitle {
-    font-size: 36px;
-    white-space: normal;
-  }
-
-  .infoSubtitle {
-    font-size: 18px;
-    white-space: normal;
-    text-align: left;
-  }
-
-  .infoBody {
-    font-size: 16px;
-  }
-
-  /* ── Department sections ── */
-  .deptSection {
-    height: auto;
-    padding: 40px 20px;
-  }
-
-  .deptInner {
-    position: static;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
   }
 
   .techPesno9,
@@ -1234,119 +1159,10 @@
     display: none;
   }
 
-  .deptSectionLabel {
-    position: static;
-    font-size: 18px;
-  }
-
-  .deptLine {
-    position: static;
-    width: 100%;
-    height: 3px;
-    margin: 0;
-  }
-
-  .deptLineInner {
-    position: static;
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: fill;
-  }
-
-  .deptTitle {
-    position: static;
-    font-size: 36px;
-    white-space: normal;
-    margin: 0;
-  }
-
   .deptSubtitleRight {
-    position: static;
-    font-size: 18px;
+    align-self: flex-start;
     text-align: left;
     white-space: normal;
-  }
-
-  .deptBody {
-    position: static;
-    width: 100%;
-    font-size: 16px;
-  }
-
-  .sozvBtn {
-    position: static;
-    margin-top: 8px;
-  }
-
-  /* ── "А также..." ── */
-  .alsoSection {
-    height: auto;
-    padding: 40px 20px;
-  }
-
-  .alsoInner {
-    position: static;
-    height: auto;
-  }
-
-  .alsoLabel {
-    position: static;
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-
-  .alsoLine {
-    position: static;
-    width: 100%;
-    height: 3px;
-    margin-bottom: 20px;
-  }
-
-  .alsoCards {
-    position: static;
-    width: 100%;
-    transform: none;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .alsoCard {
-    height: auto;
-  }
-
-  .alsoCardImg {
-    height: 120px;
-  }
-
-  .alsoCardTitle {
-    font-size: 28px;
-  }
-
-  .alsoCardSubtitle,
-  .alsoCardDesc {
-    font-size: 14px;
-  }
-
-  .alsoBtn {
-    position: static;
-    margin-top: 16px;
-  }
-
-  /* ── Red banner ── */
-  .redBanner {
-    height: 60px;
-  }
-
-  /* ── Teachers ── */
-  .teachersTitle {
-    font-size: 48px;
-  }
-
-  .teachersGrid {
-    grid-template-columns: 1fr;
-    padding: 0 20px;
-    gap: 24px;
   }
 
   .teacherCard {
@@ -1355,115 +1171,51 @@
   }
 
   .teacherPhoto {
-    width: 200px;
-    height: 267px;
+    width: 60%;
+    max-width: 280px;
   }
 
   .teacherInfoRight,
   .teacherInfoLeft {
-    width: 100%;
     align-items: center;
     text-align: center;
   }
 
-  .teacherSurname {
-    font-size: 36px;
-  }
-
-  .teacherFirstName {
-    font-size: 20px;
-  }
-
   .teacherDesc {
-    font-size: 14px;
-    width: 100%;
-  }
-
-  /* ── News section ── */
-  .newsTitle {
-    font-size: 48px;
-  }
-
-  .newsContent {
-    flex-direction: column;
-    gap: 32px;
-    width: 100%;
-    padding: 0 20px;
     max-width: 100%;
-    box-sizing: border-box;
   }
 
-  .newsFeatured {
-    width: 100%;
-  }
-
-  .newsFeaturedImg {
-    height: 220px;
-  }
-
-  .newsFeaturedHeadline,
-  .newsFeaturedSummary {
-    width: 100%;
-    font-size: 16px;
-  }
-
-  .newsRight {
-    width: 100%;
-    height: auto;
-    gap: 24px;
+  .newsLightTop {
+    flex-direction: column;
     align-items: flex-start;
   }
 
-  .newsLightCard {
-    width: 100%;
-  }
-
   .newsLightImg {
-    width: 120px;
-    height: 108px;
-  }
-
-  .newsDateLine {
-    height: 3px;
-  }
-
-  /* ── Signup section ── */
-  .signupSection {
-    height: auto;
-    padding: 40px 20px;
-  }
-
-  .signupInner {
-    position: static;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .signupLabel {
-    position: static;
-    font-size: 24px;
-  }
-
-  .signupBody {
-    position: static;
     width: 100%;
-    font-size: 16px;
+    aspect-ratio: 16 / 9;
   }
 
-  .signupFrame {
-    display: none;
+  .redBanner {
+    height: 60px;
+  }
+}
+
+/* ── Small mobile: 480px ── */
+@media (max-width: 480px) {
+  .alsoCards {
+    grid-template-columns: 1fr;
   }
 
-  .signupBtnLeft,
-  .signupBtnRight {
-    position: static;
+  .heroTitle {
+    font-size: clamp(32px, 8vw, 40px);
   }
 
-  .signupBtnText {
-    font-size: 24px;
-    white-space: normal;
+  .newsTags {
+    flex-wrap: wrap;
+  }
+
+  .signupBtns {
+    flex-direction: column;
   }
 }
 

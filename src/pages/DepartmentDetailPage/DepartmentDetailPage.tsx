@@ -1,224 +1,163 @@
-import { Link } from "react-router-dom";
-import { Navbar } from "../../components/news/Navbar/Navbar";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
-import { departmentDetailAssets } from "../../lib/departmentDetailAssets";
+import { EnrollModal } from "../../components/shared/EnrollModal/EnrollModal";
+import { fetchCollective, fetchTeachersByIds, type Collective, type Teacher } from "../../lib/api";
 import styles from "./DepartmentDetailPage.module.css";
 
-const relatedNews = [
-  { day: "21", month: "января", year: "2026", text: "Театральная студия \"Маска\" поставит спектакль по повести Владимира Железникова \"Чучело\"" },
-  { day: "5", month: "Декабря", year: "2026", text: "Телемост состоялся между центром «Песнохорки» и школой «Аркон» в рамках международного сотрудничества" },
-  { day: "21", month: "января", year: "2026", text: "Театральная студия \"Маска\" поставит спектакль по повести Владимира Железникова \"Чучело\"" },
-  { day: "21", month: "января", year: "2026", text: "Театральная студия \"Маска\" поставит спектакль по повести Владимира Железникова \"Чучело\"" },
-];
-
-const teachers = [
-  { id: 1, photo: departmentDetailAssets.imgTeacher1, firstName: "Бурдина", lastName: "Алёна Максимовна", role: "Педагог дополнительного образования, руководитель хореографической студии «Орбита»" },
-  { id: 2, photo: departmentDetailAssets.imgTeacher2, firstName: "Кем", lastName: "Анастасия Сергеевна", role: "Педагог дополнительного образования, руководитель объединения «Перспектива»" },
-];
-
-const awards = [
-  "2025 — Лауреат фестиваля «Поющие России»",
-  "2025 — Лауреат фестиваля «Поющие России»",
-  "2025 — Лауреат фестиваля «Поющие России»",
-  "2025 — Лауреат фестиваля «Поющие России»",
-];
-
-const directions = [
-  { icon: departmentDetailAssets.imgIconMic, label: "Народный вокал" },
-  { icon: departmentDetailAssets.imgIconMic, label: "Гармонь" },
-  { icon: departmentDetailAssets.imgIconMic, label: "Нотная грамота" },
-  { icon: departmentDetailAssets.imgIconMic, label: "Народный танец" },
-  { icon: departmentDetailAssets.imgIconMic, label: "Сценические движения" },
-];
-
 export default function DepartmentDetailPage() {
+  const { id } = useParams<{ id: string }>();
+  const [collective, setCollective] = useState<Collective | null>(null);
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [showEnroll, setShowEnroll] = useState(false);
+
+  useEffect(() => {
+    if (!id) return;
+    fetchCollective(id)
+      .then((c) => {
+        setCollective(c);
+        const ids = (c.teacher_ids || "").split(",").filter(Boolean).map(Number);
+        return fetchTeachersByIds(ids);
+      })
+      .then(setTeachers)
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  const directions = collective?.directions
+    ? collective.directions.split(",").map(d => d.trim()).filter(Boolean)
+    : [];
+
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <MobileHeader />
+        <PageHeader />
+        <p className={styles.loadingMsg}>Загрузка...</p>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error || !collective) {
+    return (
+      <div className={styles.page}>
+        <MobileHeader />
+        <PageHeader />
+        <p className={styles.loadingMsg}>{error || "Коллектив не найден"}</p>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.page}>
       <MobileHeader />
 
+      <PageHeader crumbs={[
+        { label: "Главная", to: "/" },
+        { label: "Объединения", to: "/departments" },
+        { label: collective.name },
+      ]} />
+
       {/* Hero: red section */}
       <section className={styles.hero}>
-        <Navbar />
         <div className={styles.heroInner}>
-          <div className={styles.breadcrumbs}>
-            <span>Главная</span>
-            <span>/</span>
-            <span>Объединения</span>
-            <span>/</span>
-            <span>[Категория]</span>
-            <span>/</span>
-            <span>[Название]</span>
-          </div>
-          <div className={styles.heroCategory}>Наши Объединения</div>
-          <h1 className={styles.heroTitle}>Песнохорки</h1>
-          <div className={styles.heroLine} />
+          <h1 className={styles.heroTitle}>{collective.name}</h1>
           <div className={styles.heroMeta}>
-            <span>Песнохорки</span>
-            <span className={styles.heroDivider}>|</span>
-            <span>Вокал</span>
-            <span className={styles.heroDivider}>|</span>
-            <span>Руководитель: Иванова А. В.</span>
-            <span className={styles.heroDivider}>|</span>
-            <span>Педагоги: Иванова А. В., Петров С. П.</span>
+            {collective.teacher_name && <span>Руководитель: {collective.teacher_name}</span>}
+            {collective.age_range && (
+              <>
+                <span className={styles.heroDivider}>|</span>
+                <span>Возраст: {collective.age_range}</span>
+              </>
+            )}
+            {collective.schedule && (
+              <>
+                <span className={styles.heroDivider}>|</span>
+                <span>Расписание: {collective.schedule}</span>
+              </>
+            )}
           </div>
-          <button className={styles.enrollBtn} type="button">
-            <span className={styles.enrollBtnText}>Записать ребёнка</span>
-          </button>
-          <a className={styles.askLink} href="#contacts">задать вопрос</a>
-        </div>
-      </section>
-
-      {/* Description: white section */}
-      <section className={styles.descSection}>
-        <div className={styles.sectionInner}>
-          <p className={styles.descText}>
-            Песнохорки — народный хор для детей и подростков 7–18 лет.
-            Учим петь, понимать русскую культуру и выступать на сцене.
-          </p>
-          <p className={styles.descText}>&nbsp;</p>
-          <p className={styles.descText}>
-            В программе: народный вокал, сценическое движение, нотная грамота.
-            Регулярно участвуем в городских и всероссийских фестивалях.
-            Есть адаптированные программы для детей с ОВЗ.
-          </p>
-        </div>
-      </section>
-
-      {/* Info: red section */}
-      <section className={styles.infoSection}>
-        <div className={styles.sectionInner}>
-          <div className={styles.infoRow}>
-            <div className={styles.infoItem}>
-              <img alt="" className={styles.infoIcon} src={departmentDetailAssets.imgIconOvz} />
-              <span className={styles.infoText}>Возраст: 7–18 лет</span>
-            </div>
-            <div className={styles.infoItem}>
-              <img alt="" className={styles.infoIcon} src={departmentDetailAssets.imgIconOvz} />
-              <span className={styles.infoText}>ОВЗ: есть условия</span>
-            </div>
-            <div className={styles.infoItem}>
-              <img alt="" className={styles.infoIcon} src={departmentDetailAssets.imgIconOvz} />
-              <span className={styles.infoText}>Расписание: Пн, Ср, Пт 16:00</span>
-            </div>
-            <div className={styles.infoItem}>
-              <img alt="" className={styles.infoIcon} src={departmentDetailAssets.imgIconOvz} />
-              <span className={styles.infoText}>Занято: 25 из 30 мест</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leader: red section */}
-      <section className={styles.leaderSection}>
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionLabel}>Руководитель:</div>
-          <div className={styles.dividerLine} />
-          <div className={styles.leaderRow}>
-            <div className={styles.leaderPhotoWrap}>
-              <img alt="Иванова Анна Петровна" className={styles.leaderPhoto} src={departmentDetailAssets.imgLeaderPhoto} />
-            </div>
-            <div className={styles.leaderInfo}>
-              <p className={styles.leaderName}>Иванова Анна Петровна</p>
-              <p className={styles.leaderDetail}>Заслуженный работник культуры</p>
-              <p className={styles.leaderDetail}>Стаж: 20 лет</p>
-              <p className={styles.leaderDetail}>Образование: КГБПОУ «Алтайский краевой колледж»</p>
-              <blockquote className={styles.leaderQuote}>
-                «Для меня «Песнохорки» — это не просто хор. Это семья. Здесь дети не только учатся петь, они учатся слышать друг друга, поддерживать и вместе создавать настоящее чудо.»
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Teachers: white section */}
-      <section className={styles.teachersSection}>
-        <div className={styles.sectionInner}>
-          <h2 className={styles.sectionTitleDark}>Педагоги</h2>
-          <div className={styles.teachersGrid}>
-            {teachers.map((t) => (
-              <Link className={styles.teacherCard} key={t.id} to={`/teachers/${t.id}`}>
-                <div className={styles.teacherPhotoWrap}>
-                  <img alt={t.firstName} className={styles.teacherPhoto} src={t.photo} />
-                </div>
-                <p className={styles.teacherFirstName}>{t.firstName}</p>
-                <p className={styles.teacherLastName}>{t.lastName}</p>
-                <p className={styles.teacherRole}>{t.role}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Directions: red section */}
-      <section className={styles.directionsSection}>
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionLabel}>Направления</div>
-          <div className={styles.dividerLine} />
-          <div className={styles.directionsRow}>
-            {directions.map((d) => (
-              <div className={styles.directionItem} key={d.label}>
-                <img alt="" className={styles.directionIcon} src={d.icon} />
-                <span className={styles.directionLabel}>{d.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Awards: white section */}
-      <section className={styles.awardsSection}>
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionLabelDark}>Награды</div>
-          <div className={styles.dividerLineDark} />
-          <div className={styles.awardsList}>
-            {awards.map((award, i) => (
-              <div className={styles.awardItem} key={i}>
-                <img alt="" className={styles.awardIcon} src={departmentDetailAssets.imgAward} />
-                <span className={styles.awardText}>{award}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* News: red section */}
-      <section className={styles.newsSection}>
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionLabel}>Последние новости</div>
-          <div className={styles.dividerLine} />
-          <div className={styles.newsGrid}>
-            {relatedNews.map((item, i) => (
-              <div className={styles.newsCard} key={i}>
-                <div className={styles.newsCardImg}>
-                  <img alt="" className={styles.newsCardImgInner} src={departmentDetailAssets.imgNewsThumb} />
-                </div>
-                <div className={styles.newsCardDate}>
-                  <span className={styles.newsDay}>{item.day}</span>
-                  <span className={styles.newsMonth}>{item.month}</span>
-                  <span className={styles.newsYear}>{item.year}</span>
-                </div>
-                <div className={styles.newsCardLine} />
-                <p className={styles.newsCardText}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contacts: white section */}
-      <section className={styles.contactsSection} id="contacts">
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionLabelDark}>Контакты</div>
-          <div className={styles.dividerLineDark} />
-          <p className={styles.contactText}>Кабинет: 215 (3 этаж)</p>
-          <p className={styles.contactText}>8 913 000 00 00</p>
-          <p className={styles.contactText}>pesnohorki@mail.com</p>
-          <button className={styles.enrollBtnDark} type="button">
-            <span className={styles.enrollBtnText}>Записать ребёнка</span>
+          <button className={styles.enrollBtn} type="button" onClick={() => setShowEnroll(true)}>
+            Записать ребёнка
           </button>
         </div>
       </section>
+
+      {/* Description */}
+      {collective.description && (
+        <section className={styles.descSection}>
+          <div className={styles.sectionInner}>
+            <div
+              className={styles.descText}
+              dangerouslySetInnerHTML={{ __html: collective.description }}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Photo */}
+      {collective.photo_url && (
+        <section className={styles.photoSection}>
+          <div className={styles.sectionInner}>
+            <img alt={collective.name} className={styles.collectivePhoto} src={collective.photo_url} />
+          </div>
+        </section>
+      )}
+
+      {/* Directions */}
+      {directions.length > 0 && (
+        <section className={styles.directionsSection}>
+          <div className={styles.sectionInner}>
+            <h2 className={styles.sectionTitle}>Направления</h2>
+            <div className={styles.directionsList}>
+              {directions.map((d) => (
+                <span key={d} className={styles.directionTag}>{d}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Teachers */}
+      {teachers.length > 0 && (
+        <section className={styles.teachersSection}>
+          <div className={styles.sectionInner}>
+            <h2 className={styles.sectionTitle}>Педагоги</h2>
+            <div className={styles.teachersGrid}>
+              {teachers.map((t) => (
+                <Link key={t.id} to={`/teachers/${t.id}`} className={styles.teacherCard}>
+                  <div className={styles.teacherPhotoWrap}>
+                    {t.photo_url ? (
+                      <img src={t.photo_url} alt={t.name} className={styles.teacherPhoto} />
+                    ) : (
+                      <div className={styles.teacherPhotoPlaceholder} />
+                    )}
+                  </div>
+                  <p className={styles.teacherName}>{t.name}</p>
+                  {t.bio && (
+                    <p className={styles.teacherBio}>
+                      {t.bio.replace(/<[^>]*>/g, "").slice(0, 100)}
+                      {t.bio.length > 100 ? "..." : ""}
+                    </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <EnrollModal
+        isOpen={showEnroll}
+        onClose={() => setShowEnroll(false)}
+        collectiveName={collective.name}
+      />
 
       <Footer />
     </div>

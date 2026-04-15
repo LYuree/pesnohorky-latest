@@ -1,0 +1,42 @@
+.root {
+  width: 100%;
+  background: #fffff9;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+  box-sizing: border-box;
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 0 12px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: clamp(13px, 1.1vw, 16px);
+  color: #a51312;
+  flex-wrap: wrap;
+}
+
+.sep {
+  margin: 0 2px;
+  color: #a51312;
+  opacity: 0.5;
+}
+
+.link {
+  color: #a51312;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.current {
+  color: #a51312;
+  opacity: 0.7;
+}

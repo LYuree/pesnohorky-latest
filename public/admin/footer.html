@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админка — Футер</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; color: #333; padding: 20px; max-width: 960px; margin: 0 auto; }
+    h1 { margin-bottom: 8px; color: #a51312; }
+    h2 { margin: 24px 0 12px; font-size: 18px; color: #a51312; }
+    nav { margin-bottom: 24px; font-size: 14px; }
+    nav a { color: #a51312; margin-right: 16px; }
+    .form-card { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 24px; }
+    label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; }
+    input, select { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; margin-bottom: 12px; }
+    .row { display: flex; gap: 12px; }
+    .row > * { flex: 1; }
+    button[type="submit"] { background: #a51312; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+    button[type="submit"]:hover { background: #8a0f0e; }
+    .msg { padding: 8px 12px; border-radius: 4px; margin-bottom: 12px; display: none; }
+    .msg.ok { display: block; background: #d4edda; color: #155724; }
+    .msg.err { display: block; background: #f8d7da; color: #721c24; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 24px; }
+    th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
+    th { background: #a51312; color: #fff; }
+    .btn-del { background: #dc3545; color: #fff; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; }
+    .btn-del:hover { background: #b02a37; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+    .badge-int { background: #d4edda; color: #155724; }
+    .badge-ext { background: #fff3cd; color: #856404; }
+  </style>
+</head>
+<body>
+
+<h1>Футер</h1>
+<nav>
+  <a href="/admin/teachers.html">Педагоги</a>
+  <a href="/admin/news.html">Новости</a>
+  <a href="/admin/collectives.html">Коллективы</a>
+  <a href="/admin/applications.html">Заявки</a>
+  <a href="/admin/pages.html">Страницы</a>
+  <a href="/admin/footer.html">Футер</a>
+</nav>
+
+<!-- Contacts -->
+<div class="form-card">
+  <h2 style="margin-top:0">Добавить контакт</h2>
+  <div id="msg-contact" class="msg"></div>
+  <form id="form-contact">
+    <div class="row">
+      <div>
+        <label for="c-field">Тип</label>
+        <select id="c-field">
+          <option value="address">Адрес</option>
+          <option value="phone">Телефон</option>
+          <option value="email">Email</option>
+          <option value="hours">Часы работы</option>
+          <option value="social">Соцсеть (URL)</option>
+        </select>
+      </div>
+      <div>
+        <label for="c-value">Значение</label>
+        <input id="c-value" required placeholder="г. Барнаул, ул. Ленина, 100">
+      </div>
+      <div>
+        <label for="c-sort">Порядок</label>
+        <input id="c-sort" type="number" value="0">
+      </div>
+    </div>
+    <button type="submit">Добавить контакт</button>
+  </form>
+</div>
+
+<h2>Контакты</h2>
+<table>
+  <thead><tr><th>ID</th><th>Тип</th><th>Значение</th><th>Порядок</th><th></th></tr></thead>
+  <tbody id="contacts-tbody"></tbody>
+</table>
+
+<!-- Links -->
+<div class="form-card">
+  <h2 style="margin-top:0">Добавить ссылку</h2>
+  <div id="msg-link" class="msg"></div>
+  <form id="form-link">
+    <div class="row">
+      <div>
+        <label for="l-label">Текст ссылки *</label>
+        <input id="l-label" required placeholder="Контакты">
+      </div>
+      <div>
+        <label for="l-url">URL *</label>
+        <input id="l-url" required placeholder="/contacts или https://...">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="l-col">Колонка (1-3)</label>
+        <select id="l-col">
+          <option value="1">1 — Левая</option>
+          <option value="2">2 — Центр</option>
+          <option value="3">3 — Правая</option>
+        </select>
+      </div>
+      <div>
+        <label for="l-ext">Тип</label>
+        <select id="l-ext">
+          <option value="0">Внутренняя (/path)</option>
+          <option value="1">Внешняя (https://...)</option>
+        </select>
+      </div>
+      <div>
+        <label for="l-sort">Порядок</label>
+        <input id="l-sort" type="number" value="0">
+      </div>
+    </div>
+    <button type="submit">Добавить ссылку</button>
+  </form>
+</div>
+
+<h2>Ссылки в футере</h2>
+<table>
+  <thead><tr><th>ID</th><th>Кол.</th><th>Текст</th><th>URL</th><th>Тип</th><th></th></tr></thead>
+  <tbody id="links-tbody"></tbody>
+</table>
+
+<script>
+const API = "http://localhost:3001";
+
+function esc(s) { const d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
+
+async function load() {
+  const res = await fetch(API + "/api/footer");
+  const { links, contacts } = await res.json();
+
+  document.getElementById("contacts-tbody").innerHTML = contacts.map(c => `
+    <tr>
+      <td>${c.id}</td>
+      <td>${esc(c.field)}</td>
+      <td>${esc(c.value)}</td>
+      <td>${c.sort_order}</td>
+      <td><button class="btn-del" onclick="delContact(${c.id})">Удалить</button></td>
+    </tr>
+  `).join("");
+
+  document.getElementById("links-tbody").innerHTML = links.map(l => `
+    <tr>
+      <td>${l.id}</td>
+      <td>${l.col}</td>
+      <td>${esc(l.label)}</td>
+      <td>${esc(l.url)}</td>
+      <td><span class="badge ${l.is_external ? "badge-ext" : "badge-int"}">${l.is_external ? "внешняя" : "внутренняя"}</span></td>
+      <td><button class="btn-del" onclick="delLink(${l.id})">Удалить</button></td>
+    </tr>
+  `).join("");
+}
+
+async function delContact(id) {
+  if (!confirm("Удалить контакт?")) return;
+  await fetch(API + "/api/admin/footer/contacts/" + id, { method: "DELETE" });
+  load();
+}
+
+async function delLink(id) {
+  if (!confirm("Удалить ссылку?")) return;
+  await fetch(API + "/api/admin/footer/links/" + id, { method: "DELETE" });
+  load();
+}
+
+document.getElementById("form-contact").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("msg-contact");
+  try {
+    const res = await fetch(API + "/api/admin/footer/contacts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        field: document.getElementById("c-field").value,
+        value: document.getElementById("c-value").value.trim(),
+        sort_order: parseInt(document.getElementById("c-sort").value) || 0,
+      }),
+    });
+    if (!res.ok) throw new Error((await res.json()).error);
+    msg.className = "msg ok"; msg.textContent = "Контакт добавлен!";
+    document.getElementById("form-contact").reset();
+    load();
+  } catch (err) {
+    msg.className = "msg err"; msg.textContent = "Ошибка: " + err.message;
+  }
+});
+
+document.getElementById("form-link").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("msg-link");
+  try {
+    const res = await fetch(API + "/api/admin/footer/links", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        col: parseInt(document.getElementById("l-col").value),
+        label: document.getElementById("l-label").value.trim(),
+        url: document.getElementById("l-url").value.trim(),
+        is_external: parseInt(document.getElementById("l-ext").value),
+        sort_order: parseInt(document.getElementById("l-sort").value) || 0,
+      }),
+    });
+    if (!res.ok) throw new Error((await res.json()).error);
+    msg.className = "msg ok"; msg.textContent = "Ссылка добавлена!";
+    document.getElementById("form-link").reset();
+    load();
+  } catch (err) {
+    msg.className = "msg err"; msg.textContent = "Ошибка: " + err.message;
+  }
+});
+
+load();
+</script>
+</body>
+</html>

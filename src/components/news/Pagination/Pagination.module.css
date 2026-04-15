@@ -1,74 +1,64 @@
 .root {
   display: flex;
-  gap: clamp(8px, 1.5vw, 21px);
   align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0;
   flex-wrap: wrap;
 }
 
-.arrowWrap {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 auto;
+.arrowBtn {
+  background: none;
+  border: 2px solid #a51312;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: #a51312;
   cursor: pointer;
-}
-
-.arrowImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.pageBtn {
-  border: 1px solid #a51312;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: clamp(32px, 3vw, 36px);
-  min-height: clamp(32px, 3vw, 36px);
-  padding: clamp(6px, 1vw, 10px);
-  box-sizing: border-box;
-  cursor: pointer;
+}
+.arrowBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.arrowBtn:hover:not(:disabled) {
+  background: #a51312;
+  color: #fffff9;
 }
 
-.pageBtnText {
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(16px, 1.5vw, 24px);
-  line-height: 1;
-  font-weight: 400;
+.pageBtn,
+.pageBtnActive {
+  background: none;
+  border: 2px solid #a51312;
+  border-radius: 8px;
+  min-width: 40px;
+  height: 40px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 16px;
   color: #a51312;
-  white-space: nowrap;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+.pageBtn:hover {
+  background: rgba(165, 19, 18, 0.1);
 }
 
 .pageBtnActive {
   background: #a51312;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: clamp(32px, 3vw, 36px);
-  min-height: clamp(32px, 3vw, 36px);
-  padding: clamp(6px, 1vw, 10px);
-  box-sizing: border-box;
-  border-top-right-radius: 16px;
-  cursor: pointer;
-}
-
-.pageBtnActiveText {
-  margin: 0;
-  font-family: "Montserrat Alternates", system-ui, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(16px, 1.5vw, 24px);
-  line-height: 1;
-  font-weight: 400;
   color: #fffff9;
-  white-space: nowrap;
+  border-top-right-radius: 16px;
+  cursor: default;
 }
 
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .root {
-    justify-content: center;
-  }
+.dots {
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: 16px;
+  color: #a51312;
+  padding: 0 4px;
 }
