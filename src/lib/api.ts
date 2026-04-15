@@ -62,6 +62,8 @@ export type Collective = {
   age_range: string | null;
   schedule: string | null;
   teacher_name: string | null;
+  directions: string | null;
+  teacher_ids: string | null;
   created_at: string;
 };
 
@@ -83,6 +85,14 @@ export async function fetchCollective(id: string): Promise<Collective> {
   const res = await fetch(`${API_BASE}/collectives/${id}`);
   if (!res.ok) throw new Error("Коллектив не найден");
   return res.json();
+}
+
+export async function fetchTeachersByIds(ids: number[]): Promise<Teacher[]> {
+  if (ids.length === 0) return [];
+  const results = await Promise.all(
+    ids.map(id => fetch(`${API_BASE}/teachers/${id}`).then(r => r.ok ? r.json() : null))
+  );
+  return results.filter(Boolean);
 }
 
 export type Application = {
@@ -126,5 +136,32 @@ export async function submitApplication(data: {
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error("Не удалось отправить заявку");
+  return res.json();
+}
+
+export type FooterLink = {
+  id: number;
+  col: number;
+  label: string;
+  url: string;
+  is_external: number;
+  sort_order: number;
+};
+
+export type FooterContact = {
+  id: number;
+  field: string;
+  value: string;
+  sort_order: number;
+};
+
+export type FooterData = {
+  links: FooterLink[];
+  contacts: FooterContact[];
+};
+
+export async function fetchFooter(): Promise<FooterData> {
+  const res = await fetch(`${API_BASE}/footer`);
+  if (!res.ok) throw new Error("Не удалось загрузить футер");
   return res.json();
 }

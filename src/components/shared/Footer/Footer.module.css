@@ -8,19 +8,16 @@
 
 .footerRed {
   width: 100%;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 24px 80px;
   background: #a51312;
-  box-sizing: border-box;
   overflow: clip;
   position: relative;
 }
 
 .footerRedContent {
-  flex: 1;
-  max-width: 1920px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px clamp(20px, 5vw, 80px);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -29,7 +26,7 @@
 .footerTitle {
   font-family: "Harlequinade", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 64px;
+  font-size: clamp(28px, 4vw, 48px);
   line-height: normal;
   color: #fffff9;
   margin: 0;
@@ -37,25 +34,34 @@
 
 .footerColumns {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+  gap: 24px;
 }
 
 .footerCol {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 67px;
+  gap: 8px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
-  line-height: normal;
+  font-size: clamp(13px, 1.2vw, 18px);
+  line-height: 1.4;
   color: #fffff9;
 }
 
+.footerCol a {
+  color: #fffff9;
+  text-decoration: none;
+}
+
+.footerCol a:hover {
+  text-decoration: underline;
+}
+
 .footerColFirst {
-  gap: 156px;
   padding-right: 16px;
 }
 
@@ -93,37 +99,37 @@
   display: block;
 }
 
-.footerYod {
-  position: absolute;
-  right: 80px;
-  top: 146px;
-  font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
-  color: transparent;
-  text-align: right;
-  white-space: nowrap;
-}
-
 .footerLinks {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  max-width: 1920px;
-  padding: 24px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px clamp(20px, 5vw, 80px);
   box-sizing: border-box;
+  gap: 24px;
 }
 
 .footerLinkCol {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
-  line-height: normal;
+  font-size: clamp(13px, 1.2vw, 18px);
+  line-height: 1.4;
   color: #a51312;
+}
+
+.footerLinkCol a {
+  color: #a51312;
+  text-decoration: none;
+}
+
+.footerLinkCol a:hover {
+  text-decoration: underline;
 }
 
 .footerLinkColFirst {
@@ -131,35 +137,18 @@
 }
 
 .footerCopyright {
-  padding-top: 16px;
-  width: 274px;
-  font-family: "Dark Deco", system-ui, sans-serif;
-  font-size: 24px;
+  padding: 16px 0 24px;
+  font-family: "Montserrat Alternates", system-ui, sans-serif;
+  font-size: clamp(12px, 1vw, 16px);
   line-height: normal;
   color: #a51312;
-  text-align: right;
-  white-space: nowrap;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-  .footerRed {
-    padding: 20px 24px;
-  }
-
-  .footerTitle {
-    font-size: 36px;
-  }
-
   .footerColumns {
     flex-direction: column;
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-  .footerCol,
-  .footerColFirst {
-    gap: 12px;
-    font-size: 16px;
+    gap: 16px;
   }
 
   .footerBranch {
@@ -168,18 +157,6 @@
 
   .footerLinks {
     flex-direction: column;
-    gap: 16px;
-    padding: 20px 24px;
-  }
-
-  .footerLinkCol {
-    font-size: 16px;
-    gap: 6px;
-  }
-
-  .footerCopyright {
-    font-size: 16px;
-    text-align: center;
-    width: auto;
+    gap: 12px;
   }
 }

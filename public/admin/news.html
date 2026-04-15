@@ -84,23 +84,11 @@
 </table>
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<script src="/admin/quill-extended.js"></script>
 <script>
 const API = "http://localhost:3001";
 
-// Quill editor
-const quill = new Quill("#editor", {
-  theme: "snow",
-  modules: {
-    toolbar: [
-      [{ header: [2, 3, false] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["blockquote", "link"],
-      ["clean"],
-    ],
-  },
-  placeholder: "Текст ново��ти...",
-});
+const quill = initQuill("#editor", { placeholder: "Текст новости..." });
 
 // Photo upload
 const fileInput = document.getElementById("image-file");
@@ -167,7 +155,7 @@ async function del(id) {
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("msg");
-  const content = quill.root.innerHTML.trim();
+  const content = quill._getContent();
   if (!content || content === "<p><br></p>") {
     msg.className = "msg err";
     msg.textContent = "Содержание обязательно";
@@ -189,7 +177,7 @@ document.getElementById("form").addEventListener("submit", async (e) => {
     msg.className = "msg ok";
     msg.textContent = "Новость добавлена!";
     document.getElementById("form").reset();
-    quill.setContents([]);
+    quill._reset();
     preview.style.display = "none";
     imageUrlInput.value = "";
     uploadArea.classList.remove("has-file");

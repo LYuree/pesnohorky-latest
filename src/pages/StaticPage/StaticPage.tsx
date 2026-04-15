@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Navbar } from "../../components/news/Navbar/Navbar";
+import { useLocation } from "react-router-dom";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
 import { fetchStaticPage } from "../../lib/api";
 import type { StaticPage as StaticPageType } from "../../lib/api";
@@ -37,22 +37,11 @@ export default function StaticPage() {
   return (
     <div className={styles.page}>
       <MobileHeader />
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <Navbar />
-          <nav className={styles.breadcrumbs}>
-            <Link to="/">Главная</Link>
-            <span>/</span>
-            {sectionInfo && (
-              <>
-                <Link to={sectionInfo.path}>{sectionInfo.label}</Link>
-                <span>/</span>
-              </>
-            )}
-            <span>{page?.title || "..."}</span>
-          </nav>
-        </div>
-      </section>
+      <PageHeader crumbs={[
+        { label: "Главная", to: "/" },
+        ...(sectionInfo ? [{ label: sectionInfo.label, to: sectionInfo.path }] : []),
+        { label: page?.title || "..." },
+      ]} />
       <section className={styles.content}>
         <div className={styles.contentInner}>
           {loading && <p className={styles.loading}>Загрузка...</p>}

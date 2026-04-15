@@ -30,14 +30,14 @@ router.get("/:id", async (req, res) => {
 
 // POST /api/admin/collectives — создание коллектива
 router.post("/", async (req, res) => {
-  const { name, description, photo_url, age_range, schedule, teacher_name } = req.body;
+  const { name, description, photo_url, age_range, schedule, teacher_name, directions, teacher_ids } = req.body;
   if (!name) {
     return res.status(400).json({ error: "name обязательно" });
   }
   try {
     const result = await dbRun(
-      "INSERT INTO collectives (name, description, photo_url, age_range, schedule, teacher_name) VALUES (?, ?, ?, ?, ?, ?)",
-      [name, description || null, photo_url || null, age_range || null, schedule || null, teacher_name || null]
+      "INSERT INTO collectives (name, description, photo_url, age_range, schedule, teacher_name, directions, teacher_ids) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      [name, description || null, photo_url || null, age_range || null, schedule || null, teacher_name || null, directions || null, teacher_ids || null]
     );
     res.status(201).json({ id: result.lastID });
   } catch (err) {
@@ -47,14 +47,14 @@ router.post("/", async (req, res) => {
 
 // PUT /api/admin/collectives/:id — обновление коллектива
 router.put("/:id", async (req, res) => {
-  const { name, description, photo_url, age_range, schedule, teacher_name } = req.body;
+  const { name, description, photo_url, age_range, schedule, teacher_name, directions, teacher_ids } = req.body;
   if (!name) {
     return res.status(400).json({ error: "name обязательно" });
   }
   try {
     const result = await dbRun(
-      "UPDATE collectives SET name = ?, description = ?, photo_url = ?, age_range = ?, schedule = ?, teacher_name = ? WHERE id = ?",
-      [name, description || null, photo_url || null, age_range || null, schedule || null, teacher_name || null, req.params.id]
+      "UPDATE collectives SET name = ?, description = ?, photo_url = ?, age_range = ?, schedule = ?, teacher_name = ?, directions = ?, teacher_ids = ? WHERE id = ?",
+      [name, description || null, photo_url || null, age_range || null, schedule || null, teacher_name || null, directions || null, teacher_ids || null, req.params.id]
     );
     if (result.changes === 0)
       return res.status(404).json({ error: "Коллектив не найден" });

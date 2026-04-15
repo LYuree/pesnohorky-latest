@@ -86,6 +86,14 @@
       <option value="">Выберите руководителя</option>
     </select>
 
+    <label>Педагоги коллектива</label>
+    <select id="teacher_ids" multiple style="width:100%;padding:8px 12px;border:1px solid #ccc;border-radius:4px;font-size:14px;margin-bottom:12px;min-height:80px;">
+    </select>
+    <p style="font-size:12px;color:#888;margin:-8px 0 12px;">Зажмите Ctrl для выбора нескольких</p>
+
+    <label for="directions">Направления (через запятую)</label>
+    <input id="directions" name="directions" type="text" placeholder="Народный вокал, Гармонь, Нотная грамота">
+
     <div>
       <button type="submit" id="btn-submit">Создать</button>
       <button type="button" class="btn-cancel" id="btn-cancel" style="display:none" onclick="cancelEdit()">Отмена</button>
@@ -100,22 +108,11 @@
 </table>
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<script src="/admin/quill-extended.js"></script>
 <script>
 const API = "http://localhost:3001";
 
-// Quill editor
-const quill = new Quill("#editor", {
-  theme: "snow",
-  modules: {
-    toolbar: [
-      ["bold", "italic", "underline"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link"],
-      ["clean"],
-    ],
-  },
-  placeholder: "Описание коллектива...",
-});
+const quill = initQuill("#editor", { placeholder: "Описание коллектива..." });
 
 // Photo upload
 const fileInput = document.getElementById("photo-file");
@@ -144,19 +141,27 @@ fileInput.addEventListener("change", async () => {
   }
 });
 
-// Load teachers for the dropdown
+// Load teachers for both dropdowns
 async function loadTeachers() {
   try {
     const res = await fetch(API + "/api/teachers");
     const teachers = await res.json();
+    // Leader dropdown
     const select = document.getElementById("teacher_name");
-    // Keep the first empty option, remove the rest
     while (select.options.length > 1) select.remove(1);
+    // Multi-select
+    const multi = document.getElementById("teacher_ids");
+    multi.innerHTML = "";
     teachers.forEach(t => {
       const opt = document.createElement("option");
       opt.value = t.name;
       opt.textContent = t.name;
       select.appendChild(opt);
+
+      const opt2 = document.createElement("option");
+      opt2.value = String(t.id);
+      opt2.textContent = t.name;
+      multi.appendChild(opt2);
     });
   } catch (err) {
     console.error("Не удалось загрузить педагогов:", err);
@@ -202,10 +207,15 @@ async function edit(id) {
 
   document.getElementById("edit-id").value = c.id;
   document.getElementById("name").value = c.name;
-  quill.root.innerHTML = c.description || "";
+  quill._setContent(c.description || "");
   document.getElementById("age_range").value = c.age_range || "";
   document.getElementById("schedule").value = c.schedule || "";
   document.getElementById("teacher_name").value = c.teacher_name || "";
+  document.getElementById("directions").value = c.directions || "";
+  // Select teacher_ids in multi-select
+  const multi = document.getElementById("teacher_ids");
+  const ids = (c.teacher_ids || "").split(",").filter(Boolean);
+  Array.from(multi.options).forEach(o => { o.selected = ids.includes(o.value); });
   photoUrlInput.value = c.photo_url || "";
 
   if (c.photo_url) {
@@ -229,11 +239,12 @@ async function edit(id) {
 function cancelEdit() {
   document.getElementById("edit-id").value = "";
   document.getElementById("form").reset();
-  quill.setContents([]);
+  quill._reset();
   preview.style.display = "none";
   photoUrlInput.value = "";
   uploadArea.classList.remove("has-file");
   uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
+  Array.from(document.getElementById("teacher_ids").options).forEach(o => { o.selected = false; });
   document.getElementById("form-title").textContent = "Добавить коллектив";
   document.getElementById("btn-submit").textContent = "Создать";
   document.getElementById("btn-cancel").style.display = "none";
@@ -244,8 +255,9 @@ document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("msg");
   const editId = document.getElementById("edit-id").value;
-  const description = quill.root.innerHTML.trim();
+  const description = quill._getContent();
 
+  const selectedTeacherIds = Array.from(document.getElementById("teacher_ids").selectedOptions).map(o => o.value);
   const body = {
     name: document.getElementById("name").value.trim(),
     description: (description && description !== "<p><br></p>") ? description : null,
@@ -253,6 +265,8 @@ document.getElementById("form").addEventListener("submit", async (e) => {
     age_range: document.getElementById("age_range").value.trim() || undefined,
     schedule: document.getElementById("schedule").value.trim() || undefined,
     teacher_name: document.getElementById("teacher_name").value.trim() || undefined,
+    directions: document.getElementById("directions").value.trim() || undefined,
+    teacher_ids: selectedTeacherIds.length > 0 ? selectedTeacherIds.join(",") : undefined,
   };
 
   try {

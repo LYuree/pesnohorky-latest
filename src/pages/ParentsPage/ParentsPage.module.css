@@ -85,6 +85,8 @@
   display: inline-block;
   background: #a51312;
   color: #fffff9;
+  border: none;
+  cursor: pointer;
   font-family: "Montserrat Alternates", system-ui, sans-serif;
   font-size: clamp(14px, 1.3vw, 20px);
   padding: clamp(8px, 1vw, 12px) clamp(16px, 2vw, 28px);

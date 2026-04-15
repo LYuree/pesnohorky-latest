@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
 import { fetchTeachers, type TeacherListItem } from "../../lib/api";
 import styles from "./TeachersStaffPage.module.css";
@@ -21,16 +21,7 @@ export default function TeachersStaffPage() {
   return (
     <div className={styles.page}>
       <MobileHeader />
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <Navbar />
-          <div className={styles.breadcrumbs}>
-            <span>Главная</span><span>/</span>
-            <span>Cведения об образовательной организации</span><span>/</span>
-            <span>Педагогический состав</span>
-          </div>
-        </div>
-      </section>
+      <PageHeader crumbs={[{ label: "Главная", to: "/" }, { label: "Педагоги" }]} />
       <section className={styles.content}>
         <div className={styles.contentInner}>
           <h1 className={styles.title}>Педагогический состав</h1>
@@ -44,6 +35,10 @@ export default function TeachersStaffPage() {
 
           {loading && <p className={styles.text}>Загрузка...</p>}
           {error && <p className={styles.text}>Ошибка: {error}</p>}
+
+          {!loading && !error && teachers.length === 0 && (
+            <p className={styles.text}>Педагогов пока нет</p>
+          )}
 
           {teachers.length > 0 && (
             <div className={styles.grid}>

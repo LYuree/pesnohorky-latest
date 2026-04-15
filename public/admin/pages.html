@@ -63,9 +63,11 @@
     <label for="section">Секция</label>
     <select id="section" name="section">
       <option value="">— без секции —</option>
-      <option value="parents">parents (Родителям)</option>
-      <option value="about-info">about-info (Сведения)</option>
     </select>
+    <div style="margin:-8px 0 12px;display:flex;gap:8px;align-items:center;">
+      <input id="new-section" type="text" placeholder="Или введите новую секцию (slug)" style="flex:1;margin:0;">
+      <button type="button" id="btn-add-section" style="white-space:nowrap;padding:8px 16px;border:1px solid #a51312;background:#fff;color:#a51312;border-radius:4px;cursor:pointer;font-size:13px;">+ Добавить</button>
+    </div>
 
     <label>Содержание *</label>
     <div class="editor-wrap">
@@ -81,8 +83,6 @@
 
 <div class="filter-bar" id="filter-bar">
   <button class="active" data-section="">Все</button>
-  <button data-section="parents">Родителям</button>
-  <button data-section="about-info">Сведения</button>
 </div>
 
 <table>
@@ -91,26 +91,14 @@
 </table>
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<script src="/admin/quill-extended.js"></script>
 <script>
 const API = "http://localhost:3001";
 let allPages = [];
 let currentFilter = "";
 let editingId = null;
 
-const quill = new Quill("#editor", {
-  theme: "snow",
-  modules: {
-    toolbar: [
-      [{ header: [2, 3, false] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"],
-      ["blockquote", "code-block"],
-      ["clean"],
-    ],
-  },
-  placeholder: "Содержание страницы...",
-});
+const quill = initQuill("#editor", { placeholder: "Содержание страницы..." });
 
 // Filter buttons
 document.getElementById("filter-bar").addEventListener("click", (e) => {
@@ -121,9 +109,56 @@ document.getElementById("filter-bar").addEventListener("click", (e) => {
   render();
 });
 
+// Add new section button
+document.getElementById("btn-add-section").addEventListener("click", () => {
+  const input = document.getElementById("new-section");
+  const val = input.value.trim();
+  if (!val) return;
+  const select = document.getElementById("section");
+  // Check if already exists
+  if (Array.from(select.options).some(o => o.value === val)) {
+    select.value = val;
+    input.value = "";
+    return;
+  }
+  const opt = document.createElement("option");
+  opt.value = val;
+  opt.textContent = val;
+  select.appendChild(opt);
+  select.value = val;
+  input.value = "";
+  // Also add filter button
+  addFilterButton(val);
+});
+
+function addFilterButton(section) {
+  const bar = document.getElementById("filter-bar");
+  if (bar.querySelector(`[data-section="${section}"]`)) return;
+  const btn = document.createElement("button");
+  btn.dataset.section = section;
+  btn.textContent = section;
+  bar.appendChild(btn);
+}
+
+function rebuildSections() {
+  const sections = [...new Set(allPages.map(p => p.section).filter(Boolean))];
+  const select = document.getElementById("section");
+  const current = select.value;
+  select.innerHTML = '<option value="">— без секции —</option>';
+  sections.forEach(s => {
+    const opt = document.createElement("option");
+    opt.value = s;
+    opt.textContent = s;
+    select.appendChild(opt);
+    addFilterButton(s);
+  });
+  if (current) select.value = current;
+}
+
 async function load() {
   const res = await fetch(API + "/api/pages");
   allPages = await res.json();
+  rebuildSections();
   render();
 }
 
@@ -167,7 +202,7 @@ async function edit(id) {
   document.getElementById("slug").disabled = true;
   document.getElementById("title").value = full.title;
   document.getElementById("section").value = full.section || "";
-  quill.root.innerHTML = full.content;
+  quill._setContent(full.content);
 
   document.getElementById("form-title").textContent = "Редактировать страницу #" + id;
   document.getElementById("btn-submit").textContent = "Сохранить";
@@ -183,7 +218,7 @@ function resetForm() {
   document.getElementById("edit-id").value = "";
   document.getElementById("form").reset();
   document.getElementById("slug").disabled = false;
-  quill.setContents([]);
+  quill._reset();
   document.getElementById("form-title").textContent = "Создать страницу";
   document.getElementById("btn-submit").textContent = "Создать";
   document.getElementById("btn-cancel").style.display = "none";
@@ -199,7 +234,7 @@ async function del(id) {
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("msg");
-  const content = quill.root.innerHTML.trim();
+  const content = quill._getContent();
   if (!content || content === "<p><br></p>") {
     msg.className = "msg err";
     msg.textContent = "Содержание обязательно";

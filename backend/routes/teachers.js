@@ -45,6 +45,25 @@ router.post("/", async (req, res) => {
   }
 });
 
+// PUT /api/admin/teachers/:id — обновление педагога
+router.put("/:id", async (req, res) => {
+  const { name, bio, photo_url } = req.body;
+  if (!name || !bio) {
+    return res.status(400).json({ error: "name и bio обязательны" });
+  }
+  try {
+    const result = await dbRun(
+      "UPDATE teachers SET name = ?, bio = ?, photo_url = ? WHERE id = ?",
+      [name, bio, photo_url || null, req.params.id]
+    );
+    if (result.changes === 0)
+      return res.status(404).json({ error: "Педагог не найден" });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // DELETE /api/admin/teachers/:id — удаление педагога
 router.delete("/:id", async (req, res) => {
   try {

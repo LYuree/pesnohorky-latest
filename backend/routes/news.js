@@ -3,13 +3,24 @@ import { dbAll, dbGet, dbRun } from "../db.js";
 
 const router = Router();
 
+function stripHtml(html) {
+  return (html || "").replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+}
+
 // GET /api/news — список новостей (с коротким preview)
 router.get("/", async (_req, res) => {
   try {
     const rows = await dbAll(
-      "SELECT id, title, date, image_url, substr(content, 1, 200) AS preview FROM news ORDER BY date DESC"
+      "SELECT id, title, date, image_url, content FROM news ORDER BY date DESC"
     );
-    res.json(rows);
+    const result = rows.map(r => ({
+      id: r.id,
+      title: r.title,
+      date: r.date,
+      image_url: r.image_url,
+      preview: stripHtml(r.content).slice(0, 200),
+    }));
+    res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

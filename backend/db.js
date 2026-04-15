@@ -37,6 +37,7 @@ export function initDB() {
           age_range TEXT,
           schedule TEXT,
           teacher_name TEXT,
+          directions TEXT,
           created_at TEXT DEFAULT (datetime('now'))
         )
       `);
@@ -51,6 +52,24 @@ export function initDB() {
           message TEXT,
           status TEXT DEFAULT 'new',
           created_at TEXT DEFAULT (datetime('now'))
+        )
+      `);
+      db.run(`
+        CREATE TABLE IF NOT EXISTS footer_links (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          col INTEGER NOT NULL DEFAULT 1,
+          label TEXT NOT NULL,
+          url TEXT NOT NULL,
+          is_external INTEGER NOT NULL DEFAULT 0,
+          sort_order INTEGER NOT NULL DEFAULT 0
+        )
+      `);
+      db.run(`
+        CREATE TABLE IF NOT EXISTS footer_contacts (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          field TEXT NOT NULL,
+          value TEXT NOT NULL,
+          sort_order INTEGER NOT NULL DEFAULT 0
         )
       `);
       db.run(

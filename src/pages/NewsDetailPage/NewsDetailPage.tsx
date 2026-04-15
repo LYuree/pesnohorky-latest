@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
 import { fetchNewsDetail, type NewsDetail } from "../../lib/api";
 import styles from "./NewsDetailPage.module.css";
@@ -33,17 +33,15 @@ export default function NewsDetailPage() {
     <div className={styles.page}>
       <MobileHeader />
 
+      <PageHeader crumbs={[
+        { label: "Главная", to: "/" },
+        { label: "Новости", to: "/news" },
+        { label: news?.title ?? "..." },
+      ]} />
+
       {/* ── Hero section (red) ── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <Navbar />
-          <div className={styles.breadcrumbs}>
-            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>Главная</Link>
-            <span>/</span>
-            <Link to="/news" style={{ color: "inherit", textDecoration: "none" }}>Новости</Link>
-            <span>/</span>
-            <span>{news?.title ?? "..."}</span>
-          </div>
 
           {news && (
             <>

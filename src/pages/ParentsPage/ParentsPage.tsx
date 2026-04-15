@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
-import { parentsPageAssets } from "../../lib/parentsPageAssets";
+import { EnrollModal } from "../../components/shared/EnrollModal/EnrollModal";
 import styles from "./ParentsPage.module.css";
 
 // ─── Quick-answers card data ────────────────────────────────────────────────
@@ -16,21 +17,10 @@ type QuickCard = {
 
 const quickCardsLeft: QuickCard[] = [
   {
-    title: "Как записаться?",
-    subtitle: "Пошагово: от выбора направления до первого занятия.",
-    btnLabel: "4 шага",
-    to: "/departments",
-  },
-  {
     title: "Документы",
     subtitle: "Пропуски, переносы, выступления, безопасность.",
     btnLabel: "Список",
     to: "/parents/safety",
-  },
-  {
-    title: "Что взять на занятие",
-    subtitle: "Пропуски, переносы, выступления, безопасность.",
-    btnLabel: "Чек лист",
   },
 ];
 
@@ -46,11 +36,6 @@ const quickCardsRight: QuickCard[] = [
     subtitle: "Оплата, стоимость и социальный сертификат",
     btnLabel: "Условия",
     to: "/parents/social-cert",
-  },
-  {
-    title: "Частые вопросы",
-    subtitle: "Пропуски, переносы, выступления, безопасность.",
-    btnLabel: "Ответы",
   },
 ];
 
@@ -79,22 +64,6 @@ const enrollSteps: EnrollStep[] = [
     title: "Первое занятие",
     description:
       "Приходите чуть раньше — поможем адаптироваться и всё объясним.",
-  },
-];
-
-// ─── Documents ───────────────────────────────────────────────────────────────
-
-type DocCard = { title: string; subtitle: string };
-
-const docCards: DocCard[] = [
-  { title: "Заявление на зачисление", subtitle: "PDF / DOCX" },
-  {
-    title: "Правила посещения",
-    subtitle: "Что важно знать родителям и детям.",
-  },
-  {
-    title: "Согласие на фото/видео",
-    subtitle: "Имея мероприятия и публикации.",
   },
 ];
 
@@ -165,45 +134,31 @@ function QuickCard({ title, subtitle, btnLabel, to }: QuickCard) {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function ParentsPage() {
+  const [showEnroll, setShowEnroll] = useState(false);
   return (
     <div className={styles.page}>
       <MobileHeader />
 
-      {/* ── Header / Hero ─────────────────────────────────────── */}
+      <PageHeader crumbs={[
+        { label: "Главная", to: "/" },
+        { label: "Родителям" },
+      ]} />
+
+      {/* ── Hero ── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <Navbar />
-
-          <nav className={styles.breadcrumbs} aria-label="Навигация">
-            <Link to="/" className={styles.breadcrumbLink}>Главная</Link>
-            <span className={styles.breadcrumbSep}>/</span>
-            <span>Родителям</span>
-          </nav>
-
-          <div className={styles.heroBody}>
-            <div className={styles.heroText}>
-              <h1 className={styles.heroTitle}>Родителям</h1>
-              <p className={styles.heroSubtitle}>Самая важная информция тут.</p>
-
-              {/* Quick links */}
-              <div className={styles.quickLinks}>
-                <Link to="/parents/safety" className={styles.quickLinkRed}>
-                  Оставить заявку
-                </Link>
-                <Link to="/departments" className={styles.quickLinkUnderline}>
-                  Расписание
-                </Link>
-                <Link to="/parents/safety" className={styles.quickLinkUnderline}>
-                  Безопасность
-                </Link>
-              </div>
-            </div>
-
-            <img
-              src={parentsPageAssets.imgEnrollSidebar}
-              alt="Записаться"
-              className={styles.heroSidebar}
-            />
+          <h1 className={styles.heroTitle}>Родителям</h1>
+          <p className={styles.heroSubtitle}>Самая важная информация тут.</p>
+          <div className={styles.quickLinks}>
+            <button className={styles.quickLinkRed} onClick={() => setShowEnroll(true)}>
+              Оставить заявку
+            </button>
+            <Link to="/departments" className={styles.quickLinkUnderline}>
+              Расписание
+            </Link>
+            <Link to="/parents/safety" className={styles.quickLinkUnderline}>
+              Безопасность
+            </Link>
           </div>
         </div>
       </section>
@@ -241,7 +196,7 @@ export default function ParentsPage() {
           </div>
         </section>
 
-        {/* 4c. Документы для родителей */}
+        {/* 4c. Документы для родителей
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Документы для родителей</h2>
           <div className={styles.docsRow}>
@@ -256,7 +211,7 @@ export default function ParentsPage() {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* 4d. Ответы на вопросы */}
         <section className={styles.section}>
@@ -318,6 +273,7 @@ export default function ParentsPage() {
         </div>
       </section>
 
+      <EnrollModal isOpen={showEnroll} onClose={() => setShowEnroll(false)} />
       <Footer />
     </div>
   );

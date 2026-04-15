@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
 import { EnrollModal } from "../../components/shared/EnrollModal/EnrollModal";
 import { homeAssets } from "../../lib/homeAssets";
@@ -12,28 +12,13 @@ export default function HomePage() {
     <div className={styles.page}>
       <MobileHeader />
 
-      {/* ── Navbar ── */}
-      <div className={styles.navbarWrap}>
-        <Navbar />
-      </div>
-
-      {/* ── Breadcrumbs + Hero ── */}
-      <div className={styles.header}>
-        <div className={styles.breadcrumbs}>
-          <span>Главная</span>
-        </div>
-      </div>
+      <PageHeader />
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>
 
-          <img alt="" className={styles.heroImgLeft} src={homeAssets.imgImage26} />
-          <img alt="" className={styles.heroImgRight} src={homeAssets.imgImage26} />
-          <img alt="" className={styles.heroMatryoshka} src={homeAssets.imgMatryoshka} />
-
           <p className={styles.heroSubtitle}>
             Центр эстетического
-            <br />
             воспитания
           </p>
 
@@ -147,9 +132,6 @@ export default function HomePage() {
       {/* ── Созвучие (red) ── */}
       <section className={[styles.sectionFull, styles.deptSection, styles.deptSectionRed].join(" ")}>
         <div className={styles.deptInner}>
-          <div className={styles.sozvPesno10}>
-            <img alt="" className={styles.sozvPesno10Inner} src={homeAssets.imgPesno10} />
-          </div>
           <div className={styles.sozvPesno7}>
             <img alt="" className={styles.sozvPesno7Inner} src={homeAssets.imgPesno7} />
           </div>
@@ -191,204 +173,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── "А также..." (red) ── */}
-      <section className={[styles.sectionFull, styles.alsoSection].join(" ")}>
-        <div className={styles.alsoInner}>
-          <p className={styles.alsoLabel}>А также...</p>
-          <div className={styles.alsoLine}>
-            <img alt="" className={styles.deptLineInner} src={homeAssets.imgLine6} />
-          </div>
-          <div className={styles.alsoCards}>
-            {[
-              { title: "Арт", subtitle: "планета", desc: "Творческое оббъединение" },
-              { title: "Созвучие", subtitle: "", desc: "Музыкально-инструментальная группа" },
-              { title: "Broadway", subtitle: "", desc: "Студия современного танца" },
-              { title: "Broadway", subtitle: "", desc: "Студия современного танца" },
-            ].map((card, i) => (
-              <div className={styles.alsoCard} key={i}>
-                <img alt="" className={styles.alsoCardImg} src={homeAssets.imgCardThumb} />
-                <div className={styles.alsoCardTitleWrap}>
-                  <div className={styles.alsoCardTitleRow}>
-                    <span className={styles.alsoCardTitle}>{card.title}</span>
-                    {card.subtitle && (
-                      <span className={styles.alsoCardSubtitle}>{card.subtitle}</span>
-                    )}
-                  </div>
-                  <div className={styles.alsoCardLine}>
-                    <img alt="" className={styles.alsoCardLineImg} src={homeAssets.imgLine4} />
-                  </div>
-                  <div className={styles.alsoCardLineSmall}>
-                    <img alt="" className={styles.branchImg} src={homeAssets.imgLine5} />
-                  </div>
-                </div>
-                <p className={styles.alsoCardDesc}>{card.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className={styles.alsoBtn}>
-            <div className={styles.alsoBtnContent}>
-              <span className={styles.alsoBtnText}>Все отделения</span>
-            </div>
-            <div className={styles.alsoBtnCorner}>
-              <img alt="" className={styles.alsoBtnCornerImg} src={homeAssets.imgLine7} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Red banner ── */}
-      <div className={styles.redBanner} />
-
-      {/* ── Педагоги ── */}
-      <section className={styles.teachersSection}>
-        <div className={styles.teachersInner}>
-          <h2 className={styles.teachersTitle}>Педагоги</h2>
-          <div className={styles.teachersGrid}>
-            {/* Top-left */}
-            <div className={styles.teacherCard}>
-              <div className={styles.teacherPhoto}>
-                <img alt="" className={styles.teacherPhotoImg} src={homeAssets.imgTeacher1} />
-              </div>
-              <div className={[styles.teacherInfo, styles.teacherInfoLeft].join(" ")}>
-                <div className={styles.teacherName}>
-                  <p className={styles.teacherSurname}>Бурдина</p>
-                  <p className={styles.teacherFirstName}>Алёна Максимовна</p>
-                </div>
-                <p className={styles.teacherDesc}>
-                  Педагог дополнительного образования, руководитель хореографической
-                  студии &quot;Орбита&quot;
-                </p>
-              </div>
-            </div>
-
-            {/* Top-right */}
-            <div className={styles.teacherCard}>
-              <div className={[styles.teacherInfo, styles.teacherInfoRight].join(" ")}>
-                <div className={styles.teacherName}>
-                  <p className={styles.teacherSurname}>Кем</p>
-                  <p className={styles.teacherFirstName}>Анастасия Сергеевна</p>
-                </div>
-                <p className={styles.teacherDesc}>
-                  Педагог дополнительного образования, руководитель объединения
-                  &quot;Перспектива&quot;
-                </p>
-              </div>
-              <div className={styles.teacherPhoto}>
-                <img alt="" className={styles.teacherPhotoImg} src={homeAssets.imgTeacher2} />
-              </div>
-            </div>
-
-            {/* Bottom-left */}
-            <div className={styles.teacherCard}>
-              <div className={styles.teacherPhoto}>
-                <img alt="" className={styles.teacherPhotoImg} src={homeAssets.imgTeacher2} />
-              </div>
-              <div className={[styles.teacherInfo, styles.teacherInfoLeft].join(" ")}>
-                <div className={styles.teacherName}>
-                  <p className={styles.teacherSurname}>Бурдина</p>
-                  <p className={styles.teacherFirstName}>Алёна Максимовна</p>
-                </div>
-                <p className={styles.teacherDesc}>
-                  Педагог дополнительного образования, руководитель хореографической
-                  студии &quot;Орбита&quot;
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom-right */}
-            <div className={[styles.teacherCard, styles.teacherCardCenter].join(" ")}>
-              <div className={[styles.teacherInfo, styles.teacherInfoRight].join(" ")}>
-                <div className={styles.teacherName}>
-                  <p className={styles.teacherSurname}>Кем</p>
-                  <p className={styles.teacherFirstName}>Анастасия Сергеевна</p>
-                </div>
-                <p className={styles.teacherDesc}>
-                  Педагог дополнительного образования, руководитель объединения
-                  &quot;Перспектива&quot;
-                </p>
-              </div>
-              <div className={styles.teacherPhoto}>
-                <img alt="" className={styles.teacherPhotoImg} src={homeAssets.imgTeacher1} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Последние новости ── */}
-      <section className={styles.newsSection}>
-        <h2 className={styles.newsTitle}>Последние новости</h2>
-        <div className={styles.newsContent}>
-          <div className={styles.newsFeatured}>
-            <div className={styles.newsFeaturedImg}>
-              <img alt="" className={styles.newsFeaturedImgInner} src={homeAssets.imgNewsThumb} />
-            </div>
-            <div>
-              <div className={styles.newsDate}>
-                <span className={styles.newsDateDay}>21</span>
-                <span className={styles.newsDateRest}>февраля</span>
-                <span className={styles.newsDateRest}>2026</span>
-              </div>
-              <div className={styles.newsDateLine}>
-                <img alt="" className={styles.newsDateLineImg} src={homeAssets.imgLineCard} />
-              </div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 50 }}>
-              <p className={styles.newsFeaturedHeadline}>
-                Коллективы центра &quot;Песнохорки&quot; выступили на торжественном
-                открытии Чемпионата и Первенства СФО Региональные соревнования «Кубок
-                Алтайского края» (РС) по спортивному ориентированию (лыжные дисциплины)
-              </p>
-              <div>
-                <p className={styles.newsFeaturedSummary}>
-                  Церемония состоялась в минувшую субботу и собрала более 200 юных
-                  спортсменов из Красноярского края, Новосибирской и Томской, Кемеровской
-                  и Омской, Иркутской областей, Алтайского края, Республики Алтай
-                </p>
-                <div className={styles.newsTags} style={{ marginTop: 25 }}>
-                  <span>песнохорки</span>
-                  <span>спорт</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.newsRight}>
-            {[0, 1].map((i) => (
-              <div className={styles.newsLightCard} key={i}>
-                <div className={styles.newsLightTop}>
-                  <div className={styles.newsLightDate}>
-                    <span className={styles.newsDateDay}>21</span>
-                    <span className={styles.newsDateRest}>февраля</span>
-                    <span className={styles.newsDateRest}>2026</span>
-                  </div>
-                  <div className={styles.newsLightImg}>
-                    <img alt="" className={styles.newsLightImgInner} src={homeAssets.imgNewsThumb} />
-                  </div>
-                </div>
-                <p className={styles.newsLightHeadline}>
-                  Концерт ко Дню матери состоялся на базе школы №135
-                </p>
-                <div className={styles.newsTags}>
-                  <span>песнохорки</span>
-                  <span>спорт</span>
-                </div>
-              </div>
-            ))}
-            <div className={styles.newsAllBtn}>
-              <div className={styles.btnContent}>
-                <span className={[styles.btnText, styles.btnTextLarge].join(" ")}>
-                  Все новости
-                </span>
-              </div>
-              <div className={styles.btnCorner}>
-                <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine1} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Как записаться ── */}
       <section className={[styles.sectionFull, styles.signupSection].join(" ")}>
         <div className={styles.signupInner}>
@@ -405,24 +189,12 @@ export default function HomePage() {
             <img alt="" className={styles.signupFrameImg} src={homeAssets.imgFrame60} />
           </div>
           <div className={styles.signupBtns}>
-            <div className={styles.signupBtnLeft}>
-              <div className={styles.signupBtn}>
-                <div className={styles.btnContent}>
-                  <span className={styles.signupBtnText}>Документ 1</span>
-                </div>
-                <div className={styles.btnCorner}>
-                  <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine8} />
-                </div>
+            <div className={styles.signupBtn} onClick={() => setShowEnroll(true)} style={{ cursor: "pointer" }}>
+              <div className={styles.btnContent}>
+                <span className={styles.signupBtnText}>Записать ребёнка</span>
               </div>
-            </div>
-            <div className={styles.signupBtnRight}>
-              <div className={styles.signupBtn}>
-                <div className={styles.btnContent}>
-                  <span className={styles.signupBtnText}>Документ 2</span>
-                </div>
-                <div className={styles.btnCorner}>
-                  <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine8} />
-                </div>
+              <div className={styles.btnCorner}>
+                <img alt="" className={styles.btnCornerImg} src={homeAssets.imgLine8} />
               </div>
             </div>
           </div>

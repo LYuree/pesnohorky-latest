@@ -19,6 +19,8 @@
     .editor-wrap .ql-editor { min-height: 120px; }
     button[type="submit"] { background: #a51312; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 14px; }
     button[type="submit"]:hover { background: #8a0f0e; }
+    .btn-cancel { background: #6c757d; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-left: 8px; display: none; }
+    .btn-cancel:hover { background: #5a6268; }
     .msg { padding: 8px 12px; border-radius: 4px; margin-bottom: 12px; display: none; }
     .msg.ok { display: block; background: #d4edda; color: #155724; }
     .msg.err { display: block; background: #f8d7da; color: #721c24; }
@@ -27,9 +29,10 @@
     th { background: #a51312; color: #fff; }
     .btn-del { background: #dc3545; color: #fff; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; }
     .btn-del:hover { background: #b02a37; }
+    .btn-edit { background: #ffc107; color: #333; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; margin-right: 4px; }
+    .btn-edit:hover { background: #e0a800; }
     .photo-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; }
 
-    /* Upload area */
     .upload-area { border: 2px dashed #ccc; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 12px; cursor: pointer; transition: border-color .2s; position: relative; }
     .upload-area:hover { border-color: #a51312; }
     .upload-area.has-file { border-color: #28a745; }
@@ -47,12 +50,15 @@
   <a href="/admin/collectives.html">Коллективы</a>
   <a href="/admin/applications.html">Заявки</a>
   <a href="/admin/pages.html">Страницы</a>
+  <a href="/admin/footer.html">Футер</a>
 </nav>
 
 <div class="form-card">
-  <h2>Добавить педагога</h2>
+  <h2 id="form-title">Добавить педагога</h2>
   <div id="msg" class="msg"></div>
   <form id="form">
+    <input type="hidden" id="edit-id">
+
     <label for="name">Имя *</label>
     <input id="name" name="name" type="text" required placeholder="Иванов Иван Иванович">
 
@@ -69,7 +75,10 @@
     </div>
     <input type="hidden" id="photo_url" name="photo_url">
 
-    <button type="submit">Создать</button>
+    <div>
+      <button type="submit" id="btn-submit">Создать</button>
+      <button type="button" class="btn-cancel" id="btn-cancel" onclick="cancelEdit()">Отмена</button>
+    </div>
   </form>
 </div>
 
@@ -80,24 +89,13 @@
 </table>
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<script src="/admin/quill-extended.js"></script>
 <script>
 const API = "http://localhost:3001";
+let editingId = null;
 
-// Quill editor
-const quill = new Quill("#editor", {
-  theme: "snow",
-  modules: {
-    toolbar: [
-      ["bold", "italic", "underline"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link"],
-      ["clean"],
-    ],
-  },
-  placeholder: "Педагог дополнительного образования...",
-});
+const quill = initQuill("#editor", { placeholder: "Педагог дополнительного образования..." });
 
-// Photo upload
 const fileInput = document.getElementById("photo-file");
 const uploadArea = document.getElementById("upload-area");
 const preview = document.getElementById("photo-preview");
@@ -106,10 +104,8 @@ const photoUrlInput = document.getElementById("photo_url");
 fileInput.addEventListener("change", async () => {
   const file = fileInput.files[0];
   if (!file) return;
-
   const fd = new FormData();
   fd.append("file", file);
-
   try {
     const res = await fetch(API + "/api/upload", { method: "POST", body: fd });
     if (!res.ok) throw new Error((await res.json()).error);
@@ -124,7 +120,6 @@ fileInput.addEventListener("change", async () => {
   }
 });
 
-// Load teachers list
 async function load() {
   const res = await fetch(API + "/api/teachers");
   const data = await res.json();
@@ -135,7 +130,10 @@ async function load() {
       <td>${t.id}</td>
       <td>${esc(t.name)}</td>
       <td>${t.created_at || ""}</td>
-      <td><button class="btn-del" onclick="del(${t.id})">Удалить</button></td>
+      <td>
+        <button class="btn-edit" onclick="edit(${t.id})">Редактировать</button>
+        <button class="btn-del" onclick="del(${t.id})">Удалить</button>
+      </td>
     </tr>
   `).join("");
 }
@@ -144,6 +142,49 @@ function esc(s) {
   const d = document.createElement("div");
   d.textContent = s || "";
   return d.innerHTML;
+}
+
+async function edit(id) {
+  const res = await fetch(API + "/api/teachers/" + id);
+  if (!res.ok) return alert("Не удалось загрузить педагога");
+  const t = await res.json();
+
+  editingId = id;
+  document.getElementById("edit-id").value = id;
+  document.getElementById("name").value = t.name;
+  quill._setContent(t.bio || "");
+  photoUrlInput.value = t.photo_url || "";
+
+  if (t.photo_url) {
+    preview.src = t.photo_url.startsWith("/") ? API + t.photo_url : t.photo_url;
+    preview.style.display = "block";
+    uploadArea.classList.add("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = "Фото загружено";
+  } else {
+    preview.style.display = "none";
+    uploadArea.classList.remove("has-file");
+    uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
+  }
+
+  document.getElementById("form-title").textContent = "Редактировать педагога";
+  document.getElementById("btn-submit").textContent = "Сохранить";
+  document.getElementById("btn-cancel").style.display = "inline-block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function cancelEdit() {
+  editingId = null;
+  document.getElementById("edit-id").value = "";
+  document.getElementById("form").reset();
+  quill._reset();
+  preview.style.display = "none";
+  photoUrlInput.value = "";
+  uploadArea.classList.remove("has-file");
+  uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
+  document.getElementById("form-title").textContent = "Добавить педагога";
+  document.getElementById("btn-submit").textContent = "Создать";
+  document.getElementById("btn-cancel").style.display = "none";
+  document.getElementById("msg").className = "msg";
 }
 
 async function del(id) {
@@ -155,7 +196,7 @@ async function del(id) {
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("msg");
-  const bio = quill.root.innerHTML.trim();
+  const bio = quill._getContent();
   if (!bio || bio === "<p><br></p>") {
     msg.className = "msg err";
     msg.textContent = "Биография обязательна";
@@ -167,20 +208,18 @@ document.getElementById("form").addEventListener("submit", async (e) => {
     photo_url: photoUrlInput.value || undefined,
   };
   try {
-    const res = await fetch(API + "/api/admin/teachers", {
-      method: "POST",
+    const isEdit = !!editingId;
+    const url = isEdit ? API + "/api/admin/teachers/" + editingId : API + "/api/admin/teachers";
+    const method = isEdit ? "PUT" : "POST";
+    const res = await fetch(url, {
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
     if (!res.ok) { const d = await res.json(); throw new Error(d.error); }
     msg.className = "msg ok";
-    msg.textContent = "Педагог добавлен!";
-    document.getElementById("form").reset();
-    quill.setContents([]);
-    preview.style.display = "none";
-    photoUrlInput.value = "";
-    uploadArea.classList.remove("has-file");
-    uploadArea.querySelector(".upload-hint").textContent = "Перетащите или нажмите для загрузки";
+    msg.textContent = isEdit ? "Педагог обновлён!" : "Педагог добавлен!";
+    cancelEdit();
     load();
   } catch (err) {
     msg.className = "msg err";

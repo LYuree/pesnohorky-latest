@@ -36,7 +36,23 @@
       "Bash(mv card-frame-683.png card-frame-683.svg)",
       "Bash(mkdir -p C:/FRONT/horki/pesnohorky-latest/public/images/departments)",
       "Bash(npm start:*)",
-      "Bash(grep -v \"^/c/FRONT/horki/pesnohorky-latest/src/pages$\")"
+      "Bash(grep -v \"^/c/FRONT/horki/pesnohorky-latest/src/pages$\")",
+      "Bash(awk '/\\\\.teacherPhoto\\\\s*{/,/^}/' /c/FRONT/horki/pesnohorky-latest/src/pages/HomePage/HomePage.module.css)",
+      "Bash(awk *)",
+      "Bash(grep -n \"breadcrumbs\\\\|navbarWrap\" /c/FRONT/horki/pesnohorky-latest/src/pages/*/\\\\*.tsx)",
+      "Bash(grep \"Page.tsx$\")",
+      "Bash(find /c/FRONT/horki/pesnohorky-latest/src/pages -name \"*Page.tsx\" -exec grep -l \"navbarWrap\\\\|breadcrumbs\" {} \\\\;)",
+      "Bash(grep *)",
+      "Bash(node *)",
+      "Bash(curl -s http://localhost:3001/api/teachers)",
+      "Bash(curl -s http://localhost:3001/admin/quill-extended.js)",
+      "Bash(curl -s http://localhost:3001/admin/teachers.html)",
+      "Bash(curl -s http://localhost:3001/api/news)",
+      "Bash(curl -s http://localhost:3001/api/collectives)",
+      "Bash(curl -s http://localhost:3001/api/pages)",
+      "Bash(ls public/images/pesno3*)",
+      "Bash(ls public/images/news/logo*)",
+      "Bash(curl -s http://localhost:3001/api/pages/about-info)"
     ]
   }
 }

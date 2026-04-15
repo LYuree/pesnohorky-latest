@@ -15,7 +15,32 @@ router.get("/", async (_req, res) => {
   }
 });
 
-// GET /:section/:page — получить страницу по slug (вложенные пути)
+// GET по slug любой глубины: /slug, /a/b, /a/b/c
+router.get("/:a/:b/:c", async (req, res) => {
+  try {
+    const slug = req.params.a + "/" + req.params.b + "/" + req.params.c;
+    const row = await dbGet("SELECT * FROM static_pages WHERE slug = ?", [slug]);
+    if (!row) return res.status(404).json({ error: "Страница не найдена" });
+    res.json(row);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /:slug — получить страницу по простому slug
+router.get("/:slug", async (req, res) => {
+  try {
+    const row = await dbGet("SELECT * FROM static_pages WHERE slug = ?", [
+      req.params.slug,
+    ]);
+    if (!row) return res.status(404).json({ error: "Страница не найдена" });
+    res.json(row);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /:section/:page — получить страницу по вложенному slug
 router.get("/:section/:page", async (req, res) => {
   try {
     const slug = req.params.section + "/" + req.params.page;

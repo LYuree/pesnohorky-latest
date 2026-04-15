@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Navbar } from "../../components/news/Navbar/Navbar";
+import { useParams } from "react-router-dom";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
 import { fetchTeacher, type Teacher } from "../../lib/api";
 import styles from "./TeacherDetailPage.module.css";
@@ -23,15 +23,11 @@ export default function TeacherDetailPage() {
   return (
     <div className={styles.page}>
       <MobileHeader />
-      <Navbar />
-
-      <div className={styles.breadcrumbs}>
-        <Link to="/">Главная</Link>
-        <span>/</span>
-        <Link to="/about-info/teachers-staff">Педагоги</Link>
-        <span>/</span>
-        <span>{teacher?.name ?? "..."}</span>
-      </div>
+      <PageHeader crumbs={[
+        { label: "Главная", to: "/" },
+        { label: "Педагоги", to: "/teachers" },
+        { label: teacher?.name ?? "..." },
+      ]} />
 
       <main className={styles.main}>
         <div className={styles.content}>
@@ -39,28 +35,18 @@ export default function TeacherDetailPage() {
           {error && <p className={styles.name}>Ошибка: {error}</p>}
 
           {teacher && (
-            <>
-              <div className={styles.columns}>
-                <div className={styles.photoWrap}>
-                  <img
-                    alt={teacher.name}
-                    className={styles.photo}
-                    src={teacher.photo_url || "/images/teacher-detail/teacher-photo.svg"}
-                  />
-                </div>
-                <div className={styles.info}>
-                  <h1 className={styles.name}>{teacher.name}</h1>
-
-                  <div className={styles.education}>
-                    <h2 className={styles.educationTitle}>О педагоге</h2>
-                    <div
-                      className={styles.educationText}
-                      dangerouslySetInnerHTML={{ __html: teacher.bio }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </>
+            <div className={styles.article}>
+              <img
+                alt={teacher.name}
+                className={styles.photo}
+                src={teacher.photo_url || "/images/teacher-detail/teacher-photo.svg"}
+              />
+              <h1 className={styles.name}>{teacher.name}</h1>
+              <div
+                className={styles.bio}
+                dangerouslySetInnerHTML={{ __html: teacher.bio }}
+              />
+            </div>
           )}
         </div>
       </main>

@@ -8,6 +8,7 @@ import uploadRouter from "./routes/upload.js";
 import collectivesRouter from "./routes/collectives.js";
 import applicationsRouter from "./routes/applications.js";
 import staticPagesRouter from "./routes/static-pages.js";
+import footerRouter from "./routes/footer.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -48,6 +49,9 @@ app.use("/api/admin/applications", applicationsRouter);
 
 app.use("/api/pages", staticPagesRouter);
 app.use("/api/admin/pages", staticPagesRouter);
+
+app.use("/api/footer", footerRouter);
+app.use("/api/admin/footer", footerRouter);
 
 async function start() {
   await initDB();

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { figmaAssets } from "../../../lib/figmaAssets";
 import styles from "./MobileHeader.module.css";
 
 export function MobileHeader() {
@@ -9,7 +8,6 @@ export function MobileHeader() {
   return (
     <header className={styles.root}>
       <div className={styles.bar}>
-        {/* Left: burger + logo */}
         <div className={styles.left}>
           <button
             className={styles.burger}
@@ -27,22 +25,11 @@ export function MobileHeader() {
             )}
           </button>
           <Link to="/" className={styles.logoLink} onClick={() => setIsOpen(false)}>
-            <img alt="Песнохорки" className={styles.logoImg} src={figmaAssets.imgPesno311} />
+            <img alt="Песнохорки" className={styles.logoImg} src="/images/pesno3_1 1.png" />
           </Link>
-        </div>
-
-        {/* Right: social icons + user */}
-        <div className={styles.right}>
-          <div className={styles.socialIcons}>
-            <img alt="" className={styles.socialIcon} src={figmaAssets.imgTablerIconBrandVk} />
-            <img alt="" className={styles.socialIcon} src={figmaAssets.imgTablerIconDeviceMobile} />
-            <img alt="" className={styles.socialIcon} src={figmaAssets.imgTablerIconBrandTelegram} />
-          </div>
-          <img alt="" className={styles.userIcon} src={figmaAssets.imgTablerIconUser} />
         </div>
       </div>
 
-      {/* Slide-out menu */}
       {isOpen && (
         <>
           <div className={styles.overlay} onClick={() => setIsOpen(false)} />
@@ -50,11 +37,17 @@ export function MobileHeader() {
             <Link to="/news" className={styles.menuLink} onClick={() => setIsOpen(false)}>
               Новости
             </Link>
+            <Link to="/departments" className={styles.menuLink} onClick={() => setIsOpen(false)}>
+              Коллективы
+            </Link>
+            <Link to="/teachers" className={styles.menuLink} onClick={() => setIsOpen(false)}>
+              Педагоги
+            </Link>
             <Link to="/parents" className={styles.menuLink} onClick={() => setIsOpen(false)}>
               Родителям
             </Link>
             <Link to="/about-info" className={styles.menuLink} onClick={() => setIsOpen(false)}>
-              Сведения об образовательной организации
+              Сведения об организации
             </Link>
             <Link to="/about" className={styles.menuLink} onClick={() => setIsOpen(false)}>
               О центре

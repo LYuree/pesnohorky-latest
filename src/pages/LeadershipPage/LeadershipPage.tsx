@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-import { Navbar } from "../../components/news/Navbar/Navbar";
 import { MobileHeader } from "../../components/shared/MobileHeader/MobileHeader";
+import { PageHeader } from "../../components/shared/PageHeader/PageHeader";
 import { Footer } from "../../components/shared/Footer/Footer";
 import { leadershipPageAssets } from "../../lib/leadershipPageAssets";
 import styles from "./LeadershipPage.module.css";
@@ -9,18 +8,7 @@ export default function LeadershipPage() {
   return (
     <div className={styles.page}>
       <MobileHeader />
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <Navbar />
-          <nav className={styles.breadcrumbs}>
-            <Link to="/">Главная</Link>
-            <span>/</span>
-            <Link to="/about-info">Cведения об образовательной организации</Link>
-            <span>/</span>
-            <span>Руководство</span>
-          </nav>
-        </div>
-      </section>
+      <PageHeader crumbs={[{ label: "Главная", to: "/" }, { label: "Сведения об образовательной организации", to: "/about-info" }, { label: "Руководство" }]} />
       <section className={styles.content}>
         <div className={styles.contentInner}>
           <h1 className={styles.title}>Руководство</h1>
