@@ -52,7 +52,9 @@
       "Bash(curl -s http://localhost:3001/api/pages)",
       "Bash(ls public/images/pesno3*)",
       "Bash(ls public/images/news/logo*)",
-      "Bash(curl -s http://localhost:3001/api/pages/about-info)"
+      "Bash(curl -s http://localhost:3001/api/pages/about-info)",
+      "Bash(node -e ' *)",
+      "Read(//tmp/**)"
     ]
   }
 }
